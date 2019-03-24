@@ -254,5 +254,58 @@ namespace Processador_De_Imagens
             var formInfo = new FormInfo();
             formInfo.Show();
         }
+
+        private void btnFMedia_Click(object sender, EventArgs e)
+        {
+            Bitmap imgOriginal = new Bitmap(pictureBox1.Image);
+            Bitmap imgResultante = new Bitmap(imgOriginal.Width, imgOriginal.Height);
+
+            int mediaR = 0;
+            int mediaG = 0;
+            int mediaB = 0;
+
+            progressBar1.Minimum = 0;
+            progressBar1.Value = 0;
+            progressBar1.Maximum = imgOriginal.Width * imgOriginal.Height;
+
+
+            for (int x = 1; x < imgOriginal.Width - 1; x++)
+            {
+                for (int y = 1; y < imgOriginal.Height - 1; y++)
+                {
+                    mediaR += imgOriginal.GetPixel(x - 1, y - 1).R + imgOriginal.GetPixel(x - 1, y).R + imgOriginal.GetPixel(x - 1, y + 1).R;
+                    mediaR += imgOriginal.GetPixel(x, y - 1).R + imgOriginal.GetPixel(x, y).R + imgOriginal.GetPixel(x, y + 1).R;
+                    mediaR += imgOriginal.GetPixel(x + 1, y - 1).R + imgOriginal.GetPixel(x + 1, y).R + imgOriginal.GetPixel(x + 1, y + 1).R;
+                    mediaR = (int)(mediaR / 9);
+                    if (mediaR > 255)
+                    {
+                        mediaR = 255;
+                    }
+
+                    mediaG += imgOriginal.GetPixel(x - 1, y - 1).G + imgOriginal.GetPixel(x - 1, y).G + imgOriginal.GetPixel(x - 1, y + 1).G;
+                    mediaG += imgOriginal.GetPixel(x, y - 1).G + imgOriginal.GetPixel(x, y).G + imgOriginal.GetPixel(x, y + 1).G;
+                    mediaG += imgOriginal.GetPixel(x + 1, y - 1).G + imgOriginal.GetPixel(x + 1, y).G + imgOriginal.GetPixel(x + 1, y + 1).G;
+                    mediaG = (int)(mediaG / 9);
+                    if (mediaG > 255)
+                    {
+                        mediaG = 255;
+                    }
+
+                    mediaB += imgOriginal.GetPixel(x - 1, y - 1).G + imgOriginal.GetPixel(x - 1, y).G + imgOriginal.GetPixel(x - 1, y + 1).G;
+                    mediaB += imgOriginal.GetPixel(x, y - 1).G + imgOriginal.GetPixel(x, y).G + imgOriginal.GetPixel(x, y + 1).G;
+                    mediaB += imgOriginal.GetPixel(x + 1, y - 1).G + imgOriginal.GetPixel(x + 1, y).G + imgOriginal.GetPixel(x + 1, y + 1).G;
+                    mediaB = (int)(mediaB / 9);
+                    if (mediaB > 255)
+                    {
+                        mediaB = 255;
+                    }
+
+                    imgResultante.SetPixel(x, y, Color.FromArgb(mediaR, mediaG, mediaB));
+                    progressBar1.Value += 1;
+                }
+            }
+            pictureBox2.Image = imgResultante;
+            progressBar1.Value = imgResultante.Height * imgResultante.Width;
+        }
     }
 }
