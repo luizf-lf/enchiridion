@@ -307,5 +307,108 @@ namespace Processador_De_Imagens
             pictureBox2.Image = imgResultante;
             progressBar1.Value = imgResultante.Height * imgResultante.Width;
         }
+
+        private void btnMediana_Click(object sender, EventArgs e)
+        {
+            Bitmap imgOriginal = new Bitmap(pictureBox1.Image);
+            Bitmap imgResultante = new Bitmap(imgOriginal.Width, imgOriginal.Height);
+
+            int[] vmediaR = new int[9];
+            int[] vmediaG = new int[9];
+            int[] vmediaB = new int[9];
+            
+            int[] vetor = new int[9];
+
+            Ordenacao ordenar = new Ordenacao();
+
+            int mediaR = 0;
+            int mediaG = 0;
+            int mediaB = 0;
+
+            progressBar1.Minimum = 0;
+            progressBar1.Value = 0;
+            progressBar1.Maximum = imgOriginal.Width * imgOriginal.Height;
+
+
+            for (int x = 1; x < imgOriginal.Width - 1; x++)
+            {
+                for (int y = 1; y < imgOriginal.Height - 1; y++)
+                {
+                    vmediaR[0] = imgOriginal.GetPixel(x - 1, y - 1).R;
+                    vmediaR[1] = imgOriginal.GetPixel(x - 1, y).R;
+                    vmediaR[2] = imgOriginal.GetPixel(x - 1, y + 1).R;
+
+                    vmediaR[3] = imgOriginal.GetPixel(x , y -1).R;
+                    vmediaR[4] = imgOriginal.GetPixel(x,y).R;
+                    vmediaR[5] = imgOriginal.GetPixel(x, y+1).R;
+
+                    vmediaR[6] = imgOriginal.GetPixel(x + 1, y - 1).R;
+                    vmediaR[7] = imgOriginal.GetPixel(x + 1, y).R;
+                    vmediaR[8] = imgOriginal.GetPixel(x + 1, y + 1).R;
+
+                    vetor = ordenar.BubbleSort(vmediaR);
+                    mediaR = vmediaR[4];
+
+                    vmediaG[0] = imgOriginal.GetPixel(x - 1, y - 1).R;
+                    vmediaG[1] = imgOriginal.GetPixel(x - 1, y).R;
+                    vmediaG[2] = imgOriginal.GetPixel(x - 1, y + 1).R;
+
+                    vmediaG[3] = imgOriginal.GetPixel(x, y - 1).R;
+                    vmediaG[4] = imgOriginal.GetPixel(x, y).R;
+                    vmediaG[5] = imgOriginal.GetPixel(x, y + 1).R;
+
+                    vmediaG[6] = imgOriginal.GetPixel(x + 1, y - 1).R;
+                    vmediaG[7] = imgOriginal.GetPixel(x + 1, y).R;
+                    vmediaG[8] = imgOriginal.GetPixel(x + 1, y + 1).R;
+
+                    vetor = ordenar.BubbleSort(vmediaG);
+                    mediaG = vmediaG[4];
+
+
+                    vmediaB[0] = imgOriginal.GetPixel(x - 1, y - 1).R;
+                    vmediaB[1] = imgOriginal.GetPixel(x - 1, y).R;
+                    vmediaB[2] = imgOriginal.GetPixel(x - 1, y + 1).R;
+
+                    vmediaB[3] = imgOriginal.GetPixel(x, y - 1).R;
+                    vmediaB[4] = imgOriginal.GetPixel(x, y).R;
+                    vmediaB[5] = imgOriginal.GetPixel(x, y + 1).R;
+
+                    vmediaB[6] = imgOriginal.GetPixel(x + 1, y - 1).R;
+                    vmediaB[7] = imgOriginal.GetPixel(x + 1, y).R;
+                    vmediaB[8] = imgOriginal.GetPixel(x + 1, y + 1).R;
+
+                    vetor = ordenar.BubbleSort(vmediaB);
+                    mediaB = vmediaB[4];
+
+
+                    imgResultante.SetPixel(x, y, Color.FromArgb(mediaR, mediaG, mediaB));
+
+                    progressBar1.Value += 1;
+                }
+            }
+            pictureBox2.Image = imgResultante;
+            progressBar1.Value = imgResultante.Height * imgResultante.Width;
+        }
+    }
+
+    internal class Ordenacao
+    {
+        public int[] BubbleSort(int[] vetor)
+        {
+            for (int x = 0; x < vetor.Length; x++)
+            {
+                for (int y = 0; y < vetor.Length - 1; y++)
+                {
+                    if (vetor[y] > vetor[y + 1])
+                    {
+                        int swap = vetor[y];
+                        vetor[y] = vetor[y + 1];
+                        vetor[y + 1] = swap;
+                    }
+                }
+
+            }
+            return vetor;
+        }
     }
 }

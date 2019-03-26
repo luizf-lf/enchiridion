@@ -32,6 +32,7 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnFMedia = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnMudarIntensidade = new System.Windows.Forms.Button();
             this.btnNegativo = new System.Windows.Forms.Button();
@@ -55,7 +56,7 @@
             this.trbMudarIntens = new System.Windows.Forms.TrackBar();
             this.labelTrb = new System.Windows.Forms.Label();
             this.ckBxMudarInt = new System.Windows.Forms.CheckBox();
-            this.btnFMedia = new System.Windows.Forms.Button();
+            this.btnMediana = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -67,6 +68,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(27)))), ((int)(((byte)(123)))));
+            this.panel1.Controls.Add(this.btnMediana);
             this.panel1.Controls.Add(this.btnFMedia);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.btnMudarIntensidade);
@@ -83,6 +85,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(360, 817);
             this.panel1.TabIndex = 0;
+            // 
+            // btnFMedia
+            // 
+            this.btnFMedia.FlatAppearance.BorderSize = 0;
+            this.btnFMedia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(44)))), ((int)(((byte)(199)))));
+            this.btnFMedia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFMedia.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFMedia.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnFMedia.Image = ((System.Drawing.Image)(resources.GetObject("btnFMedia.Image")));
+            this.btnFMedia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFMedia.Location = new System.Drawing.Point(-1, 539);
+            this.btnFMedia.Margin = new System.Windows.Forms.Padding(0);
+            this.btnFMedia.Name = "btnFMedia";
+            this.btnFMedia.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnFMedia.Size = new System.Drawing.Size(360, 60);
+            this.btnFMedia.TabIndex = 10;
+            this.btnFMedia.Text = "   Filtro da média";
+            this.btnFMedia.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnFMedia.UseVisualStyleBackColor = true;
+            this.btnFMedia.Click += new System.EventHandler(this.btnFMedia_Click);
             // 
             // button2
             // 
@@ -409,25 +431,25 @@
             this.ckBxMudarInt.Text = "Intensidade negativa";
             this.ckBxMudarInt.UseVisualStyleBackColor = true;
             // 
-            // btnFMedia
+            // btnMediana
             // 
-            this.btnFMedia.FlatAppearance.BorderSize = 0;
-            this.btnFMedia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(44)))), ((int)(((byte)(199)))));
-            this.btnFMedia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFMedia.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFMedia.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnFMedia.Image = ((System.Drawing.Image)(resources.GetObject("btnFMedia.Image")));
-            this.btnFMedia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFMedia.Location = new System.Drawing.Point(-1, 539);
-            this.btnFMedia.Margin = new System.Windows.Forms.Padding(0);
-            this.btnFMedia.Name = "btnFMedia";
-            this.btnFMedia.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnFMedia.Size = new System.Drawing.Size(360, 60);
-            this.btnFMedia.TabIndex = 10;
-            this.btnFMedia.Text = "   Filtro da média (PA)";
-            this.btnFMedia.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnFMedia.UseVisualStyleBackColor = true;
-            this.btnFMedia.Click += new System.EventHandler(this.btnFMedia_Click);
+            this.btnMediana.FlatAppearance.BorderSize = 0;
+            this.btnMediana.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(44)))), ((int)(((byte)(199)))));
+            this.btnMediana.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMediana.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMediana.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnMediana.Image = ((System.Drawing.Image)(resources.GetObject("btnMediana.Image")));
+            this.btnMediana.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMediana.Location = new System.Drawing.Point(-1, 599);
+            this.btnMediana.Margin = new System.Windows.Forms.Padding(0);
+            this.btnMediana.Name = "btnMediana";
+            this.btnMediana.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnMediana.Size = new System.Drawing.Size(360, 60);
+            this.btnMediana.TabIndex = 11;
+            this.btnMediana.Text = "   Filtro da mediana";
+            this.btnMediana.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnMediana.UseVisualStyleBackColor = true;
+            this.btnMediana.Click += new System.EventHandler(this.btnMediana_Click);
             // 
             // Form1
             // 
@@ -492,6 +514,7 @@
         private System.Windows.Forms.CheckBox ckBxMudarInt;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnFMedia;
+        private System.Windows.Forms.Button btnMediana;
     }
 }
 
