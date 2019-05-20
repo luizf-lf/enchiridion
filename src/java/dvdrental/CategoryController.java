@@ -16,52 +16,52 @@ import javax.faces.model.ListDataModel;
  *
  * @author bruno
  */
-@Named(value = "filmController")
+@Named(value = "categoryController")
 @SessionScoped
-public class FilmController implements Serializable {
+public class CategoryController implements Serializable {
 
     int startId;
     int endId;
-    DataModel filmTitles;
-    FilmHelper helper;
+    DataModel categoryTitles;
+    CategoryHelper helper;
     private int recordCount = 1000;
     private int pageSize = 10;
 
-    private Film current;
+    private Category current;
     private int selectedItemIndex;
 
     /**
      * Creates a new instance of FilmController
      */
-    public FilmController() {
-        helper = new FilmHelper();
+    public CategoryController() {
+        helper = new CategoryHelper();
         startId = 1;
         endId = 10;
     }
 
-    public FilmController(int startId, int endId) {
-        helper = new FilmHelper();
+    public CategoryController(int startId, int endId) {
+        helper = new CategoryHelper();
         this.startId = startId;
         this.endId = endId;
     }
 
-    public Film getSelected() {
+    public Category getSelected() {
         if (current == null) {
-            current = new Film();
+            current = new Category();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    public DataModel getFilmTitles() {
-        if (filmTitles == null) {
-            filmTitles = new ListDataModel(helper.getFilmTitles(startId, endId));
+    public DataModel getCategoryTitles() {
+        if (categoryTitles == null) {
+            categoryTitles = new ListDataModel(helper.getCategorys(startId, endId));
         }
-        return filmTitles;
+        return categoryTitles;
     }
 
     void recreateModel() {
-        filmTitles = null;
+        categoryTitles = null;
     }
 
     public boolean isHasNextPage() {
@@ -96,24 +96,24 @@ public class FilmController implements Serializable {
         return pageSize;
     }
 
-    public String prepareView() {
+    /*public String prepareView() {
         current = (Film) getFilmTitles().getRowData();
         return "browse";
-    }
+    }*/
 
     public String prepareList() {
         recreateModel();
         return "index";
     }
 
-    public String getLanguage() {
+    /*public String getLanguage() {
         // int langID = current.getLanguageByLanguageId().getLanguageId().intValue();
         int langID = current.getLanguage().getLanguageId();
         String language = helper.getLangByID(langID);
         return language;
-    }
+    }*/
 
-    public String getActors() {
+    /*public String getActors() {
         List<Actor> actors = helper.getActorsByID(current.getFilmId());
         StringBuffer totalCast = new StringBuffer();
         for (int i = 0; i < actors.size(); i++) {
@@ -124,11 +124,11 @@ public class FilmController implements Serializable {
             totalCast.append("  ");
         }
         return totalCast.toString();
-    }
+    }*/
 
-    public String getCategory() {
+    /*public String getCategory() {
         Category category = helper.getCategoryByID(current.getFilmId());
         return category.getName();
-    }
+    }*/
 
 }

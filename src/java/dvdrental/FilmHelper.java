@@ -11,7 +11,7 @@ import org.hibernate.Session;
 
 /**
  *
- * @author luiz
+ * @author bruno
  */
 public class FilmHelper {
 
