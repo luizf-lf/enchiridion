@@ -14,7 +14,7 @@ import javax.faces.model.ListDataModel;
 
 /**
  *
- * @author bruno
+ * @author luiz
  */
 @Named(value = "filmController")
 @SessionScoped

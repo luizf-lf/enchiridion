@@ -11,7 +11,7 @@ import org.hibernate.Session;
 
 /**
  *
- * @author bruno
+ * @author luiz
  */
 public class CategoryHelper {
 
@@ -21,9 +21,15 @@ public class CategoryHelper {
         this.session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
     
-    private void openSession() {
-        if (!session.isOpen()) {
-            session = HibernateUtil.getSessionFactory().openSession();
+    public void openSession() {
+        if (session == null || !session.isOpen()) {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+        }
+    }
+
+    public void closeSession() {
+        if (session.isOpen()) {
+            session.close();
         }
     }
 
@@ -61,5 +67,22 @@ public class CategoryHelper {
         }
 
         return category;
+    }
+    
+    public void salvar(Category category) {
+        openSession();
+        org.hibernate.Transaction tx = session.beginTransaction();
+        try {
+            session.save(category);
+            tx.commit();
+        } catch (RuntimeException ex) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            throw ex;
+        } 
+        finally {
+            closeSession();
+        }
     }
 }

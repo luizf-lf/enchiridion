@@ -8,13 +8,14 @@ package dvdrental;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
 /**
  *
- * @author bruno
+ * @author luiz
  */
 @Named(value = "categoryController")
 @SessionScoped
@@ -26,8 +27,11 @@ public class CategoryController implements Serializable {
     CategoryHelper helper;
     private int recordCount = 1000;
     private int pageSize = 10;
-
+    
     private Category current;
+    
+    private Category category;
+    
     private int selectedItemIndex;
 
     /**
@@ -130,5 +134,32 @@ public class CategoryController implements Serializable {
         Category category = helper.getCategoryByID(current.getFilmId());
         return category.getName();
     }*/
+    
+    public Category getCategory() {
+        if (category == null) {
+            category = new Category();
+        }
+        return category;
+    }
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void salvar() {
+
+        try {
+            CategoryHelper categoryHelper = new CategoryHelper();
+            category.setLastUpdate(new Date());
+            categoryHelper.salvar(category);
+
+            category = new Category();
+
+            MensagemUtil.addMsgInfo("Categoria salva com sucesso");
+        } catch (RuntimeException ex) {
+            MensagemUtil.addMsgErro("Erro ao tentar cadastrar Category: " + ex.getMessage());
+        }
+    }
+
+    
 }
