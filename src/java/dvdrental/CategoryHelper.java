@@ -38,7 +38,7 @@ public class CategoryHelper {
         List<Category> categoryList = null;
         org.hibernate.Transaction tx = session.beginTransaction();
         try {
-            Query q = session.createQuery("from Category as category where category.categoryId between '" + startID + "' and '" + endID + "'");
+            Query q = session.createQuery("from Category as category");
             categoryList = (List<Category>) q.list();
             tx.commit();
         } catch (Exception e) {
@@ -82,6 +82,22 @@ public class CategoryHelper {
             throw ex;
         } 
         finally {
+            closeSession();
+        }
+    }
+    
+    public void excluir(Category category) {
+        openSession();
+        org.hibernate.Transaction tx = session.beginTransaction();
+        try {
+            session.delete(category);
+            tx.commit();
+        } catch (RuntimeException ex) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            throw ex;
+        } finally {
             closeSession();
         }
     }

@@ -10,6 +10,7 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -27,11 +28,9 @@ public class CategoryController implements Serializable {
     CategoryHelper helper;
     private int recordCount = 1000;
     private int pageSize = 10;
-    
     private Category current;
     
     private Category category;
-    
     private int selectedItemIndex;
 
     /**
@@ -160,6 +159,14 @@ public class CategoryController implements Serializable {
             MensagemUtil.addMsgErro("Erro ao tentar cadastrar Category: " + ex.getMessage());
         }
     }
-
     
+    public void excluir() {
+        try {
+            CategoryHelper categoryHelper = new CategoryHelper();
+            categoryHelper.excluir(category);
+            MensagemUtil.addMsgInfo("Categoria excluida com sucesso");
+        } catch (RuntimeException ex) {
+            MensagemUtil.addMsgErro("Erro ao tentar excluir Category: " + ex.getMessage());
+        }
+    }
 }
