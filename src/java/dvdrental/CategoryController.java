@@ -169,4 +169,15 @@ public class CategoryController implements Serializable {
             MensagemUtil.addMsgErro("Erro ao tentar excluir Category: " + ex.getMessage());
         }
     }
+    
+    public void atualizar(){
+        try {
+            CategoryHelper categoryHelper = new CategoryHelper();
+            categoryHelper.atualizar(category);
+            MensagemUtil.addMsgInfo("Categoria atualizada com sucesso");
+        } catch (RuntimeException ex) {
+            MensagemUtil.addMsgErro("Erro ao tentar atualizar Category: " + ex.getMessage());
+        }
+        
+    }
 }

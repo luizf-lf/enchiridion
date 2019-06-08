@@ -18,7 +18,8 @@ public class CategoryHelper {
     Session session = null;
 
     public CategoryHelper() {
-        this.session = HibernateUtil.getSessionFactory().getCurrentSession();
+       // this.session = HibernateUtil.getSessionFactory().getCurrentSession();
+       //openSession();
     }
     
     public void openSession() {
@@ -45,7 +46,7 @@ public class CategoryHelper {
             tx.rollback();
             e.printStackTrace();
         } finally {
-             // session.clear();
+             closeSession();
         }
         return categoryList;
     }
@@ -98,6 +99,22 @@ public class CategoryHelper {
             }
             throw ex;
         } finally {
+            closeSession();
+        }
+    }
+    
+    public void atualizar(Category category) {
+        openSession();
+        org.hibernate.Transaction tx = session.beginTransaction();
+        try {
+            session.update(category);
+            tx.commit();
+        } catch (RuntimeException ex) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            throw ex;
+        }finally{
             closeSession();
         }
     }
