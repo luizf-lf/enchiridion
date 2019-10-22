@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+html {
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    --bg: #fafafa;
+    --bg-painel: #eae9e9;
+    --bg-painel-tp: #494ca2;
+    --titulo: #3d6cb9;
+    --texto: #393e46;
+    --shadow: #e0dede 1em 1em 1.5em;
+}
+
+html[data-theme='dark'] {
+    --bg: #000;
+    --bg-painel: #222831;
+    --bg-painel-tp: #3c4f65;
+    --texto: #fafafa;
+    --shadow: #000000 1em 1em;
+}
+
+body{
+    background-color: var(--bg);
+}
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background-color: var(--bg-painel);
+    display: flex;
+    h3{
+        color: var(--texto);
+        margin-left: 1em;
+        margin-right: .8em;
+    }
+}
+
+.container {
+    width: 70vw;
+    border-radius: 2em;
+    box-shadow: var(--shadow);
+}
+
+.c-title{
+    display: flex;
+    background-color: var(--bg-painel-tp);
+    border-radius: 2em 2em 0 0;
+    h1{
+        display: block;
+        color: #f4f3f3;
+    }
+
+    img{
+        height: 3em;
+        margin: 1em 1.5em;
+    }
+}
+
+.c-body{
+    background-color: var(--bg-painel);
+    padding: 1.5em;
+    border-radius: 0 0 2em 2em;
+    p{
+        color: var(--texto);
+        font-size: 1.2em;
+        line-height: 1.5em;
+    }   
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    background-color: var(--bg-painel);
+    color: var(--texto);
+    padding: .6em;
+    margin-bottom: 0;
+    a{
+        text-decoration: none;
+        color: var(--texto);
+        font-weight: bold;
+    }
+}
+
+
+/* Switch CSS - Begin */
+/* Css Switch provided by https://codepen.io/mburnette/pen/LxNxNg */
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+label {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 52px;
+	height: 27px;
+	background: grey;
+	display: block;
+	border-radius: 100px;
+	position: relative;
+}
+
+label:after {
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 300ms;
+}
+
+input:checked + label {
+	background: var(--bg-painel-tp);
+}
+
+input:checked + label:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+label:active:after {
+	width: 30px;
+}
+/* Switch CSS - End */
+
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+  transition: all 500ms !important;
+  transition-delay: 0 !important;
+}
