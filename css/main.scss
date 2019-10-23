@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Jomolhari&display=swap');
+$dark: #202020;
+$darker: #000000;
+
+
+body{
+    margin: 0;
+    background-color: $dark;
+    color: #f5f5f5;
+    text-align: center;
+}
+
+h1, h2, h3{
+    font-family: 'Jomolhari';
+    margin-top: 0;
+    margin-bottom: 2em;
+}
+
+h3{
+    color: #b8b8b8
+}
+
+p{
+    font-family: 'Lato';
+    color: #929292;
+    margin-top: 0;
+}
+
+.outer{
+    padding: 1em;
+}
+
+section{
+    columns: 1;
+    column-gap: 2em;
+}
+
+img{
+    width: 80%;
+    margin: 1em 0 0;
+}
+
+
+@media only screen and (min-width: 768px){
+    body{
+        text-align: left;
+        font-size: 16px;
+        background: $darker;
+    }
+    p{
+        line-height: 1.6em;
+    }
+    section{
+        column-count: 2;
+        column-rule-style: solid;
+        column-rule-color: #929292;
+    }
+    section > *{
+        margin-top: 0;
+    }
+    h1{
+        font-size: 3rem;
+        margin: .5em 0 1em;
+    }
+    .outter{
+        padding: 4em;
+    }
+    article{
+        padding: 2em;
+        background: $dark;
+    }
+    h2{
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+
+        &::before{
+            content: ' ';
+            position: absolute;
+            width: 30%;
+            height: 6px;
+            z-index: -1;
+            bottom: -.1em;
+            left: -2em;
+            background: #f5f5f5;
+            border-radius: 1em;
+        }
+    }
+    .secondary{
+        margin-top: 2em;
+    }
+    img {
+        width: 100%;
+    }
+    h3{
+        margin: 1.5em 0 1em;
+    }
+    p.span-all{
+        column-span: all;
+        color: #c9c9c9;
+        padding: 1em;
+        text-align: center;
+        margin: .5em;
+        font-size: 1.5em;
+    }
+}
+
+@media only screen and (min-width: 992px){
+    section{
+        column-count: 3;
+    }
+}
+
+@media only screen and (min-width: 1400px){
+    .outer{
+        margin: 0 20%;
+    }
+}
