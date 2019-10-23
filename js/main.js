@@ -4,9 +4,11 @@ checkbox.addEventListener('change', function() {
     if (this.checked){
         trans()
         document.documentElement.setAttribute('data-theme', 'dark')
+        document.getElementById('dm-title').innerHTML = "Light Mode"
     } else {
         trans()
         document.documentElement.setAttribute('data-theme', 'light')
+        document.getElementById('dm-title').innerHTML = "Dark Mode"
     }
  })
 

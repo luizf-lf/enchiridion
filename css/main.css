@@ -42,7 +42,7 @@ nav {
 nav h3 {
   color: var(--texto);
   margin-left: 1em;
-  margin-right: .8em;
+  margin-right: 1em;
 }
 
 .container {
@@ -100,7 +100,6 @@ nav h3 {
 }
 
 /* Switch CSS - Begin */
-/* Css Switch provided by https://codepen.io/mburnette/pen/LxNxNg */
 input[type=checkbox] {
   height: 0;
   width: 0;
@@ -108,11 +107,12 @@ input[type=checkbox] {
 }
 
 label {
+  margin-top: -.3em;
   cursor: pointer;
   text-indent: -9999px;
-  width: 52px;
-  height: 27px;
-  background: grey;
+  width: 30px;
+  height: 30px;
+  background: var(--texto);
   display: block;
   border-radius: 100px;
   position: relative;
@@ -121,28 +121,30 @@ label {
 label:after {
   content: '';
   position: absolute;
-  top: 3px;
-  left: 3px;
+  top: 0;
+  right: 0;
   width: 20px;
   height: 20px;
-  background: #fff;
+  background: var(--bg-painel);
   border-radius: 90px;
   -webkit-transition: 300ms;
   transition: 300ms;
 }
 
 input:checked + label {
-  background: var(--bg-painel-tp);
+  background: transparent;
 }
 
 input:checked + label:after {
-  left: calc(100% - 5px);
-  -webkit-transform: translateX(-100%);
-          transform: translateX(-100%);
+  width: 26px;
+  height: 26px;
+  background: #ffffc5;
+  border: 3px solid #f0dd92;
 }
 
 label:active:after {
   width: 30px;
+  height: 30px;
 }
 
 /* Switch CSS - End */
