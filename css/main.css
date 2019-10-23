@@ -22,7 +22,15 @@ p {
   margin-top: 0;
 }
 
-.outer {
+.span-all {
+  color: #c9c9c9;
+  padding: 1em;
+  text-align: center;
+  margin: .5em;
+  font-size: 1.5em;
+}
+
+.wrapper {
   padding: 1em;
 }
 
@@ -97,11 +105,6 @@ img {
   p.span-all {
     -webkit-column-span: all;
             column-span: all;
-    color: #c9c9c9;
-    padding: 1em;
-    text-align: center;
-    margin: .5em;
-    font-size: 1.5em;
   }
 }
 
@@ -113,7 +116,7 @@ img {
 }
 
 @media only screen and (min-width: 1400px) {
-  .outer {
+  .wrapper {
     margin: 0 20%;
   }
 }
