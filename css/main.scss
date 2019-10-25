@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand|Roboto:300,400&display=swap');
+
+$image: 'https://images.unsplash.com/photo-1571993193223-278fa25e302f';
+// $image: 'https://images.unsplash.com/photo-1569759276108-31b8e7e43e7b';
+
+
+//https://codepen.io/jonitrythall/pen/GJQBOp
+
+
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /*this thing resets values and makes the bg image responsive*/
+}
+  
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Questrial', sans-serif;
+    background-image: url($image);
+    background-size: cover;
+    background-position: center;
+}
+
+.window{
+    height: 50%;
+    width: 60%;
+    box-shadow: .6em .6em 2em rgba(0, 0, 0, 0.6);
+    margin: 5%;
+    border: 1px solid #000000;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: inset 0 0 6em #000000;
+    // &::after{
+    //     content: '';
+    //     position: fixed;
+    //     width: inherit;
+    //     height: inherit;
+    //     top: 242px;
+    //     right: 242px;
+    //     background-image: url($image);
+    //     background-size: cover;
+    //     background-position: center;
+    //     filter: blur(20px);
+    //     clip-path: inset(5% 5% 5% 5%);
+    //     z-index: -1;
+    // }
+}
+
+.w-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 7%;
+    background: #000000;
+}
+
+.title-text{
+    margin: 0;
+    color: #ffffff;
+    padding: 0 1em;
+}
+
+.btns{
+    margin-top: .1em;
+    img{
+        padding: .8em;
+        height: .8em;
+        transition: 200ms;
+    }
+}
+
+.w-body{
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3em;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 93%;
+    p{
+        padding: 1em;
+        font-style: italic;
+    }
+}
+
+@media screen and (max-width: 992px){
+    .w-text{
+        font-size: 32px;
+    }
+}
+
+@media screen and (max-width: 520px){
+    .w-text{
+        font-size: 24px;
+    }
+    .window{
+        width: 90%;
+    }
+}
