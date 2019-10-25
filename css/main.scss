@@ -51,14 +51,18 @@ nav{
     display: flex;
     background-color: var(--bg-painel-tp);
     border-radius: 2em 2em 0 0;
+    padding: 1em 0;
     h1{
+        font-size: 1.8em;
         display: block;
         color: #f4f3f3;
+        margin: 0;
+        margin-top: .1em;
     }
 
     img{
-        height: 3em;
-        margin: 1em 1.5em;
+        height: 2.5em;
+        margin: 0 1.5em;
     }
 }
 
@@ -67,9 +71,9 @@ nav{
     padding: 1.5em;
     border-radius: 0 0 2em 2em;
     p{
+        margin: 0;
         color: var(--texto);
-        font-size: 1.2em;
-        line-height: 1.5em;
+        font-size: 1.4em;
     }   
 }
 
@@ -145,4 +149,12 @@ html.transition *:before,
 html.transition *:after {
   transition: all 500ms !important;
   transition-delay: 0 !important;
+}
+
+@media only screen and (max-width: 768px){
+    .c-title{
+        img{
+            margin: 1em;
+        }
+    }
 }
