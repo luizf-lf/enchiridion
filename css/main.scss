@@ -1,12 +1,14 @@
+/*
+    @description: Main sCSS file
+    @author: luizf-lf
+    @since: 2019/10/25
+*/
+
 @import url('https://fonts.googleapis.com/css?family=Quicksand|Roboto:300,400&display=swap');
 
-$image: 'https://images.unsplash.com/photo-1571993193223-278fa25e302f';
-// $image: 'https://images.unsplash.com/photo-1569759276108-31b8e7e43e7b';
-
-
-//https://codepen.io/jonitrythall/pen/GJQBOp
-
-
+// $image: 'https://images.unsplash.com/photo-1523302348819-ffd5c0521796';
+$image: 'https://images.unsplash.com/photo-1569271532860-dd35503aaf1f';
+// $image: 'https://derpicdn.net/img/view/2016/11/24/1302583.png';
 
 body, html {
     height: 100%;
@@ -20,27 +22,29 @@ body{
     justify-content: center;
     align-items: center;
     font-family: 'Questrial', sans-serif;
-    background-image: url($image);
+    background: url($image);
     background-size: cover;
     background-position: center;
 }
 
+
+/* -=Window - Begin of CSS=- */
+
 .window{
-    height: 50%;
-    width: 60%;
+    height: 400px;
+    width: 800px;
     box-shadow: .6em .6em 2em rgba(0, 0, 0, 0.6);
-    margin: 5%;
     border: 1px solid #000000;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.5);
     box-shadow: inset 0 0 6em #000000;
-    // &::after{
+    // &::before{
     //     content: '';
     //     position: fixed;
-    //     width: inherit;
     //     height: inherit;
-    //     top: 242px;
+    //     width: inherit;
+    //     top: 202px;
     //     right: 242px;
-    //     background-image: url($image);
+    //     background: url($image);
     //     background-size: cover;
     //     background-position: center;
     //     filter: blur(20px);
@@ -54,7 +58,7 @@ body{
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 7%;
+    height: 9%;
     background: #000000;
 }
 
@@ -82,22 +86,71 @@ body{
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 93%;
+    height: 91%;
     p{
         padding: 1em;
         font-style: italic;
     }
 }
 
-@media screen and (max-width: 992px){
-    .w-text{
-        font-size: 32px;
+/* -=Window - End of CSS=- */
+
+
+/* -=Taskbar - Begin of CSS=- */
+
+.taskbar{
+    width: 100%;
+    height: 2.8em;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+@mixin tb-imgs{
+    img, div{
+        height: 1.2em;
+        padding: .8em;
+    }
+    img:hover, div:hover{
+        background: rgba($color: #494949, $alpha: 0.7);
     }
 }
 
-@media screen and (max-width: 520px){
+.t-start{
+    display: flex;
+    align-items: center;
+    @include tb-imgs;
+    .active{
+        box-sizing: border-box;
+        height: 100%;
+        padding: .6em;
+        background: rgba($color: #494949, $alpha: 0.7);
+        border-bottom: 2px solid #ffffff;
+    }
+}
+.t-icons{
+    @include tb-imgs;
+    display: flex;
+    border-right: 1px solid #a3a3a3;
+    margin-right: .5em;
+    padding-right: .3em;
+    align-items: center;
+    color: #ffffff;
+    .t-icon{
+        padding: 1em .4em;
+        font-size: .8em;
+    }
+}
+
+/* -=Taskbar - End of CSS=- */
+
+
+/* -=Media Queries=- */
+@media screen and (max-width: 840px){
     .w-text{
-        font-size: 24px;
+        font-size: 32px;
     }
     .window{
         width: 90%;

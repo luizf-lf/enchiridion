@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/main.css">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <script src="js/clock.js"></script>
     <title>Windows</title>
 </head>
-<body>
+<body onload="startTime()">
     <div class="window">
         <div class="w-title">
             <span class="title-text">Remember</span>
@@ -20,6 +21,27 @@
         </div>
         <div class="w-body">
             <p class="w-text">I found myself standing in the shades and shadows at daylight's end. Counting the lines in the stones. Waiting for the hour of twilight.</p>
+        </div>
+    </div>
+    <div class="taskbar">
+        <div class="t-start">
+            <img src="img/windows.svg" alt="Windows Logo">
+            <img src="img/multitask.svg" alt="Multitask">
+            <img src="img/search.svg" alt="Search">
+            <img src="img/explorer.svg" alt="Explorer">
+            <img src="img/settings.svg" alt="Settings">
+            <img src="img/unicorn.svg" alt="Message" class="active">
+            <a href="https://luizf-lf.github.io" target="_blank"><img src="img/github.svg" alt="Github"></a>
+        </div>
+        <div class="t-icons">
+            <img src="img/up.svg" alt="up" class="t-icon">
+            <img src="img/cloud.svg" alt="cloud" class="t-icon">
+            <img src="img/wifi.svg" alt="wifi" class="t-icon">
+            <img src="img/bluetooth.svg" alt="bluetooth" class="t-icon">
+            <img src="img/volume.svg" alt="Volume" class="t-icon">
+            <div class="t-icon">ENG</div>
+            <div id="t-clock"></div>
+            <img src="img/notifications.svg" alt="Notifications">
         </div>
     </div>
 </body>
