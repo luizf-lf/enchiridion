@@ -63,10 +63,20 @@ img{
 }
 
 .switch-wrapper{
-    padding: 1em;
+    padding: 1em 2em;
     background-color: var(--switch-wrapper);
     display: flex;
-    border-radius: 2em;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4em;
+    input{
+        display: none;
+    }
+    img{
+        height: 2.5em;
+        width: 2.5em;
+        margin-top: 0;
+    }
 }
 
 /* Switch CSS - Begin */

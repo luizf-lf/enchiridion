@@ -65,12 +65,28 @@ img {
 }
 
 .switch-wrapper {
-  padding: 1em;
+  padding: 1em 2em;
   background-color: var(--switch-wrapper);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border-radius: 2em;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 4em;
+}
+
+.switch-wrapper input {
+  display: none;
+}
+
+.switch-wrapper img {
+  height: 2.5em;
+  width: 2.5em;
+  margin-top: 0;
 }
 
 /* Switch CSS - Begin */
