@@ -120,6 +120,9 @@ body{
     img:hover, div:hover{
         background: rgba($color: #494949, $alpha: 0.7);
     }
+    a{
+        margin-top: .2em;
+    }
 }
 
 .t-start{

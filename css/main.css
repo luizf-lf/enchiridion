@@ -148,6 +148,10 @@ body {
   background: rgba(73, 73, 73, 0.7);
 }
 
+.t-start a {
+  margin-top: .2em;
+}
+
 .t-start .active {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -177,6 +181,10 @@ body {
 
 .t-icons img:hover, .t-icons div:hover {
   background: rgba(73, 73, 73, 0.7);
+}
+
+.t-icons a {
+  margin-top: .2em;
 }
 
 .t-icons .t-icon {
