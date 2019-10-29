@@ -22,7 +22,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   font-family: 'Questrial', sans-serif;
-  background: url("https://images.unsplash.com/photo-1479935276380-b9561c38eceb") fixed no-repeat;
+  background: url("https://images.unsplash.com/photo-1479935276380-b9561c38eceb?h=1080") fixed no-repeat;
   background-size: cover;
   background-position: center;
 }
