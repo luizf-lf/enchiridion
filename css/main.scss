@@ -163,3 +163,9 @@ body{
         width: 90%;
     }
 }
+
+@media screen and (max-width: 640px){
+    .sm-d-none{
+        display: none;
+    }
+}
