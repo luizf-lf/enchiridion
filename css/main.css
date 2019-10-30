@@ -83,6 +83,11 @@ a {
   padding: 0 1em;
 }
 
+.title-text img {
+  height: 1em;
+  padding-right: .6em;
+}
+
 .btns img {
   height: .7em;
   padding: 1em;
