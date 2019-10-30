@@ -27,6 +27,11 @@ body {
   background-position: center;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
 /* -=Window - Begin of CSS=- */
 #window {
   height: 500px;

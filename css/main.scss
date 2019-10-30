@@ -6,7 +6,6 @@
 
 @import url('https://fonts.googleapis.com/css?family=Quicksand|Roboto:300,400&display=swap');
 
-// $image: 'https://images.unsplash.com/photo-1479935276380-b9561c38eceb?w=1920';
 $image: 'http://oswallpapers.com/wp-content/uploads/2016/06/img0-2.jpg';
 // $image: 'https://derpicdn.net/img/view/2019/10/23/2176625.png';
 
@@ -27,6 +26,10 @@ body{
     background-position: center;
 }
 
+a{
+    text-decoration: none;
+    color: white;
+}
 
 /* -=Window - Begin of CSS=- */
 
@@ -102,12 +105,9 @@ body{
     margin: 0;
     padding: 1em;
 }
-
 /* -=Window - End of CSS=- */
 
-
 /* -=Taskbar - Begin of CSS=- */
-
 .taskbar{
     width: 100%;
     height: 2.8em;
@@ -156,9 +156,7 @@ body{
         font-size: .8em;
     }
 }
-
 /* -=Taskbar - End of CSS=- */
-
 
 /* -=Media Queries=- */
 @media screen and (max-width: 940px){

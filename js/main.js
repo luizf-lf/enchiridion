@@ -23,9 +23,12 @@ async function randomQuote() {
     // var t = setTimeout(randomQuote, 10000);
 }
 
-//get a random 1080p wallpaper from Unsplash
-function randomWallpaper(){
-    document.body.style.background = "url('https://source.unsplash.com/random/1920x1080') fixed no-repeat";
+//get a random 1440p wallpaper from Unsplash
+function randomWallpaper(){ 
+  fetch("https://source.unsplash.com/random/2560x1440").then((response)=> {
+    var url = `${response.url}`;
+    document.body.style.background = "url('"+ url +"') fixed no-repeat";
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
+  })
  }
