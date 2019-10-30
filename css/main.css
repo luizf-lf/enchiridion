@@ -157,10 +157,14 @@ a {
 .t-start img, .t-start div {
   height: 1.2em;
   padding: .8em;
+  -webkit-transition: 200ms;
+  transition: 200ms;
 }
 
 .t-start img:hover, .t-start div:hover {
   background: rgba(73, 73, 73, 0.7);
+  -webkit-transition: 200ms;
+  transition: 200ms;
 }
 
 .t-start a {
@@ -196,10 +200,14 @@ a {
 .t-icons img, .t-icons div {
   height: 1.2em;
   padding: .8em;
+  -webkit-transition: 200ms;
+  transition: 200ms;
 }
 
 .t-icons img:hover, .t-icons div:hover {
   background: rgba(73, 73, 73, 0.7);
+  -webkit-transition: 200ms;
+  transition: 200ms;
 }
 
 .t-icons a {

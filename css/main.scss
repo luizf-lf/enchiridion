@@ -127,9 +127,11 @@ a{
     img, div{
         height: 1.2em;
         padding: .8em;
+        transition: 200ms;
     }
     img:hover, div:hover{
         background: rgba($color: #494949, $alpha: 0.7);
+        transition: 200ms;
     }
     a{
         margin-top: .2em;
