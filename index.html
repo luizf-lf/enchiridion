@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <script src="js/clock.js"></script>
+    <script src="js/quote.js"></script>
     <title>Windows</title>
 </head>
-<body onload="startTime()">
+<body onload="startTime(); randomQuote()">
     <div class="window">
         <div class="w-title">
             <span class="title-text">Remember</span>
@@ -20,7 +21,8 @@
             </div>
         </div>
         <div class="w-body">
-            <p class="w-text">I found myself standing in the shades and shadows at daylight's end. Counting the lines in the stones. Waiting for the hour of twilight.</p>
+            <p id="w-text"></p>
+            <!-- <p id="w-text">I found myself standing in the shades and shadows at daylight's end. Counting the lines in the stones. Waiting for the hour of twilight.</p> -->
         </div>
     </div>
     <div class="taskbar">

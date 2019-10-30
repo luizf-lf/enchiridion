@@ -91,6 +91,7 @@ body{
     align-items: center;
     width: 100%;
     height: 91%;
+    overflow: hidden;
     p{
         padding: 1em;
         font-style: italic;
@@ -156,7 +157,7 @@ body{
 
 /* -=Media Queries=- */
 @media screen and (max-width: 840px){
-    .w-text{
+    #w-text{
         font-size: 32px;
     }
     .window{

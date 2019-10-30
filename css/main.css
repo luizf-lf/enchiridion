@@ -107,6 +107,7 @@ body {
           align-items: center;
   width: 100%;
   height: 91%;
+  overflow: hidden;
 }
 
 .w-body p {
@@ -195,7 +196,7 @@ body {
 /* -=Taskbar - End of CSS=- */
 /* -=Media Queries=- */
 @media screen and (max-width: 840px) {
-  .w-text {
+  #w-text {
     font-size: 32px;
   }
   .window {
