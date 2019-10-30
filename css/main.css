@@ -176,6 +176,10 @@ a {
   border-bottom: 2px solid #ffffff;
 }
 
+.t-start .active:hover {
+  background: rgba(114, 114, 114, 0.7);
+}
+
 .t-icons {
   display: -webkit-box;
   display: -ms-flexbox;

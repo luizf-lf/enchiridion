@@ -147,6 +147,9 @@ a{
         background: rgba($color: #494949, $alpha: 0.7);
         border-bottom: 2px solid #ffffff;
     }
+    .active:hover{
+        background: rgba($color: #727272, $alpha: 0.7);
+    }
 }
 .t-icons{
     @include tb-imgs;
