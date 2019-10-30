@@ -22,15 +22,15 @@ body {
       -ms-flex-align: center;
           align-items: center;
   font-family: 'Questrial', sans-serif;
-  background: url("https://images.unsplash.com/photo-1479935276380-b9561c38eceb?h=1080") fixed no-repeat;
+  background: url("http://oswallpapers.com/wp-content/uploads/2016/06/img0-2.jpg") fixed no-repeat;
   background-size: cover;
   background-position: center;
 }
 
 /* -=Window - Begin of CSS=- */
-.window {
-  height: 400px;
-  width: 800px;
+#window {
+  height: 500px;
+  width: 900px;
   -webkit-box-shadow: 0.6em 0.6em 2em rgba(0, 0, 0, 0.8);
           box-shadow: 0.6em 0.6em 2em rgba(0, 0, 0, 0.8);
   border: 1px solid #131313;
@@ -40,9 +40,9 @@ body {
   position: absolute;
 }
 
-.window::before {
-  height: 460px;
-  width: 860px;
+#window::before {
+  height: 560px;
+  width: 960px;
   content: "";
   position: absolute;
   top: -30px;
@@ -68,7 +68,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  height: 9%;
+  height: 8%;
   background: #131313;
 }
 
@@ -78,20 +78,24 @@ body {
   padding: 0 1em;
 }
 
-.btns {
-  margin-top: .1em;
-}
-
 .btns img {
-  padding: .8em;
-  height: .8em;
+  height: .7em;
+  padding: 1em;
   -webkit-transition: 200ms;
   transition: 200ms;
 }
 
+.btns img:hover {
+  background: rgba(129, 129, 129, 0.7);
+}
+
+.btns .close:hover {
+  background: rgba(255, 62, 62, 0.7) !important;
+}
+
 .w-body {
   position: absolute;
-  margin-top: .5em;
+  margin-top: .9em;
   color: #ffffff;
   font-family: 'Roboto', sans-serif;
   font-size: 3em;
@@ -105,14 +109,14 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 100%;
   height: 91%;
   overflow: hidden;
 }
 
-.w-body p {
-  padding: 1em;
+#w-text {
   font-style: italic;
+  margin: 0;
+  padding: 1em;
 }
 
 /* -=Window - End of CSS=- */
@@ -195,11 +199,14 @@ body {
 
 /* -=Taskbar - End of CSS=- */
 /* -=Media Queries=- */
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 940px) {
   #w-text {
     font-size: 32px;
   }
-  .window {
+  #w-text span {
+    font-size: 16px !important;
+  }
+  #window {
     width: 90%;
   }
 }
