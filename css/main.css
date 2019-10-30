@@ -178,10 +178,12 @@ a {
   padding: .6em;
   background: rgba(73, 73, 73, 0.7);
   border-bottom: 2px solid #ffffff;
+  -webkit-transition: 600ms;
+  transition: 600ms;
 }
 
 .t-start .active:hover {
-  background: rgba(114, 114, 114, 0.7);
+  background: rgba(114, 114, 114, 0.7) !important;
 }
 
 .t-icons {

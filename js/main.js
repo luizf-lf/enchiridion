@@ -24,7 +24,7 @@ async function randomQuote() {
     // var t = setTimeout(randomQuote, 10000);
 }
 
-//get a random 1440p wallpaper from Unsplash
+//get a random wallpaper from Unsplash in 1440p
 function randomWallpaper(){ 
   fetch("https://source.unsplash.com/random/2560x1440").then((response)=> {
     var url = `${response.url}`;
@@ -32,4 +32,18 @@ function randomWallpaper(){
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
   })
+ }
+
+ //close the window when the "X" is clicked
+ function closeWindow(){
+   document.getElementById("window").style.display = "none";
+   document.getElementById("unicorn").style.border = "none";
+   document.getElementById("unicorn").style.background = "transparent";
+ }
+
+ //open the window again when it's icon is clicked on the taskbar
+ function showWindow(){
+  document.getElementById("window").style.display = "block";
+  document.getElementById("unicorn").style.borderBottom = "2px solid #ffffff";
+  document.getElementById("unicorn").style.background = "rgba(73, 73, 73, 0.7)";
  }
