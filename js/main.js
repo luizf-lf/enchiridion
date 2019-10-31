@@ -31,6 +31,9 @@ function randomWallpaper(){
     document.body.style.background = "url('"+ url +"') fixed no-repeat";
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
+    // set the full image link to a specified 'a' tag
+    var minUrl = url.split("?")
+    document.getElementById("wpp-source").href = minUrl[0]
   })
  }
 
