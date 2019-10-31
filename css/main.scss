@@ -52,12 +52,13 @@ nav{
     background-color: var(--bg-painel-tp);
     border-radius: 2em 2em 0 0;
     padding: 1em 0;
+    align-items: center;
+
     h1{
         font-size: 1.8em;
         display: block;
         color: #f4f3f3;
         margin: 0;
-        margin-top: .1em;
     }
 
     img{
@@ -151,10 +152,8 @@ html.transition *:after {
   transition-delay: 0 !important;
 }
 
-@media only screen and (max-width: 768px){
-    .c-title{
-        img{
-            margin: 1em;
-        }
+@media only screen and (max-width: 540px){
+    .container {
+        width: 95vw;
     }
 }

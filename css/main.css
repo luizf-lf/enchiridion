@@ -59,6 +59,9 @@ nav h3 {
   background-color: var(--bg-painel-tp);
   border-radius: 2em 2em 0 0;
   padding: 1em 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .c-title h1 {
@@ -66,7 +69,6 @@ nav h3 {
   display: block;
   color: #f4f3f3;
   margin: 0;
-  margin-top: .1em;
 }
 
 .c-title img {
@@ -162,9 +164,9 @@ html.transition *:after {
           transition-delay: 0 !important;
 }
 
-@media only screen and (max-width: 768px) {
-  .c-title img {
-    margin: 1em;
+@media only screen and (max-width: 540px) {
+  .container {
+    width: 95vw;
   }
 }
 /*# sourceMappingURL=main.css.map */
