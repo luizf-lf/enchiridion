@@ -8,7 +8,10 @@ $(document).ready(function () {
   });
   $("#icon-photos").click(function(){
     randomWallpaper();
-  })
+  });
+  $("#w-close").click(function(){
+    closeWindow();
+  });
 });
 
 // set the current real time on the html clock section
@@ -30,13 +33,17 @@ function checkTime(i) {
 
 //get a random quote to be displayed on the main window
 async function randomQuote() {
+  $("#w-text").fadeOut();
   const response = await fetch("https://api.quotable.io/random");
   const data = await response.json();
   var quote = `${data.content}`;
   var author = `${data.author}`;
   var authorSrch = author.replace(" ", "+");
-  $("#w-text").html(quote + "<br> <a href='https://www.google.com/search?q=" + authorSrch + "' target='_blank'><span style='font-size: 32px'>- " + author + "</span></a>");
-  // var t = setTimeout(randomQuote, 10000);
+  setTimeout(() => {
+    $("#w-text").html(quote + "<br> <a href='https://www.google.com/search?q=" + authorSrch + "' target='_blank'><span style='font-size: 32px'>- " + author + "</span></a>");
+    $("#w-text").fadeIn();
+  }, 1000);
+  // var t = setTimeout(randomQuote, 8000);
 }
 
 //get a random wallpaper from Unsplash in 1440p
