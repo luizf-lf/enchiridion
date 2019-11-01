@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <title>Windows</title>
 </head>
-<body onload="startTime(); randomQuote(); randomWallpaper()">
+<body>
     <!-- Twilight is the best pone -->
     <div id="window">
         <div class="w-title">
@@ -16,7 +16,7 @@
             <div class="btns">
                 <img src="img/minimize.svg">
                 <a href="#" id="wpp-source" target="_blank"><img src="img/maximize.svg"></a>
-                <img class="close" src="img/close.svg" onclick="closeWindow()">
+                <img class="close" src="img/close.svg" id="w-close">
             </div>
         </div>
         <div class="w-body">
@@ -31,8 +31,8 @@
             <img src="img/search.svg" alt="Search" class="sm-d-none">
             <a href="https://luizf-lf.github.io" target="_blank"><img src="img/github.svg" alt="Github"></a>
             <img src="img/unicorn.svg" alt="Message" class="active" class="sm-d-none" id="unicorn" onclick="showWindow()">
-            <img src="img/telegram.svg" alt="Telegram" onclick="randomQuote()">
-            <img src="img/photos.svg" alt="Photos" onclick="randomWallpaper()">
+            <img src="img/telegram.svg" alt="Telegram" id="icon-telegram">
+            <img src="img/photos.svg" alt="Photos" id="icon-photos">
         </div>
         <div class="t-icons">
             <img src="img/up.svg" alt="up" class="t-icon">
@@ -45,6 +45,7 @@
             <img src="img/notifications.svg" alt="Notifications">
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
