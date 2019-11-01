@@ -35,6 +35,7 @@ a{
 /* -=Window - Begin of CSS=- */
 
 #window{
+    transform: scale(1);
     height: 500px;
     width: 900px;
     box-shadow: .6em .6em 2em rgba(0, 0, 0, 0.8);
@@ -43,6 +44,7 @@ a{
     background: inherit;
     overflow: hidden;
     position: absolute;
+    transition: transform 400ms;
     &::before{
         height: 560px;
         width: 960px;

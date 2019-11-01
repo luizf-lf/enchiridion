@@ -34,6 +34,8 @@ a {
 
 /* -=Window - Begin of CSS=- */
 #window {
+  -webkit-transform: scale(1);
+          transform: scale(1);
   height: 500px;
   width: 900px;
   -webkit-box-shadow: 0.6em 0.6em 2em rgba(0, 0, 0, 0.8);
@@ -43,6 +45,10 @@ a {
   background: inherit;
   overflow: hidden;
   position: absolute;
+  -webkit-transition: -webkit-transform 400ms;
+  transition: -webkit-transform 400ms;
+  transition: transform 400ms;
+  transition: transform 400ms, -webkit-transform 400ms;
 }
 
 #window::before {

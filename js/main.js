@@ -63,6 +63,7 @@ function randomWallpaper() {
 
 //close the window when the "X" is clicked
 function closeWindow() {
+  $("#window").css("transform", "scale(0.9)");
   $("#window").fadeOut();
   $("#unicorn").css("border", "none");
   $("#unicorn").css("background", "transparent");
@@ -71,6 +72,7 @@ function closeWindow() {
 //open the window again when it's icon is clicked on the taskbar
 function showWindow() {
   $("#window").fadeIn();
+  $("#window").css("transform", "scale(1)");
   $("#unicorn").css("border-bottom", "2px solid #ffffff");
   $("#unicorn").css("background", "rgba(73, 73, 73, 0.7)");
 }
