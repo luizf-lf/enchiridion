@@ -9,5 +9,5 @@ Featuring:
 
 Tips:
 * Click the window maximize button to see the full resolution wallpaper from Unsplash.
-* On the taskbar, click the Google Photos icon to set a new wallpaper.
+* On the taskbar, click the Google Photos icon to set a new wallpaper. (It will revert to a "default" image if Unsplash returns a 404)
 * Also, click the Telegram icon to set a new quote.
