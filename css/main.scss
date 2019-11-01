@@ -15,6 +15,8 @@ body, html {
     margin: 0;
     padding: 0;
     /*this thing resets values and makes the bg image responsive*/
+    background: #333333;
+    transition: 5000ms;
 }
   
 body{
@@ -111,6 +113,8 @@ a{
     font-style: italic;
     margin: 0;
     padding: 1em;
+    // transform: translate(100px, 0);
+    transition: transform 800ms;
 }
 /* -=Window - End of CSS=- */
 

@@ -9,6 +9,9 @@ body, html {
   margin: 0;
   padding: 0;
   /*this thing resets values and makes the bg image responsive*/
+  background: #333333;
+  -webkit-transition: 5000ms;
+  transition: 5000ms;
 }
 
 body {
@@ -133,6 +136,10 @@ a {
   font-style: italic;
   margin: 0;
   padding: 1em;
+  -webkit-transition: -webkit-transform 800ms;
+  transition: -webkit-transform 800ms;
+  transition: transform 800ms;
+  transition: transform 800ms, -webkit-transform 800ms;
 }
 
 /* -=Window - End of CSS=- */

@@ -39,9 +39,11 @@ async function randomQuote() {
   var quote = `${data.content}`;
   var author = `${data.author}`;
   var authorSrch = author.replace(" ", "+");
+  $("#w-text").css("transform", "translate(40px, 0)");
   setTimeout(() => {
     $("#w-text").html(quote + "<br> <a href='https://www.google.com/search?q=" + authorSrch + "' target='_blank'><span style='font-size: 32px'>- " + author + "</span></a>");
     $("#w-text").fadeIn();
+    $("#w-text").css("transform", "translate(0, 0)");
   }, 1000);
   // var t = setTimeout(randomQuote, 8000);
 }
