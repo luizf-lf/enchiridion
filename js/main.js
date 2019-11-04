@@ -16,7 +16,7 @@ function startTime() {
   var m = dToday.getMinutes();
   m = checkTime(m);
   h = checkTime(h);
-  $("#t-clock").html(h + ":" + m);
+  $(".t-clock").html(h + ":" + m);
   var t = setTimeout(startTime, 1000);
 }
 function checkTime(i) {

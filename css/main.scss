@@ -113,7 +113,6 @@ a{
     font-style: italic;
     margin: 0;
     padding: 1em;
-    // transform: translate(100px, 0);
     transition: transform 800ms;
 }
 /* -=Window - End of CSS=- */
@@ -127,6 +126,12 @@ a{
     bottom: 0;
     display: flex;
     justify-content: space-between;
+}
+
+.taskbar-top{
+    height: 2em;
+    top: 0;
+    display: none;
 }
 
 @mixin tb-imgs{
@@ -173,6 +178,16 @@ a{
         font-size: .8em;
     }
 }
+
+.t-i-top{
+    .t-icon, div{
+        padding: .6em .4em;
+        font-size: .8em;
+    }
+    #up{
+        transform: rotate(180deg);
+    }
+}
 /* -=Taskbar - End of CSS=- */
 
 /* -=Media Queries=- */
@@ -191,5 +206,11 @@ a{
 @media screen and (max-width: 640px){
     .sm-d-none{
         display: none;
+    }
+    .t-icons-btm{
+        display: none;
+    }
+    .taskbar-top{
+        display: flex;
     }
 }

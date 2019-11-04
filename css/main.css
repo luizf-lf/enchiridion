@@ -158,6 +158,12 @@ a {
           justify-content: space-between;
 }
 
+.taskbar-top {
+  height: 2em;
+  top: 0;
+  display: none;
+}
+
 .t-start {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -234,6 +240,16 @@ a {
   font-size: .8em;
 }
 
+.t-i-top .t-icon, .t-i-top div {
+  padding: .6em .4em;
+  font-size: .8em;
+}
+
+.t-i-top #up {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
 /* -=Taskbar - End of CSS=- */
 /* -=Media Queries=- */
 @media screen and (max-width: 940px) {
@@ -251,6 +267,14 @@ a {
 @media screen and (max-width: 640px) {
   .sm-d-none {
     display: none;
+  }
+  .t-icons-btm {
+    display: none;
+  }
+  .taskbar-top {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
   }
 }
 /*# sourceMappingURL=main.css.map */
