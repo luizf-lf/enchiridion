@@ -3,22 +3,17 @@ $(document).ready(function () {
   startTime();
   randomQuote();
   randomWallpaper();
-  $("#icon-telegram").click(function(){
-    randomQuote();
-  });
-  $("#icon-photos").click(function(){
-    randomWallpaper();
-  });
-  $("#w-close").click(function(){
-    closeWindow();
-  });
+  $("#icon-telegram").click(randomQuote);
+  $("#icon-photos").click(randomWallpaper);
+  $("#w-close").click(closeWindow);
+  $("#unicorn").click(showWindow);
 });
 
 // set the current real time on the html clock section
 function startTime() {
-  var today = new Date();
-  var h = today.getHours();
-  var m = today.getMinutes();
+  var dToday = new Date();
+  var h = dToday.getHours();
+  var m = dToday.getMinutes();
   m = checkTime(m);
   h = checkTime(h);
   $("#t-clock").html(h + ":" + m);
@@ -35,13 +30,13 @@ function checkTime(i) {
 async function randomQuote() {
   $("#w-text").fadeOut();
   const response = await fetch("https://api.quotable.io/random");
-  const data = await response.json();
-  var quote = `${data.content}`;
-  var author = `${data.author}`;
-  var authorSrch = author.replace(" ", "+");
-  $("#w-text").css("transform", "translate(40px, 0)");
+  const aData = await response.json();
+  var cQuote = `${aData.content}`;
+  var cAuthor = `${aData.author}`;
+  var cAuthorSrch = cAuthor.replace(" ", "+");
+  $("#w-text").css("transform", "translate(30px, 0)");
   setTimeout(() => {
-    $("#w-text").html(quote + "<br> <a href='https://www.google.com/search?q=" + authorSrch + "' target='_blank'><span style='font-size: 32px'>- " + author + "</span></a>");
+    $("#w-text").html(cQuote + "<br> <a href='https://www.google.com/search?q=" + cAuthorSrch + "' target='_blank'><span style='font-size: 32px'>- " + cAuthor + "</span></a>");
     $("#w-text").fadeIn();
     $("#w-text").css("transform", "translate(0, 0)");
   }, 1000);
@@ -58,8 +53,8 @@ function randomWallpaper() {
     $("body").css("background", "url('" + cUrl + "') fixed no-repeat");
     $("body").css("background-size", "cover");
     $("body").css("background-position", "center");
-    var cMinUrl = cUrl.split("?");
-    $("#wpp-source").attr("href", cMinUrl[0]);
+    var aMinUrl = cUrl.split("?");
+    $("#wpp-source").attr("href", aMinUrl[0]);
   });
 }
 

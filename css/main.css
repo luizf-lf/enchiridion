@@ -10,8 +10,8 @@ body, html {
   padding: 0;
   /*this thing resets values and makes the bg image responsive*/
   background: #333333;
-  -webkit-transition: 5000ms;
-  transition: 5000ms;
+  -webkit-transition: 3000ms;
+  transition: 3000ms;
 }
 
 body {
