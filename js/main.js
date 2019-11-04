@@ -7,6 +7,7 @@ $(document).ready(function () {
   $("#icon-photos").click(randomWallpaper);
   $("#w-close").click(closeWindow);
   $("#unicorn").click(showWindow);
+  $("#minimize").click(minimizeWindow)
 });
 
 // set the current real time on the html clock section
@@ -64,6 +65,7 @@ function closeWindow() {
   $("#window").fadeOut();
   $("#unicorn").css("border", "none");
   $("#unicorn").css("background", "transparent");
+  randomQuote();
 }
 
 //open the window again when it's icon is clicked on the taskbar
@@ -72,4 +74,10 @@ function showWindow() {
   $("#window").css("transform", "scale(1)");
   $("#unicorn").css("border-bottom", "2px solid #ffffff");
   $("#unicorn").css("background", "rgba(73, 73, 73, 0.7)");
+}
+
+// minimize the window
+function minimizeWindow(){
+  $("#window").css("transform", "translate(-120px, 180px) scale(0.8)");
+  $("#window").fadeOut();
 }
