@@ -80,4 +80,5 @@ function showWindow() {
 function minimizeWindow(){
   $("#window").css("transform", "translate(-120px, 180px) scale(0.8)");
   $("#window").fadeOut();
+  $("#unicorn").css("background", "transparent");
 }
