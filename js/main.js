@@ -29,12 +29,12 @@ function checkTime(i) {
 
 //get a random quote to be displayed on the main window
 async function randomQuote() {
-  $("#w-text").fadeOut();
   const response = await fetch("https://api.quotable.io/random");
   const aData = await response.json();
   var cQuote = `${aData.content}`;
   var cAuthor = `${aData.author}`;
   var cAuthorSrch = cAuthor.replace(" ", "+");
+  $("#w-text").fadeOut();
   $("#w-text").css("transform", "translate(30px, 0)");
   setTimeout(() => {
     $("#w-text").html(cQuote + "<br> <a href='https://www.google.com/search?q=" + cAuthorSrch + "' target='_blank'><span style='font-size: 32px'>- " + cAuthor + "</span></a>");
@@ -65,11 +65,16 @@ function closeWindow() {
   $("#window").fadeOut();
   $("#unicorn").css("border", "none");
   $("#unicorn").css("background", "transparent");
-  randomQuote();
+  $("#w-text").html("");
 }
 
 //open the window again when it's icon is clicked on the taskbar
 function showWindow() {
+  var cText = $("#w-text").html()
+  if(cText == ""){
+    randomQuote();
+    $("#w-text").html("<span style='font-size: 16px;'>Fetching quote...");
+  }
   $("#window").fadeIn();
   $("#window").css("transform", "scale(1)");
   $("#unicorn").css("border-bottom", "2px solid #ffffff");
@@ -78,7 +83,7 @@ function showWindow() {
 
 // minimize the window
 function minimizeWindow(){
-  $("#window").css("transform", "translate(-120px, 180px) scale(0.8)");
+  $("#window").css("transform", "translate(-10vw, 10vw) scale(0.8)");
   $("#window").fadeOut();
   $("#unicorn").css("background", "transparent");
 }
