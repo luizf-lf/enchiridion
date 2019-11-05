@@ -12,6 +12,7 @@ body, html {
   background: #333333;
   -webkit-transition: 3000ms;
   transition: 3000ms;
+  overflow: hidden;
 }
 
 body {
@@ -143,6 +144,57 @@ a {
 }
 
 /* -=Window - End of CSS=- */
+/* -=Start - Begin of CSS*/
+.start {
+  width: 25em;
+  height: 70vh;
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  bottom: 2.8em;
+  left: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  opacity: 0;
+  -webkit-transform: translateY(8em);
+          transform: translateY(8em);
+  -webkit-transition: 400ms;
+  transition: 400ms;
+}
+
+.start img {
+  height: 1.2em;
+  padding: .8em;
+}
+
+.start img:hover {
+  background: rgba(73, 73, 73, 0.6);
+  -webkit-transition: 100ms;
+  transition: 100ms;
+}
+
+.s-side {
+  height: inherit;
+  width: 2.8em;
+  bottom: 0;
+}
+
+.s-apps {
+  width: 22.2em;
+  height: inherit;
+}
+
+.menu-bottom {
+  bottom: 2.8em;
+  position: fixed;
+  width: inherit;
+}
+
+/* -=Start - End of CSS=- */
 /* -=Taskbar - Begin of CSS=- */
 .taskbar {
   width: 100%;

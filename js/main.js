@@ -8,7 +8,26 @@ $(document).ready(function () {
   $("#w-close").click(closeWindow);
   $("#unicorn").click(showWindow);
   $("#minimize").click(minimizeWindow)
+  $(document).keypress(function (e) { 
+    if(e.which == 32){
+      startMenuSwitch();
+    }
+  });
+  $("#windows-logo").click(function(){
+      startMenuSwitch();
+  });
 });
+
+// open and close the start menu
+function startMenuSwitch(){
+  if($("#start-menu").css("opacity") == "0"){
+    $("#start-menu").css("opacity", "100");
+    $("#start-menu").css("transform", "translateY(2.8em)");      
+  } else {
+    $("#start-menu").css("opacity", "0");
+    $("#start-menu").css("transform", "translateY(8em)");  
+  } 
+}
 
 // set the current real time on the html clock section
 function startTime() {
@@ -87,3 +106,4 @@ function minimizeWindow(){
   $("#window").fadeOut();
   $("#unicorn").css("background", "transparent");
 }
+
