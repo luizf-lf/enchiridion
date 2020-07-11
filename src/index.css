@@ -14,7 +14,7 @@
 }
 
 body{
-    background-color: #000;
+    background-color: #1c1e21;
 }
 
 ul{
@@ -65,4 +65,10 @@ a{
 
 .icon-button:hover{
     filter: brightness(1.4);
+}
+
+.icon-button svg {
+    fill: var(--text-color);
+    width: 20px;
+    height: 20px;
 }
