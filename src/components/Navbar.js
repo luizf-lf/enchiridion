@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function Navbar(props){
     return(
@@ -7,7 +7,7 @@ function Navbar(props){
                 {props.children}
             </ul>
         </nav>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;
