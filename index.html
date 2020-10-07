@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
     <title>Calculadora IMC</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Calculadora IMC</h1>
+      <p>Digite seu peso e altura abaixo:</p>
+      <div>
+        <label for="inputPeso">Peso:</label>
+        <input type="number" id="inputPeso" placeholder="Informe o peso (Kg)" />
+      </div>
+      <div>
+        <label for="inputAltura">Altura:</label>
+        <input
+          type="number"
+          id="inputAltura"
+          placeholder="Informe a altura (M)"
+        />
+      </div>
+
+      <p id="output"></p>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
 </html>
