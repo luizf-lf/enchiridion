@@ -21,7 +21,7 @@ function calcularIMC() {
   } else {
     document.getElementById("indiceIMC").innerHTML = "-";
     document.getElementById("descIMC").innerHTML =
-      "Digite os valores abaixo para descobrir o seu IMC";
+      "Digite os valores acima para descobrir o seu IMC";
   }
 }
 
