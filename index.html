@@ -4,26 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
     <title>Calculadora IMC</title>
   </head>
   <body>
     <div class="container">
-      <h1>Calculadora IMC</h1>
-      <p>Digite seu peso e altura abaixo:</p>
-      <div>
-        <label for="inputPeso">Peso:</label>
-        <input type="number" id="inputPeso" placeholder="Informe o peso (Kg)" />
+      <div class="wrapper">
+        <h1 class="titulo">Calculadora IMC</h1>
+        <div class="inputs">
+          <div class="inputGroup">
+            <img src="./img/kg.svg" alt="Altura" />
+            <div>
+              <label for="inputPeso">Peso:</label>
+              <input
+                type="number"
+                id="inputPeso"
+                placeholder="Informe o peso (Kg)"
+                class="inputClass"
+              />
+            </div>
+          </div>
+          <div class="inputGroup">
+            <img src="./img/altura.svg" alt="Altura" />
+            <div>
+              <label for="inputAltura">Altura:</label>
+              <input
+                type="number"
+                id="inputAltura"
+                placeholder="Informe a altura (M)"
+                class="inputClass"
+              />
+            </div>
+          </div>
+        </div>
+        <p class="imcDisplay">
+          IMC:
+          <span id="indiceIMC">-</span>
+        </p>
+        <p id="descIMC" class="descIMC">
+          Digite os valores acima para descobrir o seu IMC
+        </p>
       </div>
-      <div>
-        <label for="inputAltura">Altura:</label>
-        <input
-          type="number"
-          id="inputAltura"
-          placeholder="Informe a altura (M)"
-        />
-      </div>
-
-      <p id="output"></p>
     </div>
 
     <script src="js/main.js"></script>
