@@ -25,8 +25,6 @@ function TeacherList() {
 
       <main>
         <TeacherItem />
-        <TeacherItem />
-        <TeacherItem />
       </main>
     </div>
   );
