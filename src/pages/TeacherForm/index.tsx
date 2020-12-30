@@ -1,12 +1,27 @@
-import React from "react";
-import Input from "../../components/Input";
-import TextArea from "../../components/TextArea";
-import PageHeader from "../../components/PageHeader";
-import Select from "../../components/Select";
-import warningIcon from "../../assets/images/icons/warning.svg";
-import "./styles.css";
+import React, { useState } from 'react';
+import Input from '../../components/Input';
+import TextArea from '../../components/TextArea';
+import PageHeader from '../../components/PageHeader';
+import Select from '../../components/Select';
+import warningIcon from '../../assets/images/icons/warning.svg';
+import './styles.css';
 
 function TeacherForm() {
+  const [scheduleItems, setScheduleItems] = useState([
+    { week_day: 0, from: '', to: '' },
+  ]);
+
+  function addNewScheduleItem() {
+    setScheduleItems([
+      ...scheduleItems,
+      {
+        week_day: 0,
+        from: '',
+        to: '',
+      },
+    ]);
+  }
+
   return (
     <div id="page-teacher-form" className="container">
       <PageHeader
@@ -30,17 +45,17 @@ function TeacherForm() {
             name="subject"
             label="Matéria"
             options={[
-              { value: "Artes", label: "Artes" },
-              { value: "Biologia", label: "Biologia" },
-              { value: "Ciências", label: "Ciências" },
-              { value: "Física", label: "Física" },
-              { value: "Matemática", label: "Matemática" },
-              { value: "Portugês", label: "Portugês" },
-              { value: "Inglês", label: "Inglês" },
-              { value: "Quimica", label: "Quimica" },
-              { value: "Geografia", label: "Geografia" },
-              { value: "História", label: "História" },
-              { value: "Computação Quântica", label: "Computação Quântica" },
+              { value: 'Artes', label: 'Artes' },
+              { value: 'Biologia', label: 'Biologia' },
+              { value: 'Ciências', label: 'Ciências' },
+              { value: 'Física', label: 'Física' },
+              { value: 'Matemática', label: 'Matemática' },
+              { value: 'Portugês', label: 'Portugês' },
+              { value: 'Inglês', label: 'Inglês' },
+              { value: 'Quimica', label: 'Quimica' },
+              { value: 'Geografia', label: 'Geografia' },
+              { value: 'História', label: 'História' },
+              { value: 'Computação Quântica', label: 'Computação Quântica' },
             ]}
           />
           <Input name="cost" label="Custo da sua Hora/Aula" />
@@ -49,25 +64,32 @@ function TeacherForm() {
         <fieldset>
           <legend>
             Horários Disponíveis
-            <button type="button">+ Novo Horário</button>
+            <button type="button" onClick={addNewScheduleItem}>
+              + Novo Horário
+            </button>
           </legend>
-          <div className="schedule-item">
-            <Select
-              name="week_day"
-              label="Dia Da Semana"
-              options={[
-                { value: "0", label: "Domingo" },
-                { value: "1", label: "Segunda-Feira" },
-                { value: "2", label: "Terça-Feira" },
-                { value: "3", label: "Quarta-Feira" },
-                { value: "4", label: "Quinta-Feira" },
-                { value: "5", label: "Sexta-Feira" },
-                { value: "6", label: "Sabado" },
-              ]}
-            />
-            <Input name="from" label="Das" type="time" />
-            <Input name="to" label="Até" type="time" />
-          </div>
+
+          {scheduleItems.map((scheduleItem) => {
+            return (
+              <div className="schedule-item" key={scheduleItem.week_day}>
+                <Select
+                  name="week_day"
+                  label="Dia Da Semana"
+                  options={[
+                    { value: '0', label: 'Domingo' },
+                    { value: '1', label: 'Segunda-Feira' },
+                    { value: '2', label: 'Terça-Feira' },
+                    { value: '3', label: 'Quarta-Feira' },
+                    { value: '4', label: 'Quinta-Feira' },
+                    { value: '5', label: 'Sexta-Feira' },
+                    { value: '6', label: 'Sabado' },
+                  ]}
+                />
+                <Input name="from" label="Das" type="time" />
+                <Input name="to" label="Até" type="time" />
+              </div>
+            );
+          })}
         </fieldset>
 
         <footer>
