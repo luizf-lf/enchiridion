@@ -2,27 +2,34 @@ import React from 'react';
 import './styles.css';
 import WAIcon from '../../assets/images/icons/whatsapp.svg';
 
-function TeacherItem() {
+export interface Teacher {
+  avatar: string;
+  bio: string;
+  cost: number;
+  id: number;
+  name: string;
+  subject: string;
+  whatsapp: string;
+}
+interface TeacherItemProps {
+  teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
   return (
     <article className="teacher-item">
       <header>
-        <img
-          src="https://avatars0.githubusercontent.com/u/32681133?s=460&u=e5fcf96cec0ed8dfa8934ed2099d6ededbccdfca&v=4"
-          alt=""
-        />
+        <img src={teacher.avatar} alt={teacher.name} />
         <div>
-          <strong>Luiz Fernando</strong>
-          <span>DevOps </span>
+          <strong>{teacher.name}</strong>
+          <span>{teacher.subject}</span>
         </div>
       </header>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi atque
-        sit fuga aut voluptates! Est omnis voluptatem natus, animi et, rem non.
-      </p>
+      <p>{teacher.bio}</p>
       <footer>
         <p>
           Preço/Hora
-          <strong>R$26,90</strong>
+          <strong>R$ {teacher.cost}</strong>
         </p>
         <button>
           <img src={WAIcon} alt="Whatsapp" />
@@ -31,6 +38,6 @@ function TeacherItem() {
       </footer>
     </article>
   );
-}
+};
 
 export default TeacherItem;
