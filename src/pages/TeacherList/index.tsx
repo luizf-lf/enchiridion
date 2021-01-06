@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View } from 'react-native';
+import { Alert, Text, View } from 'react-native';
 import {
   BorderlessButton,
   RectButton,
@@ -47,8 +47,27 @@ function TeacherList() {
     const response = await api.get('classes', {
       params: { subject, week_day, time },
     });
-    setTeachers(response.data);
-    setIsFilterVisible(false);
+    if (response.data.length > 0) {
+      setTeachers(response.data);
+      setIsFilterVisible(false);
+    } else {
+      Alert.alert(
+        'Aviso',
+        'Nenhum Proffy encontrado. Confira sua pesquisa e tente novamente.',
+        [
+          {
+            text: 'Limpar Campos',
+            onPress: () => {
+              setSubject('');
+              setWeekDay('');
+              setTime('');
+            },
+          },
+          { text: 'OK', style: 'default' },
+        ]
+      );
+      setTeachers([]);
+    }
   }
 
   return (
