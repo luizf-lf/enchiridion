@@ -16,18 +16,21 @@ Este projeto está dividido em 3 repositórios, cada um com sua aplicação espe
 
 - Proffy Server
 
+  <img src="./docs/resources/img/icons/server.svg" height="32px" title="Server" />
   Servidor de backend da aplicação, desenvolvido em Node.js.
 
   Disponível em [luizf-lf/proffy-server](https://github.com/luizf-lf/proffy-server).
 
 - Proffy Web
 
+  <img src="./docs/resources/img/icons/desktop.svg" height="32px" title="Desktop" />
   Aplicação Web da plataforma, desenvolvida em React.
 
   Disponível em [luizf-lf/proffy-web](https://github.com/luizf-lf/proffy-web).
 
 - Proffy Mobile
 
+  <img src="./docs/resources/img/icons/mobile.svg" height="32px" title="Mobile" />
   Aplicação Mobile da plataforma, desenvolvido em React Native, podendo ser executado em Android/iOS através do Expo.
 
   Disponível em [luizf-lf/proffy-mobile](https://github.com/luizf-lf/proffy-mobile).
@@ -40,7 +43,7 @@ Abaixo segue uma documentação sobre cada repositório da plataforma:
 
 ## Proffy Server
 
-<img src="./docs/resources/img/icons/servers.svg" height="128px" />
+<img src="./docs/resources/img/icons/server.svg" height="128px" title="Server" />
 
 Disponível em [luizf-lf/proffy-server](https://github.com/luizf-lf/proffy-server).
 
@@ -210,7 +213,7 @@ Caso a requisição for bem sucedida, o servidor irá retornar uma resposta `HTT
 
 ## Proffy Web
 
-<img src="./docs/resources/img/icons/monitor-screen.svg" height="128px" />
+<img src="./docs/resources/img/icons/desktop.svg" height="128px" title="Desktop" />
 
 > Esta documentação está sendo desenvolvida.
 
@@ -220,7 +223,7 @@ Caso a requisição for bem sucedida, o servidor irá retornar uma resposta `HTT
 
 ## Proffy Mobile
 
-<img src="./docs/resources/img/icons/smartphone.svg" height="128px" />
+<img src="./docs/resources/img/icons/mobile.svg" height="128px" title="Mobile" />
 
 > Esta documentação está sendo desenvolvida.
 
