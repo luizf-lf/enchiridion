@@ -1,5 +1,7 @@
 # Proffy Server
 
+<img src="./docs/resources/img/icons/servers.svg" height="128px">
+
 Repositório da aplicação servidor utilizado pela plataforma Proffy, desenvolvida durante a segunda edição da [#NextLevelWeek](https://nextlevelweek.com/).
 
 Esta documentação é uma versão resumida, confira a documentação completa de toda a plataforma em [luizf-lf/proffy](https://github.com/luizf-lf/proffy).
