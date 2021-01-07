@@ -56,7 +56,7 @@ export default class ClassesController {
 
     try {
       const insertedUsersId = await trx('users').insert({
-        // se o nome do valor for o mesmo da propriedade, basta colcoar apenas o nome. Ex.:
+        // se o nome do valor for o mesmo da propriedade, basta colocar apenas o nome. Ex.:
         // name: name -> basta colocar > name
         name,
         avatar,
