@@ -2,7 +2,7 @@
 
 Repositório da aplicação servidor utilizado pela plataforma Proffy, desenvolvida durante a segunda edição da [#NextLevelWeek](https://nextlevelweek.com/).
 
-Confira a documentação de toda a plataforma em [luizf-lf/proffy](https://github.com/luizf-lf/proffy)
+Esta documentação é uma versão resumida, confira a documentação completa de toda a plataforma em [luizf-lf/proffy](https://github.com/luizf-lf/proffy).
 
 ## Instruções
 
@@ -19,6 +19,8 @@ Em seguida realize a migração da base de dados com o [knex](http://knexjs.org/
 Este servidor utiliza o pacote [ts-node-dev](https://www.npmjs.com/package/ts-node-dev) para servir a aplicação em um ambiente de desenvolvimento. Para utilizá-lo e inicializar o servidor, utilize o seguinte comando:
 
 `$ yarn start`
+
+<br />
 
 ## API REST
 
@@ -60,7 +62,6 @@ Exemplo de retorno:
 ```
 
 <br />
-<br />
 
 `POST /classes` Criação de aulas.
 
@@ -92,7 +93,6 @@ Caso os parâmetros estiverem corretos, o servidor irá retornar um `HTTP 201 Cr
 ```
 
 <br />
-<br />
 
 `GET /connections` Listagem do total de conexões realizadas.
 
@@ -104,7 +104,6 @@ Não é necessário informar nenhum parâmetro na URL. Ao atingir o endpoint é 
 }
 ```
 
-<br />
 <br />
 
 `POST /connections` Criar uma nova conexão.
