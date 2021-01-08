@@ -4,9 +4,13 @@
 
 Repositório da aplicação servidor utilizado pela plataforma Proffy, desenvolvida durante a segunda edição da [#NextLevelWeek](https://nextlevelweek.com/).
 
-Esta documentação é uma versão resumida, confira a documentação completa de toda a plataforma em [luizf-lf/proffy](https://github.com/luizf-lf/proffy).
+> Esta documentação pode estar parcial ou incompleta, confira a documentação completa e atualizada de todo o projeto da plataforma Proffy em [luizf-lf/proffy](https://github.com/luizf-lf/proffy).
 
-## Instruções
+## Sobre
+
+Este servidor da plataforma Proffy foi desenvolvido utilizando o `Node.js` juntamente com o `TypeScript`, além do `Knex` como _middleware_ da base de dados. Esta aplicação demonstra como é possível desenvolver uma aplicação de backend que disponibiliza APIs para aplicações de front-end consumirem.
+
+## Instruções de execução
 
 Estas instruções assumem que você utilize o `yarn` como gerenciador de pacotes. Porém é possível utilizar outro gerenciador de pacotes, como o `npm`, por exemplo.
 
@@ -121,3 +125,13 @@ Exemplo de requisição:
 ```
 
 Se estiver tudo certo, o servidor irá enviar responder com um `HTTP 201 Created`.
+
+## Considerações Finais.
+
+Esta aplicação foi desenvolvida seguindo as orientações passadas durante a segunda edição da Next Level Week, promovido pela equipe da RocketSeat.
+
+O intuito do evento é "elevar a pessoa ao próximo nível", demonstrando de forma prática como desenvolver uma aplicação funcional e completa utilizando as principais tecnologias utilizadas no mercado de desenvolvimento de sistemas com tecnologias web.
+
+Este repositório faz parte de um projeto que contém um **servidor node.js**, um cliente web e um client mobile. Não esqueça de conferir a documentação completa contendo as demais partes da plataforma Proffy em [luizf-lf/proffy](https://github.com/luizf-lf/proffy).
+
+> </> por luizf-lf
