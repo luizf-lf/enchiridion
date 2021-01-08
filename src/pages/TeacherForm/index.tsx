@@ -74,7 +74,7 @@ function TeacherForm() {
   return (
     <div id="page-teacher-form" className="container">
       <PageHeader
-        title="Que incrivel que você quer dar aulas"
+        title="Que incrível que você quer dar aulas"
         description="O primeiro passo é preencher este formulário de inscrição"
       />
 
@@ -132,9 +132,9 @@ function TeacherForm() {
                 { value: 'Ciências', label: 'Ciências' },
                 { value: 'Física', label: 'Física' },
                 { value: 'Matemática', label: 'Matemática' },
-                { value: 'Portugês', label: 'Portugês' },
+                { value: 'Português', label: 'Português' },
                 { value: 'Inglês', label: 'Inglês' },
-                { value: 'Quimica', label: 'Quimica' },
+                { value: 'Química', label: 'Química' },
                 { value: 'Geografia', label: 'Geografia' },
                 { value: 'História', label: 'História' },
                 { value: 'Computação Quântica', label: 'Computação Quântica' },
@@ -175,7 +175,7 @@ function TeacherForm() {
                       { value: '3', label: 'Quarta-Feira' },
                       { value: '4', label: 'Quinta-Feira' },
                       { value: '5', label: 'Sexta-Feira' },
-                      { value: '6', label: 'Sabado' },
+                      { value: '6', label: 'Sábado' },
                     ]}
                   />
                   <Input

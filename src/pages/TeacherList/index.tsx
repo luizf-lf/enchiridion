@@ -28,7 +28,7 @@ function TeacherList() {
 
   return (
     <div id="page-teacher-list" className="container">
-      <PageHeader title="Estes são os proffys disponiveis">
+      <PageHeader title="Estes são os proffys disponíveis">
         <form id="search-teachers" onSubmit={searchTeachers}>
           <Select
             name="subject"
@@ -43,9 +43,9 @@ function TeacherList() {
               { value: 'Ciências', label: 'Ciências' },
               { value: 'Física', label: 'Física' },
               { value: 'Matemática', label: 'Matemática' },
-              { value: 'Portugês', label: 'Portugês' },
+              { value: 'Português', label: 'Português' },
               { value: 'Inglês', label: 'Inglês' },
-              { value: 'Quimica', label: 'Quimica' },
+              { value: 'Química', label: 'Química' },
               { value: 'Geografia', label: 'Geografia' },
               { value: 'História', label: 'História' },
               { value: 'Computação Quântica', label: 'Computação Quântica' },
@@ -65,7 +65,7 @@ function TeacherList() {
               { value: '3', label: 'Quarta-Feira' },
               { value: '4', label: 'Quinta-Feira' },
               { value: '5', label: 'Sexta-Feira' },
-              { value: '6', label: 'Sabado' },
+              { value: '6', label: 'Sábado' },
             ]}
           />
           <Input
