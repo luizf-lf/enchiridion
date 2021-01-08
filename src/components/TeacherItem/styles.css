@@ -18,6 +18,10 @@
   border-radius: 50%;
 }
 
+.image-loading {
+  background: var(--color-text-complement);
+}
+
 .teacher-item header div {
   margin-left: 2.4rem;
 }

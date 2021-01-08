@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles.css';
 import WAIcon from '../../assets/images/icons/whatsapp.svg';
 import api from '../../services/api';
@@ -22,10 +22,18 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
       user_id: teacher.id,
     });
   }
+
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <article className="teacher-item">
       <header>
-        <img src={teacher.avatar} alt={teacher.name} />
+        <img
+          className={imageLoaded ? '' : 'image-loading'}
+          src={teacher.avatar}
+          alt={teacher.name}
+          onLoad={() => setImageLoaded(true)}
+        />
         <div>
           <strong>{teacher.name}</strong>
           <span>{teacher.subject}</span>
