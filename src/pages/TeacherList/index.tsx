@@ -3,17 +3,23 @@ import PageHeader from '../../components/PageHeader';
 import TeacherItem, { Teacher } from '../../components/TeacherItem';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
+import Loader from '../../components/Loader';
 import './styles.css';
 import api from '../../services/api';
 
 function TeacherList() {
   const [teachers, setTeachers] = useState([]);
+  const [teacherStatus, setTeacherStatus] = useState(() => {});
   const [subject, setSubject] = useState('');
   const [week_day, setWeekday] = useState('');
   const [time, setTime] = useState('');
 
   async function searchTeachers(e: FormEvent) {
     e.preventDefault();
+
+    setTeacherStatus(() => {
+      return <Loader />;
+    });
 
     const response = await api.get('classes', {
       params: {
@@ -23,7 +29,15 @@ function TeacherList() {
       },
     });
 
-    setTeachers(response.data);
+    if (response.data.length > 0) {
+      setTeacherStatus(() => {});
+      setTeachers(response.data);
+    } else {
+      setTeacherStatus(() => {
+        return <p>Nenhum resultado encontrado</p>;
+      });
+      setTeachers([]);
+    }
   }
 
   return (
@@ -82,6 +96,7 @@ function TeacherList() {
       </PageHeader>
 
       <main>
+        {teacherStatus}
         {teachers.map((teacher: Teacher) => {
           return <TeacherItem key={teacher.id} teacher={teacher} />;
         })}
