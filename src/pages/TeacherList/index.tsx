@@ -4,6 +4,7 @@ import TeacherItem, { Teacher } from '../../components/TeacherItem';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
 import Loader from '../../components/Loader';
+import warningIcon from '../../assets/images/icons/warning.svg';
 import './styles.css';
 import api from '../../services/api';
 
@@ -16,6 +17,8 @@ function TeacherList() {
 
   async function searchTeachers(e: FormEvent) {
     e.preventDefault();
+
+    setTeachers([]);
 
     setTeacherStatus(() => {
       return <Loader />;
@@ -34,7 +37,12 @@ function TeacherList() {
       setTeachers(response.data);
     } else {
       setTeacherStatus(() => {
-        return <p>Nenhum resultado encontrado</p>;
+        return (
+          <div id="teacher-result">
+            <img src={warningIcon} alt="Aviso" />
+            <p>Nenhum Proffy encontrado</p>
+          </div>
+        );
       });
       setTeachers([]);
     }
