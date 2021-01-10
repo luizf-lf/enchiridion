@@ -1,6 +1,6 @@
 # Proffy
 
-> :us: Please refer to [docs/english](./docs/english/README.md) for an english version of this documentation.
+> <img src="./docs/resources/img/icons/us-flag.png" height="24px"> Please refer to [docs/english](./docs/english/README.md) for an english version of this documentation.
 
 Repositório contendo a documentação sobre o projeto Proffy, desenvolvido durante a segunda edição da #NextLevelWeek.
 
