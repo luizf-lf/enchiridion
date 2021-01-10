@@ -25,6 +25,10 @@
   z-index: 2;
 }
 
+.showcase.active {
+  right: 300px;
+}
+
 .showcase header {
   position: absolute;
   top: 0;
@@ -147,6 +151,32 @@
 
 .social li a img {
   height: 28px;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu ul {
+  position: relative;
+  list-style: none;
+}
+
+.menu ul li a {
+  text-decoration: none;
+  font-size: 24px;
+  color: #111;
+}
+
+.menu ul li a:hover {
+  color: #ff8e71;
 }
 
 @media (max-width: 991px) {
