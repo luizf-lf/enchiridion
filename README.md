@@ -1,6 +1,6 @@
 # Proffy
 
-🇺🇸 Please refer to [docs/english](./docs/english/README.md) for an english version of this documentation.
+> :us: Please refer to [docs/english](./docs/english/README.md) for an english version of this documentation.
 
 Repositório contendo a documentação sobre o projeto Proffy, desenvolvido durante a segunda edição da #NextLevelWeek.
 
