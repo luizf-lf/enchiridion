@@ -27,7 +27,7 @@
 }
 
 .showcase.active {
-  right: 250px;
+  right: 300px;
 }
 
 .showcase header {
@@ -185,6 +185,10 @@
   .showcase,
   .showcase header {
     padding: 40px;
+  }
+
+  .showcase.active {
+    right: 250px;
   }
 
   .text h2 {
