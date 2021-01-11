@@ -14,21 +14,21 @@ Proffy é uma plataforma desenvolvida durante a segunda edição da Next Level W
 
 Este projeto está dividido em 3 repositórios, cada um com sua aplicação específica. Sendo eles:
 
-- Proffy Server
+- [Proffy Server](#proffy-server)
 
   <img src="./docs/resources/img/icons/server.svg" height="32px" title="Server" />
   Servidor de backend da aplicação, desenvolvido em Node.js.
 
   Disponível em [luizf-lf/proffy-server](https://github.com/luizf-lf/proffy-server).
 
-- Proffy Web
+- [Proffy Web](#proffy-web)
 
   <img src="./docs/resources/img/icons/desktop.svg" height="32px" title="Desktop" />
   Aplicação Web da plataforma, desenvolvida em React.
 
   Disponível em [luizf-lf/proffy-web](https://github.com/luizf-lf/proffy-web).
 
-- Proffy Mobile
+- [Proffy Mobile](#proffy-mobile)
 
   <img src="./docs/resources/img/icons/mobile.svg" height="32px" title="Mobile" />
   Aplicação Mobile da plataforma, desenvolvido em React Native, podendo ser executado em Android/iOS através do Expo.
