@@ -10,6 +10,27 @@ export default {
 
     return response.status(200).json(orphanages);
   },
+  async show(request: Request, response: Response) {
+    const { id } = request.params;
+    const orphanagesRepository = getRepository(Orphanage);
+
+    try {
+      const orphanage = await orphanagesRepository.findOneOrFail(id);
+
+      return response.status(200).json(orphanage);
+    } catch (e) {
+      if (e.name == 'EntityNotFound') {
+        return response.status(404).json({
+          message: 'Orphanage not found.',
+        });
+      } else {
+        return response.status(500).json({
+          message: 'And error occurred while searching for an orphanage.',
+          error: e,
+        });
+      }
+    }
+  },
   async create(request: Request, response: Response) {
     const {
       name,
