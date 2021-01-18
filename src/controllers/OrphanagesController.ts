@@ -17,24 +17,11 @@ export default {
     const { id } = request.params;
     const orphanagesRepository = getRepository(Orphanage);
 
-    try {
-      const orphanage = await orphanagesRepository.findOneOrFail(id, {
-        relations: ['images'],
-      });
+    const orphanage = await orphanagesRepository.findOneOrFail(id, {
+      relations: ['images'],
+    });
 
-      return response.status(200).json(orphanageView.render(orphanage));
-    } catch (e) {
-      if (e.name == 'EntityNotFound') {
-        return response.status(404).json({
-          message: 'Orphanage not found.',
-        });
-      } else {
-        return response.status(500).json({
-          message: 'And error occurred while searching for an orphanage.',
-          error: e,
-        });
-      }
-    }
+    return response.status(200).json(orphanageView.render(orphanage));
   },
   async create(request: Request, response: Response) {
     const {
