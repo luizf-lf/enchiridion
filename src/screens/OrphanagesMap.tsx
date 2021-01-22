@@ -19,6 +19,9 @@ function OrphanagesMap() {
   function handleNavigateToOrphanageDetails() {
     navigation.navigate('OrphanageDetails');
   }
+  function handleNavigateToCreateOrphanage() {
+    navigation.navigate('SelectMapPosition');
+  }
 
   return (
     <View style={styles.container}>
@@ -38,7 +41,7 @@ function OrphanagesMap() {
             latitude: -19.8667423,
             longitude: -47.4410328,
           }}
-          calloutAnchor={{ x: 2.2, y: 0.6 }}
+          calloutAnchor={{ x: 0.5, y: -0.1 }}
         >
           <Callout tooltip={true} onPress={handleNavigateToOrphanageDetails}>
             <View style={styles.calloutContainer}>
@@ -51,7 +54,7 @@ function OrphanagesMap() {
         <Text style={styles.footerText}>2 orfanatos encontrados</Text>
         <TouchableOpacity
           style={styles.createOrphanageButton}
-          onPress={() => {}}
+          onPress={handleNavigateToCreateOrphanage}
         >
           <Feather name="plus" size={20} color="#fff" />
         </TouchableOpacity>
