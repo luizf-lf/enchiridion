@@ -11,8 +11,15 @@ import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather } from '@expo/vector-icons';
 
 import mapMarker from '../assets/images/icons/map-marker.png';
+import { useNavigation } from '@react-navigation/native';
 
 function OrphanagesMap() {
+  const navigation = useNavigation();
+
+  function handleNavigateToOrphanageDetails() {
+    navigation.navigate('OrphanageDetails');
+  }
+
   return (
     <View style={styles.container}>
       <MapView
@@ -33,12 +40,7 @@ function OrphanagesMap() {
           }}
           calloutAnchor={{ x: 2.2, y: 0.6 }}
         >
-          <Callout
-            tooltip={true}
-            onPress={() => {
-              alert('teste');
-            }}
-          >
+          <Callout tooltip={true} onPress={handleNavigateToOrphanageDetails}>
             <View style={styles.calloutContainer}>
               <Text style={styles.calloutText}>Testes</Text>
             </View>
