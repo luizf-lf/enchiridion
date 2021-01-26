@@ -69,6 +69,7 @@ export default function Home() {
             <h1>{db.title}</h1>
           </Widget.Header>
           <Widget.Content>
+            <p>{db.description}</p>
             <form
               onSubmit={(event) => {
                 event.preventDefault();
@@ -87,11 +88,6 @@ export default function Home() {
                 Jogar
               </button>
             </form>
-          </Widget.Content>
-        </Widget>
-        <Widget>
-          <Widget.Content>
-            <p>{db.description}</p>
           </Widget.Content>
         </Widget>
         <Footer />
