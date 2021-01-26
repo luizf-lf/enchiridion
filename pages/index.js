@@ -30,7 +30,7 @@ export default function Home() {
       <Head>
         {/* <!-- Primary Meta Tags --> */}
         <title>Quiz Alura - luizf-lf</title>
-        <meta name="title" content="Quiz Alura - luizf-lf" />
+        <meta name="title" content="Quiz Game Of Thrones - luizf-lf" />
         <meta
           name="description"
           content="Quiz desenvolvido durante a segunda edição da Imersão React da Alura"
