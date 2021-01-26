@@ -1,16 +1,12 @@
+import React from 'react';
+import Head from 'next/head';
 import styled from 'styled-components';
-import db from '../db.json';
 import Widget from '../src/components/Widget';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
 import QuizBackground from '../src/components/QuizBackground';
 import QuizLogo from '../src/components/QuizLogo';
-import Head from 'next/head';
-
-const Title = styled.h1`
-  font-size: 50px;
-  color: ${({ theme }) => theme.colors.primary};
-`;
+import db from '../db.json';
 
 const QuizContainer = styled.div`
   width: 100%;
@@ -27,7 +23,39 @@ export default function Home() {
   return (
     <QuizBackground backgroundImage={db.bg}>
       <Head>
-        <title>Alura Quiz</title>
+        {/* <!-- Primary Meta Tags --> */}
+        <title>Quiz Alura - luizf-lf</title>
+        <meta name="title" content="Quiz Alura - luizf-lf" />
+        <meta
+          name="description"
+          content="Quiz desenvolvido durante a segunda edição da Imersão React da Alura"
+        />
+
+        {/* <!-- Open Graph / Facebook --> */}
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://alura-quiz.luizf-lf.vercel.app/"
+        />
+        <meta property="og:title" content="Quiz Alura - luizf-lf" />
+        <meta
+          property="og:description"
+          content="Quiz desenvolvido durante a segunda edição da Imersão React da Alura"
+        />
+        <meta property="og:image" content="" />
+
+        {/* <!-- Twitter --> */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:url"
+          content="https://alura-quiz.luizf-lf.vercel.app/"
+        />
+        <meta property="twitter:title" content="Quiz Alura - luizf-lf" />
+        <meta
+          property="twitter:description"
+          content="Quiz desenvolvido durante a segunda edição da Imersão React da Alura"
+        />
+        <meta property="twitter:image" content="" />
       </Head>
       <QuizContainer>
         <QuizLogo />
