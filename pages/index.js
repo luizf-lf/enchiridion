@@ -5,6 +5,7 @@ import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
 import QuizBackground from '../src/components/QuizBackground';
 import QuizLogo from '../src/components/QuizLogo';
+import Head from 'next/head';
 
 const Title = styled.h1`
   font-size: 50px;
@@ -25,6 +26,9 @@ const QuizContainer = styled.div`
 export default function Home() {
   return (
     <QuizBackground backgroundImage={db.bg}>
+      <Head>
+        <title>Alura Quiz</title>
+      </Head>
       <QuizContainer>
         <QuizLogo />
         <Widget>
