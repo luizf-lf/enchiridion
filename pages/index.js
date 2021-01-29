@@ -11,6 +11,7 @@ import QuizLogo from '../src/components/QuizLogo';
 import db from '../db.json';
 import Input from '../src/components/Input';
 import Button from '../src/components/Button';
+import Link from '../src/components/Link';
 
 export default function Home() {
   const router = useRouter();
@@ -97,6 +98,7 @@ export default function Home() {
                 return (
                   <li key={childKey}>
                     <Widget.Topic
+                      as={Link}
                       href={`/quiz/${projectName}___${projectAuthor}`}
                     >
                       {`${projectAuthor}/${projectName}`}
