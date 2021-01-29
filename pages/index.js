@@ -82,6 +82,31 @@ export default function Home() {
             </form>
           </Widget.Content>
         </Widget>
+
+        <Widget>
+          <Widget.Content>
+            <h1>Quizes da galera</h1>
+            <ul>
+              {db.external.map((link, key) => {
+                const childKey = `link_${key}`;
+                const [projectName, projectAuthor] = link
+                  .replace(/\//g, '')
+                  .replace('https:', '')
+                  .replace('.vercel.app', '')
+                  .split('.');
+                return (
+                  <li key={childKey}>
+                    <Widget.Topic
+                      href={`/quiz/${projectName}___${projectAuthor}`}
+                    >
+                      {`${projectAuthor}/${projectName}`}
+                    </Widget.Topic>
+                  </li>
+                );
+              })}
+            </ul>
+          </Widget.Content>
+        </Widget>
         <Footer />
         <GitHubCorner projectUrl="https://github.com/luizf-lf/alura-quiz" />
       </QuizContainer>
