@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
+import { motion } from 'framer-motion';
+
 import Widget from '../src/components/Widget';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
@@ -16,6 +18,16 @@ import Link from '../src/components/Link';
 export default function Home() {
   const router = useRouter();
   const [name, setName] = useState('');
+  const defaultVariants = {
+    hidden: {
+      opacity: 0,
+      x: -100,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+    },
+  };
 
   return (
     <QuizBackground backgroundImage={db.bg}>
@@ -56,7 +68,12 @@ export default function Home() {
       </Head>
       <QuizContainer>
         <QuizLogo />
-        <Widget>
+        <Widget
+          as={motion.section}
+          variants={defaultVariants}
+          initial="hidden"
+          animate="visible"
+        >
           <Widget.Header>
             <h1>{db.title}</h1>
           </Widget.Header>
@@ -84,7 +101,13 @@ export default function Home() {
           </Widget.Content>
         </Widget>
 
-        <Widget>
+        <Widget
+          as={motion.section}
+          variants={defaultVariants}
+          transition={{ delay: 0.3 }}
+          initial="hidden"
+          animate="visible"
+        >
           <Widget.Content>
             <h1>Quizes da galera</h1>
             <ul>
@@ -109,7 +132,13 @@ export default function Home() {
             </ul>
           </Widget.Content>
         </Widget>
-        <Footer />
+        <Footer
+          as={motion.section}
+          variants={defaultVariants}
+          transition={{ delay: 0.6 }}
+          initial="hidden"
+          animate="visible"
+        />
         <GitHubCorner projectUrl="https://github.com/luizf-lf/alura-quiz" />
       </QuizContainer>
     </QuizBackground>
