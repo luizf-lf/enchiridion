@@ -1,12 +1,11 @@
 package db
 
 import (
+	"github.com/luizf-lf/imsersao-fullstack-fullcycle/codepix/domain/model"
 	"log"
 	"os"
 	"path/filepath"
 	"runtime"
-
-	"github.com/luizf-lf/imsersao-fullstack-fullcycle/tree/main/codepix/domain/model"
 
 	"github.com/jinzhu/gorm"
 	"github.com/joho/godotenv"
