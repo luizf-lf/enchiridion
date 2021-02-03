@@ -48,6 +48,7 @@ github.com/lib/pq v1.1.1 h1:sJZmqHoEaY7f+NPP8pgLB/WxulyR3fewgCM2qaSlBb4=
 github.com/lib/pq v1.1.1/go.mod h1:5WUZQaWbwv1U+lTReE5YruASi9Al49XbQIvNi/34Woo=
 github.com/luizf-lf/imsersao-fullstack-fullcycle v0.0.0-20210203123116-be4ca479dfc9 h1:7beZrHEFpPEGGRUp/onVXT2cJY5EervIj/9W8Xj/Juo=
 github.com/luizf-lf/imsersao-fullstack-fullcycle v0.0.0-20210203171359-3d118ea719f6 h1:zHgcAhyalO4/bAot91wmlUlmD/3DnKBOdsdSYkFVB0I=
+github.com/luizf-lf/imsersao-fullstack-fullcycle v0.0.0-20210203173241-3674dbf6f145 h1:nFhXGkBIeHkOMv6h/Gu/qtDbt+CcAyF174bk0Jxz/MU=
 github.com/mattn/go-sqlite3 v1.14.0/go.mod h1:JIl7NbARA7phWnGvh0LKTyg7S9BA+6gx71ShQilpsus=
 github.com/mattn/go-sqlite3 v1.14.5 h1:1IdxlwTNazvbKJQSxoJ5/9ECbEeaTTyeU7sEAZ5KKTQ=
 github.com/mattn/go-sqlite3 v1.14.5/go.mod h1:WVKg1VTActs4Qso6iwGbiFih2UIHo0ENGwNd0Lj+XmI=
