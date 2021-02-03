@@ -7,6 +7,7 @@ import (
 	uuid "github.com/satori/go.uuid"
 )
 
+// Account - Account model type
 type Account struct {
 	Base      `valid: "required"`
 	OwnerName string `gorm:"column:owner_name;type:varchar(225);not null" valid:"notnull"`
@@ -25,6 +26,7 @@ func (account *Account) isValid() error {
 	return nil
 }
 
+// NewAccount - Create a new account
 func NewAccount(bank *Bank, number string, ownerName string) (*Account, error) {
 	account := Account{
 		OwnerName: ownerName,
