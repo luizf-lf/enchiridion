@@ -35,7 +35,7 @@ func (t *TransactionRepositoryDb) Save(transaction *model.Transaction) error {
 // Find - Find a transaction by id
 func (t *TransactionRepositoryDb) Find(id string) (*model.Transaction, error) {
 	var transaction model.Transaction
-	err := t.Db.Preload("AccountFrom.Bank").First(&transaction, "id = ?", id)
+	t.Db.Preload("AccountFrom.Bank").First(&transaction, "id = ?", id)
 
 	if transaction.ID == "" {
 		return nil, fmt.Errorf("no transaction was found")
