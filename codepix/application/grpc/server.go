@@ -6,12 +6,22 @@ import (
 	"net"
 
 	"github.com/jinzhu/gorm"
+	"github.com/luizf-lf/imsersao-fullstack-fullcycle/codepix/application/grpc/pb"
+	"github.com/luizf-lf/imsersao-fullstack-fullcycle/codepix/application/usecase"
+	"github.com/luizf-lf/imsersao-fullstack-fullcycle/codepix/infrastructure/repository"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 // StartGrpcServer - start the grpc server
-func StartGrpcServer(database *gorm.DB, port int){
+func StartGrpcServer(database *gorm.DB, port int) {
 	grpcServer := grpc.NewServer()
+	reflection.Register(grpcServer)
+
+	pixRepository := repository.PixKeyRepositoryDb{Db: database}
+	pixUseCase := usecase.PixUseCase{PixKeyRepository: pixRepository}
+	pixGrpcService := NewPixGrpcService(pixUseCase)
+	pb.RegisterPixServiceServer(grpcServer, pixGrpcService)
 
 	address := fmt.Sprintf("0.0.0.0:%d", port)
 	listener, err := net.Listen("tcp", address)
@@ -24,5 +34,4 @@ func StartGrpcServer(database *gorm.DB, port int){
 	if err != nil {
 		log.Fatal("cannot start grpc server", err)
 	}
-
 }
