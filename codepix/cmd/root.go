@@ -29,7 +29,7 @@ var cfgFile string
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "codepix",
-	Short: "Use codepix software to intermediate bank transactions with Apache Kafka and gRPC",
+	Short: "Use codepix software to intermediate bank transactions with Apache kafka and gRPC",
 	Long: `A longer description that spans multiple lines and likely contains
 examples and usage of using your application. For example:
 
