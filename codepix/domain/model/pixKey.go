@@ -17,6 +17,10 @@ type PixKeyRepositoryInterface interface {
 	FindAccount(id string) (*Account, error)
 }
 
+func init() {
+	govalidator.SetFieldsRequiredByDefault(true)
+}
+
 // PixKey - pix key structure
 type PixKey struct {
 	Base      `valid:"required"`
@@ -27,16 +31,15 @@ type PixKey struct {
 	Status    string   `json:"status" gorm:"type:varchar(20)" valid:"notnull"`
 }
 
+func (p *PixKey) isValid() error {
+	_, err := govalidator.ValidateStruct(p)
 
-func (pixKey *PixKey) isValid() error {
-	_, err := govalidator.ValidateStruct(pixKey)
-
-	if pixKey.Kind != "email" && pixKey.Kind != "cpf" {
-		return errors.New("Invalid type of key")
+	if p.Kind != "email" && p.Kind != "cpf" {
+		return errors.New("invalid type of key")
 	}
 
-	if pixKey.Status != "active" && pixKey.Status != "inative" {
-		return errors.New("Invalid status")
+	if p.Status != "active" && p.Status != "inactive" {
+		return errors.New("invalid status")
 	}
 
 	if err != nil {
@@ -47,22 +50,18 @@ func (pixKey *PixKey) isValid() error {
 
 // NewPixKey - create a new pix key
 func NewPixKey(kind string, account *Account, key string) (*PixKey, error) {
-
 	pixKey := PixKey{
-		Kind: kind,
-		Key: key,
-		Account: account,
-		Status: "active",
+		Kind:      kind,
+		Key:       key,
+		Account:   account,
+		AccountID: account.ID,
+		Status:    "active",
 	}
-
-
 	pixKey.ID = uuid.NewV4().String()
 	pixKey.CreatedAt = time.Now()
-
 	err := pixKey.isValid()
 	if err != nil {
 		return nil, err
 	}
-
 	return &pixKey, nil
 }

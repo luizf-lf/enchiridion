@@ -3,8 +3,8 @@ package repository
 import (
 	"fmt"
 
+	"github.com/jinzhu/gorm"
 	"github.com/luizf-lf/imsersao-fullstack-fullcycle/codepix/domain/model"
-	"gorm.io/gorm"
 )
 
 // TransactionRepositoryDb - transaction repository model
@@ -15,7 +15,6 @@ type TransactionRepositoryDb struct {
 // Register - Register a transaction
 func (t *TransactionRepositoryDb) Register(transaction *model.Transaction) error {
 	err := t.Db.Create(transaction).Error
-
 	if err != nil {
 		return err
 	}
@@ -25,7 +24,6 @@ func (t *TransactionRepositoryDb) Register(transaction *model.Transaction) error
 // Save - Save the transaction
 func (t *TransactionRepositoryDb) Save(transaction *model.Transaction) error {
 	err := t.Db.Save(transaction).Error
-
 	if err != nil {
 		return err
 	}
@@ -38,9 +36,7 @@ func (t *TransactionRepositoryDb) Find(id string) (*model.Transaction, error) {
 	t.Db.Preload("AccountFrom.Bank").First(&transaction, "id = ?", id)
 
 	if transaction.ID == "" {
-		return nil, fmt.Errorf("no transaction was found")
+		return nil, fmt.Errorf("no key was found")
 	}
-
 	return &transaction, nil
-	
 }

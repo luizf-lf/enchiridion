@@ -8,10 +8,10 @@ import (
 type PixUseCase struct {
 	PixKeyRepository model.PixKeyRepositoryInterface
 }
+
 // RegisterKey - register a new pix key
 func (p *PixUseCase) RegisterKey(key string, kind string, accountId string) (*model.PixKey, error) {
 	account, err := p.PixKeyRepository.FindAccount(accountId)
-
 	if err != nil {
 		return nil, err
 	}

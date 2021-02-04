@@ -14,14 +14,14 @@ type TransactionUseCase struct {
 }
 
 // Register - Register a transaction
-func (t *TransactionUseCase) Register(accountID string, amount float64, pixKeyTo string, pixKeyKindTo string, description string) (*model.Transaction, error) {
+func (t *TransactionUseCase) Register(accountId string, amount float64, pixKeyto string, pixKeyKindTo string, description string) (*model.Transaction, error) {
 
-	account, err := t.PixRepository.FindAccount(accountID)
+	account, err := t.PixRepository.FindAccount(accountId)
 	if err != nil {
 		return nil, err
 	}
 
-	pixKey, err := t.PixRepository.FindKeyByKind(pixKeyTo, pixKeyKindTo)
+	pixKey, err := t.PixRepository.FindKeyByKind(pixKeyto, pixKeyKindTo)
 	if err != nil {
 		return nil, err
 	}
@@ -41,10 +41,10 @@ func (t *TransactionUseCase) Register(accountID string, amount float64, pixKeyTo
 }
 
 // Confirm - Changes transaction status to confirmed
-func (t *TransactionUseCase) Confirm(transactionID string) (*model.Transaction, error) {
-	transaction, err := t.TransactionRepository.Find(transactionID)
+func (t *TransactionUseCase) Confirm(transactionId string) (*model.Transaction, error) {
+	transaction, err := t.TransactionRepository.Find(transactionId)
 	if err != nil {
-		log.Println("Transaction not found", transactionID)
+		log.Println("Transaction not found", transactionId)
 		return nil, err
 	}
 
@@ -58,10 +58,10 @@ func (t *TransactionUseCase) Confirm(transactionID string) (*model.Transaction, 
 }
 
 // Complete - Change transaction status to completed
-func (t *TransactionUseCase) Complete(transactionID string) (*model.Transaction, error) {
-	transaction, err := t.TransactionRepository.Find(transactionID)
+func (t *TransactionUseCase) Complete(transactionId string) (*model.Transaction, error) {
+	transaction, err := t.TransactionRepository.Find(transactionId)
 	if err != nil {
-		log.Println("Transaction not found", transactionID)
+		log.Println("Transaction not found", transactionId)
 		return nil, err
 	}
 
@@ -75,8 +75,8 @@ func (t *TransactionUseCase) Complete(transactionID string) (*model.Transaction,
 }
 
 // Error - Return a error when a transaction is invalid
-func (t *TransactionUseCase) Error(transactionID string, reason string) (*model.Transaction, error) {
-	transaction, err := t.TransactionRepository.Find(transactionID)
+func (t *TransactionUseCase) Error(transactionId string, reason string) (*model.Transaction, error) {
+	transaction, err := t.TransactionRepository.Find(transactionId)
 	if err != nil {
 		return nil, err
 	}
