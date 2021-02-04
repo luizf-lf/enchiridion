@@ -32,7 +32,7 @@ var grpcCmd = &cobra.Command{
 
 	Run: func(cmd *cobra.Command, args []string) {
 		database := db.ConnectDB(os.Getenv("env"))
-		grpc.StartGrpcServer(database, 50051)
+		grpc.StartGrpcServer(database, portNumber)
 	},
 }
 
