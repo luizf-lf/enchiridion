@@ -7,5 +7,5 @@ The purpose is to simulate a Apache Kafka topic message production and consumpti
 
 - Make sure to create a `.env` file, following the `.env.example`.
 - Then start the Docker container with `docker-compose up -d`.
-- Enter the go app cli with ``docker exec -it challenge02_app_1 bash`
+- Enter the go app cli with `docker exec -it challenge02_app_1 bash`
 - Finally, to see the magic happening, inside the app cli run the following command: `go run main.go`
