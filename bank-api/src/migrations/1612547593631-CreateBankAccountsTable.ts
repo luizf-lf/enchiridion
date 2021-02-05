@@ -13,7 +13,7 @@ export class CreateBankAccountsTable1612547593631
             isPrimary: true,
           },
           {
-            name: 'account',
+            name: 'account_number',
             type: 'varchar',
           },
           {
