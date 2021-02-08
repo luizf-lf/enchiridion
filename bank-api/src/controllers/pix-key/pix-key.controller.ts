@@ -1,5 +1,20 @@
-import { Controller, Get, Param, ParseUUIDPipe, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Inject,
+  InternalServerErrorException,
+  Param,
+  ParseUUIDPipe,
+  Post,
+  UnprocessableEntityException,
+  ValidationPipe,
+} from '@nestjs/common';
+import { ClientGrpc } from '@nestjs/microservices';
 import { InjectRepository } from '@nestjs/typeorm';
+import { PixKeyDto } from 'src/dto/pix-key.dto';
+import { PixService } from 'src/grpc-types/pix-service.grpc';
+import { BankAccount } from 'src/models/bank-account.model';
 import { PixKey } from 'src/models/pix-key.model';
 import { Repository } from 'typeorm';
 
@@ -8,6 +23,10 @@ export class PixKeyController {
   constructor(
     @InjectRepository(PixKey)
     private pixKeyRepo: Repository<PixKey>,
+    @InjectRepository(BankAccount)
+    private bankAccountRepo: Repository<BankAccount>,
+    @Inject('CODEPIX_PACKAGE')
+    private client: ClientGrpc,
   ) {}
 
   @Get()
@@ -26,7 +45,53 @@ export class PixKeyController {
   }
 
   @Post()
-  store() {}
+  async store(
+    @Param('bankAccountId', new ParseUUIDPipe({ version: '4' }))
+    bankAccountId: string,
+    @Body(new ValidationPipe({ errorHttpStatusCode: 422 }))
+    body: PixKeyDto,
+  ) {
+    await this.bankAccountRepo.findOneOrFail(bankAccountId);
+
+    const pixService: PixService = this.client.getService('PixService');
+    const notFound = await this.chePixKeyNotFound(body);
+    if (!notFound) {
+      throw new UnprocessableEntityException('PixKey already exists');
+    }
+
+    const createdPixKey = await pixService
+      .registerPixKey({
+        ...body,
+        accountId: bankAccountId,
+      })
+      .toPromise();
+
+    if (createdPixKey.error) {
+      throw new InternalServerErrorException(createdPixKey.error);
+    }
+
+    const pixKey = this.pixKeyRepo.create({
+      id: createdPixKey.id,
+      bank_account_id: bankAccountId,
+      ...body,
+    });
+
+    return await this.pixKeyRepo.save(pixKey);
+  }
+
+  async chePixKeyNotFound(params: { key: string; kind: string }) {
+    const pixService: PixService = this.client.getService('PixService');
+
+    try {
+      pixService.find(params).toPromise();
+    } catch (err) {
+      if (err.datails === 'no key was found') {
+        return true;
+      }
+
+      throw new InternalServerErrorException('Server not available');
+    }
+  }
 
   @Get('exists')
   exists() {}
