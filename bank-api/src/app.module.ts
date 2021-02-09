@@ -11,6 +11,7 @@ import { PixKeyController } from './controllers/pix-key/pix-key.controller';
 import { PixKey } from './models/pix-key.model';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { join } from 'path';
+import { TransactionController } from './controllers/transaction/transaction.controller';
 
 @Module({
   imports: [
@@ -38,7 +39,7 @@ import { join } from 'path';
       },
     ]),
   ],
-  controllers: [AppController, BankAccountController, PixKeyController],
+  controllers: [AppController, BankAccountController, PixKeyController, TransactionController],
   providers: [AppService, FixturesCommand],
 })
 export class AppModule {}
