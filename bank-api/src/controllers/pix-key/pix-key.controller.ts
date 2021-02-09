@@ -2,16 +2,20 @@ import {
   Body,
   Controller,
   Get,
+  HttpCode,
   Inject,
   InternalServerErrorException,
+  NotFoundException,
   Param,
   ParseUUIDPipe,
   Post,
+  Query,
   UnprocessableEntityException,
   ValidationPipe,
 } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { InjectRepository } from '@nestjs/typeorm';
+import { PixKeyExistsDto } from 'src/dto/pix-key-exists.dto';
 import { PixKeyDto } from 'src/dto/pix-key.dto';
 import { PixService } from 'src/grpc-types/pix-service.grpc';
 import { BankAccount } from 'src/models/bank-account.model';
@@ -28,7 +32,6 @@ export class PixKeyController {
     @Inject('CODEPIX_PACKAGE')
     private client: ClientGrpc,
   ) {}
-
   @Get()
   index(
     @Param('bankAccountId', new ParseUUIDPipe({ version: '4' }))
@@ -54,7 +57,7 @@ export class PixKeyController {
     await this.bankAccountRepo.findOneOrFail(bankAccountId);
 
     const pixService: PixService = this.client.getService('PixService');
-    const notFound = await this.chePixKeyNotFound(body);
+    const notFound = await this.checkPixKeyNotFound(body);
     if (!notFound) {
       throw new UnprocessableEntityException('PixKey already exists');
     }
@@ -75,17 +78,16 @@ export class PixKeyController {
       bank_account_id: bankAccountId,
       ...body,
     });
-
     return await this.pixKeyRepo.save(pixKey);
   }
 
-  async chePixKeyNotFound(params: { key: string; kind: string }) {
+  async checkPixKeyNotFound(params: { key: string; kind: string }) {
     const pixService: PixService = this.client.getService('PixService');
-
     try {
-      pixService.find(params).toPromise();
-    } catch (err) {
-      if (err.datails === 'no key was found') {
+      await pixService.find(params).toPromise();
+      return false;
+    } catch (e) {
+      if (e.details === 'no key was found') {
         return true;
       }
 
@@ -94,5 +96,20 @@ export class PixKeyController {
   }
 
   @Get('exists')
-  exists() {}
+  @HttpCode(204)
+  async exists(
+    @Query(new ValidationPipe({ errorHttpStatusCode: 422 }))
+    params: PixKeyExistsDto,
+  ) {
+    const pixService: PixService = this.client.getService('PixService');
+    try {
+      await pixService.find(params).toPromise();
+    } catch (e) {
+      if (e.details === 'no key was found') {
+        throw new NotFoundException(e.details);
+      }
+
+      throw new InternalServerErrorException('Server not available');
+    }
+  }
 }
