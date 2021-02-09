@@ -35,7 +35,7 @@ import { TransactionSubscriber } from './subscribers/transaction-subscriber/tran
         transport: Transport.GRPC,
         options: {
           url: process.env.GRPC_URL,
-          package: 'github.com.codeedu.codepix',
+          package: 'github.com.luizflf.codepix',
           protoPath: [join(__dirname, 'protofiles/pixkey.proto')],
         },
       },
