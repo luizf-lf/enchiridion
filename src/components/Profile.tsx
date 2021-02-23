@@ -11,7 +11,7 @@ function Profile() {
 
         <p>
           <img src="icons/level.svg" alt="Level" />
-          Level 1
+          Level 666
         </p>
       </div>
     </div>
