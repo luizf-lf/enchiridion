@@ -34,7 +34,8 @@ $(document).ready(async () => {
           data-parent="#covidDataContainer"
         >
           <div class="card-body">
-            Total de casos: ${country.TotalConfirmed}
+            <p><span class="totalCases"> Total Cases:</span> ${country.TotalConfirmed}</p>
+            <p><span class="recovered">Recovered:</span> ${country.TotalRecovered}</p>
           </div>
         </div>
       </div>`;
