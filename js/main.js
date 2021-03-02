@@ -50,7 +50,6 @@ $(document).ready(async () => {
     if ($('#searchInput').val() == '') {
       renderResult(apiResult);
     } else {
-      let filteredHTML = '';
       let filteredArr = [];
       let searchInputValue = $('#searchInput').val();
 
