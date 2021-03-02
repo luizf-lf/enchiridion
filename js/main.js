@@ -3,8 +3,8 @@ $(document).ready(async () => {
   let resultHTML = '';
   let mappedHTML = '';
 
-  await fetch('http://localhost:3000/api')
-    // await fetch('https://api.covid19api.com/summary')
+  // await fetch('http://localhost:3000/api')
+  await fetch('https://api.covid19api.com/summary')
     .then((response) => response.json())
     .then((result) => (apiResult = result.Countries));
 
