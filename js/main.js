@@ -1,4 +1,4 @@
-$(document).ready(async () => {
+window.addEventListener('load', async () => {
   let apiResult = [];
   let resultHTML = '';
   let mappedHTML = '';
@@ -44,31 +44,32 @@ $(document).ready(async () => {
         })
         .join('');
 
-      $('#covidDataContainer').html(resultHTML);
+      document.getElementById('covidDataContainer').innerHTML = resultHTML;
     } else {
-      if ($('#searchInput').val().toLowerCase() == 'equestria') {
-        $('#covidDataContainer').html(
-          `<div class="alert alert-info">Equestria is a safe place. There's no covid cases there. 🦄 </div>`
-        );
+      if (
+        document.getElementById('searchInput').value.toLowerCase() ==
+        'equestria'
+      ) {
+        resultHTML =
+          '<div class="alert alert-warning">Equestria is a safe place. There\'s no covid cases there. 🦄 </div>';
       } else {
         resultHTML =
           '<div class="alert alert-info">No countries found. Did you type correctly? 🤔 </div>';
-
-        $('#covidDataContainer').html(resultHTML);
       }
+      document.getElementById('covidDataContainer').innerHTML = resultHTML;
     }
   }
 
   renderResult(apiResult);
 
-  $('#searchInput').keyup(() => {
-    if ($('#searchInput').val() == '') {
+  document.getElementById('searchInput').addEventListener('keyup', () => {
+    if (document.getElementById('searchInput').value == '') {
       renderResult(apiResult);
     } else {
       let filteredArr = [];
-      let searchInputValue = $('#searchInput').val();
+      let searchInputValue = document.getElementById('searchInput').value;
 
-      $('#covidDataContainer').html('');
+      document.getElementById('covidDataContainer').innerHTML = '';
 
       filteredArr = apiResult.filter((val) => {
         return val.Country.toLowerCase().includes(
