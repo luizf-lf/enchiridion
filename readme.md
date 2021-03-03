@@ -2,7 +2,7 @@
 
 ### About
 
-This repository is an example on how to fetch an API and filter its results directly from the JavaScript without having to fetch the API again. jQuery and Bootstrap was used for this example, but it can be easily done in plain JavaScript too.
+This repository is an example on how to fetch an API and filter its results directly from the JavaScript without having to fetch the API again. This example was done with plain JavaScript.
 
 You can see a live deploy at [GitHub Pages](https://luizf-lf.github.io/api-filter-example/)
 
@@ -19,24 +19,24 @@ fetch('https://api.covid19api.com/summary')
   .then((result) => (apiResult = result.Countries));
 
 
-$('#searchInput').keyup(() => {
-  if ($('#searchInput').val() == '') {
-    renderResult(apiResult);
-  } else {
-    let filteredArr = [];
-    let searchInputValue = $('#searchInput').val();
+document.getElementById('searchInput').addEventListener('keyup', () => {
+    if (document.getElementById('searchInput').value == '') {
+      renderResult(apiResult);
+    } else {
+      let filteredArr = [];
+      let searchInputValue = document.getElementById('searchInput').value;
 
-    $('#covidDataContainer').html('');
+      document.getElementById('covidDataContainer').innerHTML = '';
 
-    filteredArr = apiResult.filter((val) => {
-      return val.Country.toLowerCase().includes(
-        searchInputValue.toLowerCase()
-      );
-    });
+      filteredArr = apiResult.filter((val) => {
+        return val.Country.toLowerCase().includes(
+          searchInputValue.toLowerCase()
+        );
+      });
 
-    renderResult(filteredArr);
-  }
-});
+      renderResult(filteredArr);
+    }
+  });
 ```
 
 The function `renderResult()` it's used only to render the elements on the page.
