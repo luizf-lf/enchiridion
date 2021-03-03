@@ -9,9 +9,10 @@ $(document).ready(async () => {
     .then((result) => (apiResult = result.Countries));
 
   function renderResult(contentArr) {
-    resultHTML = contentArr
-      .map((country) => {
-        mappedHTML = `<div class="card">
+    if (contentArr.length != 0) {
+      resultHTML = contentArr
+        .map((country) => {
+          mappedHTML = `<div class="card">
         <div class="card-header" id="heading_${country.CountryCode}">
           <h2 class="mb-0">
             <button
@@ -39,10 +40,23 @@ $(document).ready(async () => {
           </div>
         </div>
       </div>`;
-        return mappedHTML;
-      })
-      .join('');
-    $('#covidDataContainer').html(resultHTML);
+          return mappedHTML;
+        })
+        .join('');
+
+      $('#covidDataContainer').html(resultHTML);
+    } else {
+      if ($('#searchInput').val().toLowerCase() == 'equestria') {
+        $('#covidDataContainer').html(
+          `<div class="alert alert-info">Equestria is a safe place. There's no covid cases there. 🦄 </div>`
+        );
+      } else {
+        resultHTML =
+          '<div class="alert alert-info">No countries found. Did you type correctly? 🤔 </div>';
+
+        $('#covidDataContainer').html(resultHTML);
+      }
+    }
   }
 
   renderResult(apiResult);
