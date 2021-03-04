@@ -2,9 +2,9 @@
 
 ### About
 
-This repository is an example on how to fetch an API and filter its results directly from the JavaScript without having to fetch the API again. This example was done with plain JavaScript.
+This repository is an example on how to fetch an API and filter its results directly from the JavaScript without having to fetch the API again on every `onKeyUp` event from an input field. This example was done with plain JavaScript.
 
-You can see a live deploy at [GitHub Pages](https://luizf-lf.github.io/api-filter-example/)
+You can see a live deploy at <a href="https://luizf-lf.github.io/api-filter-example/" rel="noopener noreferrer" target="_blank">GitHub Pages</a>
 
 ### How it Works
 
