@@ -8,4 +8,131 @@ html,
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
+  background-color: #f3f9fb;
+}
+
+a {
+  color: #24c4dc;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.titleContainer {
+  padding: 1rem;
+  margin: 0 0.5rem;
+  background-color: #fff;
+  border: 1px solid #dfdfdf;
+  max-width: 1000px;
+  width: 100%;
+  border-radius: 1rem 1rem 0 0;
+  text-align: center;
+  border-bottom: 0;
+}
+
+.contentContainer {
+  background-color: #fff;
+  max-width: 1000px;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 0 0 1rem 1rem;
+  border: 1px solid #dfdfdf;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0.5rem;
+}
+
+.contentContainer h3 {
+  margin-bottom: 2rem;
+}
+
+.permissionContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.permissionContainer p {
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+.notificationBox {
+  border: 2px solid #26c6da;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  background-color: #e3f8fa;
+}
+
+.imageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.settingsContainer button {
+  border: none;
+  background-color: #24c4dc;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 1rem 0.5rem;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.settingsContainer button:not(:disabled):hover {
+  box-shadow: 0px 0px 15px 0px rgb(36, 196, 220, 0.5);
+}
+
+.settingsContainer button:disabled {
+  cursor: not-allowed;
+  background-color: #b9ecf4;
+  color: #ffffff;
+}
+
+.settingsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.inputGroup label {
+  margin-bottom: 0.2rem;
+  color: #333333;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.inputGroup input {
+  border: 1px solid #64d7e5;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 15rem;
+}
+
+.bottomLinks {
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 512px) {
+  .notificationBox {
+    flex-direction: column;
+  }
 }

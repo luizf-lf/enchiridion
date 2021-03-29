@@ -4,10 +4,62 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="./src/assets/img/notification.png"
+      type="image/png"
+    />
     <link rel="stylesheet" href="./src/styles/global.css" />
-    <title>JavaScript Notification Example</title>
+    <title>JS Notification Example</title>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div class="titleContainer">
+        <h3>JavaScript Notification Example</h3>
+      </div>
+      <div class="contentContainer">
+        <div class="permissionContainer">
+          <p>
+            Notifications permission:
+            <strong>
+              <span id="notificationPermissionStatus"></span>
+            </strong>
+          </p>
+        </div>
+        <div class="notificationBox">
+          <div class="imageContainer">
+            <img src="./src/assets/img/notification.png" alt="Icon" />
+          </div>
+          <div class="settingsContainer">
+            <div class="inputGroup">
+              <label for="inputNotificationTitle">Notification Title:</label>
+              <input type="text" id="inputNotificationTitle" />
+            </div>
+            <div class="inputGroup">
+              <label for="inputNotificationBody">Notification Body:</label>
+              <input type="text" id="inputNotificationBody" />
+            </div>
+            <button id="notificationBtn" disabled>Send Notification</button>
+          </div>
+        </div>
+        <p class="bottomLinks">
+          <a
+            href="https://github.com/luizf-lf/js-notification-example"
+            rel="noopener"
+            target="_blank"
+            >Github</a
+          >
+          <span> | </span>
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/notification"
+            rel="noopener"
+            target="_blank"
+          >
+            Documentation
+          </a>
+        </p>
+      </div>
+    </div>
+  </body>
   <script src="./src/js/main.js"></script>
 </html>
