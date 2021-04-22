@@ -1,17 +1,31 @@
-import { useEffect } from 'react';
-import { Header } from '../components/Header';
+import { GetStaticProps } from 'next';
+import { api } from '../../services/api';
 
-export default function Home({ episodes }) {
+interface Episode {
+  id: string;
+  title: string;
+  members: string;
+}
+interface HomeProps {
+  episodes: Episode[];
+}
+
+export default function Home(props: HomeProps) {
   return (
     <div>
-      <p>{JSON.stringify(episodes)}</p>
+      <p>{JSON.stringify(props.episodes)}</p>
     </div>
   );
 }
 
-export async function getStaticProps() {
-  const response = await fetch('http://localhost:3335/episodes');
-  const data = await response.json();
+export const getStaticProps: GetStaticProps = async () => {
+  const { data } = await api.get('episodes', {
+    params: {
+      _limit: 12,
+      _sort: 'published_at',
+      _order: 'desc',
+    },
+  });
 
   return {
     props: {
@@ -19,4 +33,4 @@ export async function getStaticProps() {
     },
     revalidate: 60 * 60 * 8, //every 8 hours a new page is generated
   };
-}
+};
