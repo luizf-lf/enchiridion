@@ -5,6 +5,7 @@ import { Header } from '../components/Header';
 import { Player } from '../components/Player';
 import { PlayerContext } from '../contexts/PlayerContext';
 import { useState } from 'react';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
   const [episodeList, setEpisodeList] = useState([]);
@@ -26,24 +27,29 @@ function MyApp({ Component, pageProps }) {
   }
 
   return (
-    <PlayerContext.Provider
-      value={{
-        episodeList,
-        currentEpisodeIndex,
-        play,
-        isPlaying,
-        togglePlay,
-        setPlayingState,
-      }}
-    >
-      <div className={styles.appWrapper}>
-        <main>
-          <Header />
-          <Component {...pageProps} />
-        </main>
-        <Player />
-      </div>
-    </PlayerContext.Provider>
+    <>
+      <Head>
+        <title>Podcastr</title>
+      </Head>
+      <PlayerContext.Provider
+        value={{
+          episodeList,
+          currentEpisodeIndex,
+          play,
+          isPlaying,
+          togglePlay,
+          setPlayingState,
+        }}
+      >
+        <div className={styles.appWrapper}>
+          <main>
+            <Header />
+            <Component {...pageProps} />
+          </main>
+          <Player />
+        </div>
+      </PlayerContext.Provider>
+    </>
   );
 }
 
