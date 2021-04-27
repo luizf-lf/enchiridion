@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Slider from 'rc-slider';
-import { useContext, useEffect, useRef } from 'react';
-import { PlayerContext } from '../../contexts/PlayerContext';
+import { useEffect, useRef } from 'react';
+import { usePlayer } from '../../contexts/PlayerContext';
 import styles from './styles.module.scss';
 import 'rc-slider/assets/index.css';
 
@@ -16,7 +16,9 @@ export function Player() {
     setPlayingState,
     playNext,
     playPrevious,
-  } = useContext(PlayerContext);
+    hasNext,
+    hasPrevious,
+  } = usePlayer();
 
   useEffect(() => {
     if (!audioRef.current) {
@@ -89,7 +91,7 @@ export function Player() {
           </button>
           <button
             type="button"
-            disabled={!episode}
+            disabled={!episode || !hasPrevious}
             onClick={() => playPrevious()}
           >
             <img src="/play-previous.svg" alt="Anterior" />
@@ -106,7 +108,11 @@ export function Player() {
               <img src="/play.svg" alt="Tocar" />
             )}
           </button>
-          <button type="button" disabled={!episode} onClick={() => playNext()}>
+          <button
+            type="button"
+            disabled={!episode || !hasNext}
+            onClick={() => playNext()}
+          >
             <img src="/play-next.svg" alt="Próximo" />
           </button>
           <button type="button" disabled={!episode}>
