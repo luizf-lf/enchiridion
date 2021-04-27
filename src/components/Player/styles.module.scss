@@ -126,7 +126,7 @@
 
       transition: 200ms;
 
-      &:hover {
+      &:hover:not(:disabled) {
         filter: brightness(0.95);
       }
     }
