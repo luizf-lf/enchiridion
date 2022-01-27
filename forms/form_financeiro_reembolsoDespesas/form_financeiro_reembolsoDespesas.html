@@ -1,0 +1,125 @@
+<html>
+  <head>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="http://192.168.0.200:8080/style-guide/css/fluig-style-guide.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="http://192.168.0.200:8080/portal/resources/js/jquery/jquery.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="http://192.168.0.200:8080/portal/resources/js/jquery/jquery-ui.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="http://192.168.0.200:8080/portal/resources/js/mustache/mustache-min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="http://192.168.0.200:8080/style-guide/js/fluig-style-guide.min.js"
+      charset="utf-8"
+    ></script>
+  </head>
+  <body>
+    <div class="fluig-style-guide">
+      <form name="form" role="form">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Relatório De Despesas</div>
+          <div class="panel-body">
+            <div class="panel panel-primary fs-huge-margin-bottom">
+              <div class="panel-body">
+                <h1 class="text-center">Relatório De Despesas</h1>
+              </div>
+            </div>
+
+            <h2 class="text-center">Solicitante</h2>
+            <div class="panel panel-primary">
+              <div class="panel-body">
+                <div class="form-group">
+                  <label for="vl_requesterName">Solicitante</label>
+                  <input
+                    type="text"
+                    id="vl_requesterName"
+                    name="vl_requesterName"
+                    class="form-control"
+                    placeholder="Seu nome será preenchido automaticamente"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="vl_requesterMail">E-mail</label>
+                  <input
+                    type="text"
+                    id="vl_requesterMail"
+                    name="vl_requesterMail"
+                    class="form-control"
+                    placeholder="Seu e-mail será preenchido automaticamente"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="vl_requesterCompany">Empresa</label>
+                  <input
+                    type="text"
+                    id="vl_requesterCompany"
+                    name="vl_requesterCompany"
+                    class="form-control"
+                    placeholder="Insira o nome de sua empresa"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="vl_requesterArea">Área</label>
+                  <input
+                    type="text"
+                    id="vl_requesterArea"
+                    name="vl_requesterArea"
+                    class="form-control"
+                    placeholder="Insira sua área"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <h2>Despesas</h2>
+
+            <div class="panel panel-primary">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <table class="table" tablename="table_expenses">
+                      <tr>
+                        <th>Categoria</th>
+                        <th>Descrição</th>
+                        <th>Vl. Unitário</th>
+                        <th>Quantidade</th>
+                        <th>Vl. Total</th>
+                      </tr>
+                      <tr>
+                        <td></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div>
+                      <label for="vl_globalTotal">Área</label>
+                      <input
+                        type="text"
+                        id="vl_globalTotal"
+                        name="vl_globalTotal"
+                        class="form-control"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
