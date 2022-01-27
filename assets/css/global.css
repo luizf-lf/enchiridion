@@ -68,3 +68,8 @@ li {
   font-weight: bold;
   color: var(--white);
 }
+
+.page-title {
+  width: 50%;
+  font-weight: bolder;
+}
