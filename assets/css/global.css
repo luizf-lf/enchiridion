@@ -6,6 +6,8 @@
   --dark-blue: #142850;
   --white: #ffffff;
   --light-gray: #e9ecef;
+  --gray: #f3f3f3;
+  --dark-gray: #7a7a7a;
 }
 
 * {
@@ -28,4 +30,33 @@ li {
 
 .bg-gray-200 {
   background-color: var(--light-gray);
+}
+
+/* footer */
+.main-footer {
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.main-footer > .footer-icons-container {
+  display: flex;
+  gap: 1.75rem;
+
+  margin-bottom: 0.5rem;
+}
+
+.main-footer > .footer-icons-container a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.main-footer > .footer-icons-container a > i {
+  font-size: 1.75rem;
+}
+
+.main-footer > .footer-copyright-container span {
+  font-size: 0.85rem;
 }
