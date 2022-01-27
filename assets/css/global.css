@@ -60,3 +60,11 @@ li {
 .main-footer > .footer-copyright-container span {
   font-size: 0.85rem;
 }
+
+.pill {
+  background-color: #ff7c7c;
+  border-radius: 1rem;
+  padding: 0.1rem 0.5rem;
+  font-weight: bold;
+  color: var(--white);
+}
