@@ -3,23 +3,23 @@
     <link
       type="text/css"
       rel="stylesheet"
-      href="http://192.168.0.200:8080/style-guide/css/fluig-style-guide.min.css"
+      href="/style-guide/css/fluig-style-guide.min.css"
     />
     <script
       type="text/javascript"
-      src="http://192.168.0.200:8080/portal/resources/js/jquery/jquery.js"
+      src="/portal/resources/js/jquery/jquery.js"
     ></script>
     <script
       type="text/javascript"
-      src="http://192.168.0.200:8080/portal/resources/js/jquery/jquery-ui.min.js"
+      src="/portal/resources/js/jquery/jquery-ui.min.js"
     ></script>
     <script
       type="text/javascript"
-      src="http://192.168.0.200:8080/portal/resources/js/mustache/mustache-min.js"
+      src="/portal/resources/js/mustache/mustache-min.js"
     ></script>
     <script
       type="text/javascript"
-      src="http://192.168.0.200:8080/style-guide/js/fluig-style-guide.min.js"
+      src="/style-guide/js/fluig-style-guide.min.js"
       charset="utf-8"
     ></script>
   </head>
@@ -34,12 +34,21 @@
                 <h1 class="text-center">Relatório De Despesas</h1>
               </div>
             </div>
+            <div class="row">
+              <div class="col-md-12">
+                <p>
+                  Campos marcados com <span class="text-danger">*</span> são
+                  obrigatórios.
+                </p>
+              </div>
+            </div>
 
             <h2 class="text-center">Solicitante</h2>
             <div class="panel panel-primary">
               <div class="panel-body">
                 <div class="form-group">
                   <label for="vl_requesterName">Solicitante</label>
+                  <span class="text-danger">*</span>
                   <input
                     type="text"
                     id="vl_requesterName"
@@ -50,6 +59,7 @@
                 </div>
                 <div class="form-group">
                   <label for="vl_requesterMail">E-mail</label>
+                  <span class="text-danger">*</span>
                   <input
                     type="text"
                     id="vl_requesterMail"
@@ -60,6 +70,7 @@
                 </div>
                 <div class="form-group">
                   <label for="vl_requesterCompany">Empresa</label>
+                  <span class="text-danger">*</span>
                   <input
                     type="text"
                     id="vl_requesterCompany"
@@ -70,6 +81,7 @@
                 </div>
                 <div class="form-group">
                   <label for="vl_requesterArea">Área</label>
+                  <span class="text-danger">*</span>
                   <input
                     type="text"
                     id="vl_requesterArea"
@@ -81,37 +93,143 @@
               </div>
             </div>
 
-            <h2>Despesas</h2>
+            <h2 class="text-center">Despesas</h2>
 
             <div class="panel panel-primary">
               <div class="panel-body">
+                <button
+                  type="button"
+                  class="btn btn-success fs-float-right fs-md-margin-bottom"
+                  onclick="wdkAddChild('table_expenses')"
+                >
+                  <i
+                    class="fluigicon fluigicon-plus icon-xs fs-sm-margin-right"
+                  ></i>
+                  Incluir
+                </button>
                 <div class="row">
                   <div class="col-md-12">
-                    <table class="table" tablename="table_expenses">
+                    <table
+                      class="table"
+                      tablename="table_expenses"
+                      noaddbutton="true"
+                    >
                       <tr>
-                        <th>Categoria</th>
-                        <th>Descrição</th>
-                        <th>Vl. Unitário</th>
-                        <th>Quantidade</th>
+                        <th>Categoria <span class="text-danger">*</span></th>
+                        <th>Descrição <span class="text-danger">*</span></th>
+                        <th>Vl. Unitário <span class="text-danger">*</span></th>
+                        <th>Quantidade <span class="text-danger">*</span></th>
                         <th>Vl. Total</th>
                       </tr>
                       <tr>
-                        <td></td>
+                        <td>
+                          <select
+                            id="vl_expenseType"
+                            name="vl_expenseType"
+                            class="form-control"
+                          >
+                            <option value="" selected style="display: none">
+                              Selecione
+                            </option>
+                            <option value="TOLL">Pedágio</option>
+                            <option value="HOST">Hospedagem</option>
+                            <option value="FUEL">Combustível</option>
+                            <option value="FOOD">Alimentação</option>
+                            <option value="OTHER">Outra</option>
+                          </select>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="vl_expenseDescription"
+                              name="vl_expenseDescription"
+                              placeholder="Insira a Descrição"
+                            />
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="vl_expenseUnitaryValue"
+                              name="vl_expenseUnitaryValue"
+                              placeholder="Insira o valor unitário"
+                              onchange="calculateRowValue(this.id)"
+                            />
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <input
+                              type="number"
+                              class="form-control"
+                              id="vl_expenseQuantity"
+                              name="vl_expenseQuantity"
+                              placeholder="insira a quantidade"
+                              onchange="calculateRowValue(this.id)"
+                            />
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="vl_expenseTotalValue"
+                              name="vl_expenseTotalValue"
+                              readonly
+                            />
+                          </div>
+                        </td>
                       </tr>
                     </table>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="col-md-12">
-                    <div>
-                      <label for="vl_globalTotal">Área</label>
+                  <div class="fs-float-right">
+                    <div class="col-md-12">
+                      <label for="vl_globalTotal">Total Geral</label>
                       <input
                         type="text"
                         id="vl_globalTotal"
                         name="vl_globalTotal"
                         class="form-control"
+                        readonly
                       />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="text-center">Ações</h3>
+
+            <div class="panel panel-primary">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="btn-group btn-group-lg">
+                      <button type="reset" class="btn btn-warning">
+                        Limpar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        onclick="handleRedirect()"
+                      >
+                        Cancelar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        onclick="handleSubmit()"
+                      >
+                        Enviar
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -121,5 +239,7 @@
         </div>
       </form>
     </div>
+
+    <script src="form_financeiro_reembolsoDespesas.js"></script>
   </body>
 </html>
