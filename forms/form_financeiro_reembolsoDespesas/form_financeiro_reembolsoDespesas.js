@@ -47,7 +47,38 @@ function calculateRowValue(fieldId) {
   total = parseFloat(unitaryVal) * parseFloat(amount);
   $('#vl_expenseTotalValue___' + rowSequence).val(total);
 
-  // console.log({ rowSequence, total, unitaryVal, amount });
+  // se valor for acima de 200, realça os campos do formulário
+  if (total >= 200) {
+    $('#vl_expenseDescription___' + rowSequence)
+      .parent()
+      .addClass('has-error');
+    $('#vl_expenseUnitaryValue___' + rowSequence)
+      .parent()
+      .parent()
+      .addClass('has-error');
+    $('#vl_expenseQuantity___' + rowSequence)
+      .parent()
+      .addClass('has-error');
+    $('#vl_expenseTotalValue___' + rowSequence)
+      .parent()
+      .parent()
+      .addClass('has-error');
+  } else if (total < 200) {
+    $('#vl_expenseDescription___' + rowSequence)
+      .parent()
+      .removeClass('has-error');
+    $('#vl_expenseUnitaryValue___' + rowSequence)
+      .parent()
+      .parent()
+      .removeClass('has-error');
+    $('#vl_expenseQuantity___' + rowSequence)
+      .parent()
+      .removeClass('has-error');
+    $('#vl_expenseTotalValue___' + rowSequence)
+      .parent()
+      .parent()
+      .removeClass('has-error');
+  }
 
   // chama a função que calcula o total geral
   calculateGlobalTotal();
@@ -72,6 +103,14 @@ function calculateGlobalTotal() {
 
   // aplica o valor total ao campo de total geral
   $('#vl_globalTotal').val(total);
+
+  // if (total >= 400) {
+  //   $('#valueAmountWarning').html(
+  //     '<p><b>Aviso: </b>Esta solicitação será enviada para aprovação seu seu gestor.</p>'
+  //   );
+  // } else if (total < 400) {
+  //   $('#valueAmountWarning').html('');
+  // }
 
   return;
 }

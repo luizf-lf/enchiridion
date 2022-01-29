@@ -116,7 +116,7 @@
                     >
                       <tr>
                         <th>Categoria <span class="text-danger">*</span></th>
-                        <th>Descrição <span class="text-danger">*</span></th>
+                        <th>Descrição</th>
                         <th>Vl. Unitário <span class="text-danger">*</span></th>
                         <th>Quantidade <span class="text-danger">*</span></th>
                         <th>Vl. Total</th>
@@ -218,6 +218,14 @@
                     </div>
                   </div>
                 </div>
+
+                <div class="row">
+                  <div
+                    class="col-md-12"
+                    style="display: flex; justify-content: flex-end"
+                    id="valueAmountWarning"
+                  ></div>
+                </div>
               </div>
             </div>
 
@@ -226,8 +234,11 @@
             <div class="panel panel-primary">
               <div class="panel-body">
                 <div class="row">
-                  <div class="col-md-6">
-                    <div class="btn-group btn-group-lg">
+                  <div class="col-md-12">
+                    <div
+                      class="btn-group btn-group-lg"
+                      style="display: flex; justify-content: flex-end"
+                    >
                       <button type="reset" class="btn btn-warning">
                         Limpar
                       </button>
