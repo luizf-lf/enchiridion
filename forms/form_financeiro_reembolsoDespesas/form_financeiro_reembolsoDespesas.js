@@ -104,13 +104,13 @@ function calculateGlobalTotal() {
   // aplica o valor total ao campo de total geral
   $('#vl_globalTotal').val(total);
 
-  // if (total >= 400) {
-  //   $('#valueAmountWarning').html(
-  //     '<p><b>Aviso: </b>Esta solicitação será enviada para aprovação seu seu gestor.</p>'
-  //   );
-  // } else if (total < 400) {
-  //   $('#valueAmountWarning').html('');
-  // }
+  if (total >= 400) {
+    $('#valueAmountWarning').html(
+      '<p><b>Aviso: </b>Esta solicitação será enviada para aprovação seu seu gestor. Ao clicar em enviar, selecione-o para que esta solicitação possa ser aprovada.</p>'
+    );
+  } else if (total < 400) {
+    $('#valueAmountWarning').html('');
+  }
 
   return;
 }
