@@ -16,7 +16,7 @@ You can also clone this repository and run this project by simply opening the `i
 
 ## Screenshots
 
-This web page contais a switch that changes the theme to Dark Mode.
+This web page contais a switch that changes the theme to Dark Mode, and it also has a mobile first layout.
 
 ### Default theme mode
 
@@ -28,5 +28,5 @@ This web page contais a switch that changes the theme to Dark Mode.
 
 ### Mobile view
 
-<img src="./docs/resources/images/sc4_mobile.png" style="max-width: 40%; margin-right: 1rem">
+<img src="./docs/resources/images/sc4_mobile.png" style="max-width: 40%">
 <img src="./docs/resources/images/sc3_mobile.png" style="max-width: 40%">
