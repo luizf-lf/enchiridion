@@ -1,4 +1,5 @@
 {
   "editor.formatOnSave": true,
-  "cSpell.words": ["Feedget"]
+  "cSpell.words": ["Feedget"],
+  "todo-tree.tree.showBadges": true
 }
