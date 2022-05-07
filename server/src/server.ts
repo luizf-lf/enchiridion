@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 import { routes } from './routes';
 
@@ -9,6 +10,9 @@ app.use(express.json());
 
 // use the routes file
 app.use(routes);
+
+// use the most devious thing created by a human, also known as CORS
+app.use(cors);
 
 // app configuration
 app.listen(serverPort, () => {
