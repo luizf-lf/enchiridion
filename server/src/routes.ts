@@ -1,19 +1,10 @@
 import express from 'express';
-import { prisma } from './prisma';
 import nodemailer from 'nodemailer';
+import { SubmitFeedbackUseCase } from './use-cases/submit-feedback-use-case';
+import { PrismaFeedbacksRepository } from './repositories/prisma/prisma-feedbacks-repository';
+import { NodemailerMailAdapter } from './adapters/nodemailer/nodemailer-mail-adapter';
 
 export const routes = express.Router();
-
-const transport = nodemailer.createTransport({
-  // host: process.env.MAIL_SERVER,
-  // port: process.env.MAIL_PORT,
-  host: 'smtp.mailtrap.io',
-  port: 2525,
-  auth: {
-    user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASS,
-  },
-});
 
 // routes
 routes.post('/feedbacks', async (req, res) => {
@@ -21,29 +12,18 @@ routes.post('/feedbacks', async (req, res) => {
 
   const { comment, type, screenshot } = req.body;
 
-  await prisma.feedback
-    .create({
-      data: {
-        comment,
-        type,
-        screenshot,
-      },
-    })
-    .then(async (data) => {
-      await transport.sendMail({
-        from: 'Luizf-LF <dev@luizf-lf.com>',
-        to: 'Luiz Fernando <luiz@test.com>',
-        subject: 'Novo feedback',
-        html: [
-          `<div style="font-family: sans-serif; font-size: 16px; color: #111;">`,
-          `<p> Tipo do feedback: ${type}</p>`,
-          `<p> Comentário: ${comment}`,
-          `</div>`,
-        ].join('\n'),
-      });
-      return res.status(201).json({ status: 'OK', error: null, data });
-    })
-    .catch((e) => {
-      return res.status(500).json({ status: 'ERROR', error: e });
-    });
+  const prismaFeedbacksRepository = new PrismaFeedbacksRepository();
+  const nodemailerMailAdapter = new NodemailerMailAdapter();
+  const submitFeedbackUseCase = new SubmitFeedbackUseCase(
+    prismaFeedbacksRepository,
+    nodemailerMailAdapter
+  );
+
+  const feedback = await submitFeedbackUseCase.execute({
+    type,
+    comment,
+    screenshot,
+  });
+
+  return res.status(201).json({ status: 'OK', error: null, data: feedback });
 });
