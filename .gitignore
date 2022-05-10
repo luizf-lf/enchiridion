@@ -2,3 +2,5 @@ node_modules
 server/coverage
 .env
 *.db
+
+.env.local
