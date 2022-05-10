@@ -8,11 +8,11 @@ const serverPort = 6545;
 // enables the server to receive json on the request body
 app.use(express.json());
 
+// use the most devious thing created by a human, also known as CORS
+app.use(cors());
+
 // use the routes file
 app.use(routes);
-
-// use the most devious thing created by a human, also known as CORS
-app.use(cors);
 
 // app configuration
 app.listen(serverPort, () => {
