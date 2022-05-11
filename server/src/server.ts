@@ -15,6 +15,6 @@ app.use(cors());
 app.use(routes);
 
 // app configuration
-app.listen(serverPort, () => {
+app.listen(process.env.PORT || serverPort, () => {
   console.log('HTTP server started on port ' + serverPort);
 });
