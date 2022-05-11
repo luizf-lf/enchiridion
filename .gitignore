@@ -4,3 +4,4 @@ server/coverage
 *.db
 
 .env.local
+dist
