@@ -1,4 +1,4 @@
-package com.demoapp;
+package net.luizflf.rn.playground;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -22,7 +22,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "DemoApp";
+    return "RNPlayground";
   }
 
   /**

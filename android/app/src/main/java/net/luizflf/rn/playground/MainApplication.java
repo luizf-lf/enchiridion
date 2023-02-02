@@ -1,4 +1,4 @@
-package com.demoapp;
+package net.luizflf.rn.playground;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

@@ -93,9 +93,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.demoapp"
+    namespace "net.luizflf.rn.playground"
     defaultConfig {
-        applicationId "com.demoapp"
+        applicationId "net.luizflf.rn.playground"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
