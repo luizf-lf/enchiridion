@@ -24,7 +24,7 @@ function App(): JSX.Element {
         }}
         drawerContent={CustomDrawerContent}>
         {/* TODO: The home will be the stack navigator, and the custom drawer will only trigger the route change */}
-        <Drawer.Screen name="Main" component={Router} />
+        <Drawer.Screen name="Home" component={Router} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

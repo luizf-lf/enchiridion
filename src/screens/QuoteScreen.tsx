@@ -6,7 +6,7 @@ import { cardColor, textColor } from '../constants/colors';
 import QuotableService from '../services/QuotableService';
 import LocalStorageService from '../services/LocalStorageService';
 
-function HomeScreen() {
+function QuoteScreen() {
   const [isLoading, setIsLoading] = useState(true);
   const [quote, setQuote] = useState('');
   const [author, setAuthor] = useState('');
@@ -81,4 +81,4 @@ function HomeScreen() {
   );
 }
 
-export default HomeScreen;
+export default QuoteScreen;
