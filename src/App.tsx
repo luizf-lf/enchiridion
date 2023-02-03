@@ -5,12 +5,11 @@ import {
   NavigationContainer,
 } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import HomeScreen from './screens/HomeScreen';
-import SettingsScreen from './screens/SettingsScreen';
 import CustomAppBar from './components/CustomAppBar';
 import CustomDrawerContent from './components/CustomDrawerContent';
 import { StatusBar } from 'react-native';
-import { appColors, bgColor, isDarkMode } from './constants/colors';
+import { appColors, isDarkMode } from './constants/colors';
+import Router from './Router';
 
 const Drawer = createDrawerNavigator();
 
@@ -24,8 +23,8 @@ function App(): JSX.Element {
           header: CustomAppBar,
         }}
         drawerContent={CustomDrawerContent}>
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Settings" component={SettingsScreen} />
+        {/* TODO: The home will be the stack navigator, and the custom drawer will only trigger the route change */}
+        <Drawer.Screen name="Main" component={Router} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
