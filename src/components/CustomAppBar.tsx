@@ -1,10 +1,12 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { AppBar, IconButton } from '@react-native-material/core';
+import { AppBar, IconButton, Text } from '@react-native-material/core';
 
 import { displayName } from '../../app.json';
-import { appColors } from '../constants/colors';
+import { appColors, bgColor } from '../constants/colors';
+import { FAB } from '@rneui/themed';
+import { Header } from '@rneui/base';
 
 function CustomAppBar({ navigation }: any) {
   return (
