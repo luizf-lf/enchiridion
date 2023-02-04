@@ -23,7 +23,6 @@ function App(): JSX.Element {
           header: CustomAppBar,
         }}
         drawerContent={CustomDrawerContent}>
-        {/* TODO: The home will be the stack navigator, and the custom drawer will only trigger the route change */}
         <Drawer.Screen name="Home" component={Router} />
       </Drawer.Navigator>
     </NavigationContainer>
