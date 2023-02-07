@@ -1,8 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
+import WebView from 'react-native-webview';
 import AppsScreen from './screens/AppsScreen';
 import QuoteScreen from './screens/QuoteScreen';
 import SettingsScreen from './screens/SettingsScreen';
+import WebViewScreen from './screens/WebViewScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +18,7 @@ function Router() {
         <Stack.Screen name="Apps" component={AppsScreen} />
         <Stack.Screen name="Quotes" component={QuoteScreen} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="Webview" component={WebViewScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );

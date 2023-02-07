@@ -19,6 +19,11 @@ function AppsScreen() {
       onPress: () => navigation && navigation.navigate('Settings'),
       icon: <Icon name="settings" size={32} />,
     },
+    {
+      title: 'Webview',
+      onPress: () => navigation && navigation.navigate('Webview'),
+      icon: <Icon name="integration-instructions" size={24} />,
+    },
   ];
 
   const rowChunks = [];

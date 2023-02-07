@@ -17,11 +17,6 @@ function CustomDrawerContent(drawerProps: DrawerContentComponentProps) {
       onPress: () => drawerProps.navigation.navigate('Quotes'),
       icon: <Icon name="auto-stories" size={24} />,
     },
-    {
-      title: 'Settings',
-      onPress: () => drawerProps.navigation.navigate('Settings'),
-      icon: <Icon name="settings" size={24} />,
-    },
   ];
 
   return (
