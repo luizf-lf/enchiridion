@@ -1,7 +1,12 @@
 import { Surface, Text } from '@react-native-material/core';
 import { NavigationContext } from '@react-navigation/native';
 import React from 'react';
-import { Dimensions, TouchableOpacity, View } from 'react-native';
+import {
+  Dimensions,
+  TouchableOpacity,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { cardColor, textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
@@ -9,7 +14,7 @@ import { globalStyles } from '../constants/globalStyles';
 function AppsScreen() {
   const navigation = React.useContext(NavigationContext);
 
-  const { width, height } = Dimensions.get('screen');
+  const { width, height } = useWindowDimensions();
   const rowChunkSize = Math.ceil((width / height) * 3);
 
   const menuItems = [
