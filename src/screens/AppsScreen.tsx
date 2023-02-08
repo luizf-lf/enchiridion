@@ -1,13 +1,17 @@
 import { Surface, Text } from '@react-native-material/core';
 import { NavigationContext } from '@react-navigation/native';
 import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { Dimensions, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { cardColor, textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
 
 function AppsScreen() {
   const navigation = React.useContext(NavigationContext);
+
+  const { width, height } = Dimensions.get('screen');
+  const rowChunkSize = Math.ceil((width / height) * 3);
+
   const menuItems = [
     {
       title: 'Quotes',
@@ -27,8 +31,8 @@ function AppsScreen() {
   ];
 
   const rowChunks = [];
-  for (let i = 0; i < menuItems.length; i += 2) {
-    rowChunks.push(menuItems.slice(i, i + 2));
+  for (let i = 0; i < menuItems.length; i += rowChunkSize) {
+    rowChunks.push(menuItems.slice(i, i + rowChunkSize));
   }
 
   return (
