@@ -1,12 +1,7 @@
 import { Surface, Text } from '@react-native-material/core';
 import { NavigationContext } from '@react-navigation/native';
 import React from 'react';
-import {
-  Dimensions,
-  TouchableOpacity,
-  useWindowDimensions,
-  View,
-} from 'react-native';
+import { TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { cardColor, textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
@@ -24,14 +19,19 @@ function AppsScreen() {
       icon: <Icon name="auto-stories" size={32} />,
     },
     {
-      title: 'Settings',
-      onPress: () => navigation && navigation.navigate('Settings'),
-      icon: <Icon name="settings" size={32} />,
-    },
-    {
       title: 'Webview',
       onPress: () => navigation && navigation.navigate('Webview'),
       icon: <Icon name="integration-instructions" size={24} />,
+    },
+    {
+      title: 'Fire List',
+      onPress: () => navigation && navigation.navigate('Fire List'),
+      icon: <Icon name="check-box" size={24} />,
+    },
+    {
+      title: 'Settings',
+      onPress: () => navigation && navigation.navigate('Settings'),
+      icon: <Icon name="settings" size={32} />,
     },
   ];
 

@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import WebView from 'react-native-webview';
 import AppsScreen from './screens/AppsScreen';
+import FireListScreen from './screens/FireListScreen';
 import QuoteScreen from './screens/QuoteScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import WebViewScreen from './screens/WebViewScreen';
@@ -26,6 +26,7 @@ function Router() {
             headerTitle: 'Google',
           }}
         />
+        <Stack.Screen name="Fire List" component={FireListScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
