@@ -1,8 +1,8 @@
 export default interface TaskInterface {
   id: string;
   date: number;
-  description?: string | null;
+  description?: string;
   done: boolean;
-  doneAt?: number | null;
+  doneAt?: number;
   title: string;
 }

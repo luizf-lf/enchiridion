@@ -15,7 +15,12 @@ const styles = StyleSheet.create({
   },
 });
 
-function TaskItem(data: ListRenderItemInfo<TaskInterface>) {
+interface Props {
+  data: ListRenderItemInfo<TaskInterface>;
+  navigation: any;
+}
+
+function TaskItem({ data, navigation }: Props) {
   const id = data.item.id;
   const tasksRef = firestore().collection('Tasks');
 
@@ -85,7 +90,13 @@ function TaskItem(data: ListRenderItemInfo<TaskInterface>) {
           alignItems: 'center',
           gap: 4,
         }}>
-        <TouchableOpacity containerStyle={styles.button}>
+        <TouchableOpacity
+          containerStyle={styles.button}
+          onPress={() =>
+            navigation?.navigate('Edit Task', {
+              taskId: data.item.id,
+            })
+          }>
           <Icon name="mode-edit" size={24} />
         </TouchableOpacity>
         <TouchableOpacity

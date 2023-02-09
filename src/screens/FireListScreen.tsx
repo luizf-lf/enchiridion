@@ -4,23 +4,25 @@ import {
   TextInput,
 } from '@react-native-material/core';
 import React, { useEffect, useState } from 'react';
-import { Alert, View } from 'react-native';
+import { Alert, TouchableOpacity, View } from 'react-native';
 import { textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
 import firestore from '@react-native-firebase/firestore';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import { FlatList } from 'react-native-gesture-handler';
 import TaskInterface from '../interfaces/TaskInterface';
 import TaskItem from '../components/TaskItem';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { NavigationContext } from '@react-navigation/native';
 
 function FireListScreen() {
   const [taskInput, setTaskInput] = useState('');
   const [isSavingTask, setIsSavingTask] = useState(false);
   const [fireData, setFireData] = useState([] as TaskInterface[]);
   const tasksCollectionRef = firestore().collection('Tasks');
+  const navigation = React.useContext(NavigationContext);
 
   useEffect(() => {
-    tasksCollectionRef.orderBy('date', 'desc').onSnapshot(
+    const subscriber = tasksCollectionRef.orderBy('date', 'desc').onSnapshot(
       dataSnapshot => {
         console.log('Firebase Tasks snapshot updated at ' + new Date());
         const items = [] as TaskInterface[];
@@ -35,6 +37,8 @@ function FireListScreen() {
         console.error('Error recovering Tasks: ' + error);
       },
     );
+
+    return () => subscriber();
   }, []);
 
   const handleTaskSubmit = () => {
@@ -72,7 +76,7 @@ function FireListScreen() {
       <FlatList
         data={fireData}
         keyExtractor={data => data.id}
-        renderItem={TaskItem}
+        renderItem={data => <TaskItem data={data} navigation={navigation} />}
         ListEmptyComponent={() => (
           <View style={{ flexGrow: 1 }}>
             <Text color={textColor} variant="caption">
@@ -91,7 +95,9 @@ function FireListScreen() {
           isSavingTask ? (
             <ActivityIndicator size="large" />
           ) : (
-            <Icon name="send" size={24} />
+            <TouchableOpacity onPress={handleTaskSubmit}>
+              <Icon name="send" size={24} />
+            </TouchableOpacity>
           )
         }
       />

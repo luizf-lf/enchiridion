@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import AppsScreen from './screens/AppsScreen';
+import EditTaskScreen from './screens/EditTaskScreen';
 import FireListScreen from './screens/FireListScreen';
 import QuoteScreen from './screens/QuoteScreen';
 import SettingsScreen from './screens/SettingsScreen';
@@ -27,6 +28,7 @@ function Router() {
           }}
         />
         <Stack.Screen name="Fire List" component={FireListScreen} />
+        <Stack.Screen name="Edit Task" component={EditTaskScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
