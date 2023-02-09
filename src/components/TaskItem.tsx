@@ -22,17 +22,19 @@ function TaskItem(data: ListRenderItemInfo<TaskInterface>) {
   const handleStatusUpdate = () => {
     tasksRef.doc(id).update({
       done: !data.item.done,
+      doneAt: data.item.done ? null : Date.now(),
     });
   };
 
   const confirmDeleteTask = () => {
     Alert.alert('Delete task?', 'This action is irreversible', [
       {
-        text: 'Yes',
+        text: 'Delete',
         onPress: () => tasksRef.doc(id).delete(),
+        style: 'destructive',
       },
       {
-        text: 'No',
+        text: 'Cancel',
       },
     ]);
   };

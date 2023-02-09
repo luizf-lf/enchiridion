@@ -46,6 +46,7 @@ function FireListScreen() {
           title: taskInput,
           description: null,
           done: false,
+          doneAt: null,
         })
         .then(() => {
           setTaskInput('');
