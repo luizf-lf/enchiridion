@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
+  Image,
   SafeAreaView,
   ScrollView,
   ToastAndroid,
@@ -34,6 +35,7 @@ function EditTaskScreen() {
   const [taskDescription, setTaskDescription] = useState('');
   const [taskDone, setTaskIsDone] = useState(false);
   const [taskDate, setTaskDate] = useState(0);
+  const [taskImages, setTaskImages] = useState([] as string[]);
   const [isSavingData, setIsSavingData] = useState(false);
 
   const handleAddImage = async () => {
@@ -65,12 +67,12 @@ function EditTaskScreen() {
             ToastAndroid.show('Image uploaded', 5000);
             const imageUrl = await imageRef.getDownloadURL();
             await tasksCollectionRef.doc(route.params.taskId).update({
-              images: [imageUrl],
+              images: [imageUrl, ...taskImages],
             });
+
+            setTaskImages([imageUrl, ...taskImages]);
           }
         }
-
-        // TODO: Update images on thumbnails
       } catch (error) {
         Alert.alert('Error', 'Unable to upload image. Try again soon.');
         console.error('Error when adding a new image: ' + error);
@@ -105,13 +107,14 @@ function EditTaskScreen() {
         .get()
         .then(dataSnap => {
           if (dataSnap.exists) {
-            const { date, description, done, title } =
+            const { date, description, done, title, images } =
               dataSnap.data() as TaskInterface;
 
             setTaskTitle(title);
             setTaskDescription(description || '');
             setTaskIsDone(done);
             setTaskDate(date);
+            setTaskImages(images || []);
           }
         });
     }
@@ -167,12 +170,20 @@ function EditTaskScreen() {
             borderStyle: 'dashed',
             borderWidth: 2,
             borderRadius: 8,
-            padding: 16,
+            paddingVertical: 32,
+            paddingHorizontal: 16,
             borderColor: textColor,
           }}
           onPress={handleAddImage}>
-          <Icon name="camera-alt" size={16} />
+          <Icon name="camera-alt" size={28} />
         </TouchableOpacity>
+        {taskImages.map((image, index) => (
+          <Image
+            key={index}
+            source={{ uri: image }}
+            style={{ height: 96, width: 96, borderRadius: 8, marginLeft: 8 }}
+          />
+        ))}
       </ScrollView>
 
       <Button
