@@ -5,4 +5,5 @@ export default interface TaskInterface {
   done: boolean;
   doneAt?: number;
   title: string;
+  images: string[];
 }

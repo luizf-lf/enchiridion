@@ -7,12 +7,23 @@ import {
 } from '@react-native-material/core';
 import { NavigationContext, useRoute } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, SafeAreaView } from 'react-native';
+import {
+  ActivityIndicator,
+  Alert,
+  SafeAreaView,
+  ScrollView,
+  ToastAndroid,
+} from 'react-native';
 import { bgColor, textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
-import firestore from '@react-native-firebase/firestore';
 import TaskInterface from '../interfaces/TaskInterface';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { launchCamera } from 'react-native-image-picker';
+import { Platform } from 'react-native';
+import { PermissionsAndroid } from 'react-native';
+import firestore from '@react-native-firebase/firestore';
+import storage from '@react-native-firebase/storage';
 
 function EditTaskScreen() {
   const route = useRoute() as any;
@@ -24,6 +35,48 @@ function EditTaskScreen() {
   const [taskDone, setTaskIsDone] = useState(false);
   const [taskDate, setTaskDate] = useState(0);
   const [isSavingData, setIsSavingData] = useState(false);
+
+  const handleAddImage = async () => {
+    if (Platform.OS === 'android') {
+      const permissionResult = await PermissionsAndroid.request(
+        'android.permission.CAMERA',
+      );
+      if (!(permissionResult === PermissionsAndroid.RESULTS.GRANTED)) {
+        Alert.alert(
+          'Permission Denied',
+          'You will not be able to add images to this task.',
+        );
+        return;
+      }
+      try {
+        const image = await launchCamera({
+          mediaType: 'photo',
+        });
+
+        if (image.assets) {
+          const { fileName, uri } = image.assets[0];
+          if (fileName && uri) {
+            const imageRef = storage().ref(
+              `Tasks/${route.params.taskId}/${
+                Date.now() + fileName.split('.')[1]
+              }`,
+            );
+            await imageRef.putFile(uri);
+            ToastAndroid.show('Image uploaded', 5000);
+            const imageUrl = await imageRef.getDownloadURL();
+            await tasksCollectionRef.doc(route.params.taskId).update({
+              images: [imageUrl],
+            });
+          }
+        }
+
+        // TODO: Update images on thumbnails
+      } catch (error) {
+        Alert.alert('Error', 'Unable to upload image. Try again soon.');
+        console.error('Error when adding a new image: ' + error);
+      }
+    }
+  };
 
   const handleDataUpdate = async () => {
     try {
@@ -101,6 +154,27 @@ function EditTaskScreen() {
         }
         onPress={() => setTaskIsDone(!taskDone)}
       />
+
+      <Text
+        color={textColor}
+        variant="caption"
+        style={{ marginTop: 16, marginBottom: 8 }}>
+        Images
+      </Text>
+      <ScrollView horizontal>
+        <TouchableOpacity
+          style={{
+            borderStyle: 'dashed',
+            borderWidth: 2,
+            borderRadius: 8,
+            padding: 16,
+            borderColor: textColor,
+          }}
+          onPress={handleAddImage}>
+          <Icon name="camera-alt" size={16} />
+        </TouchableOpacity>
+      </ScrollView>
+
       <Button
         title={isSavingData ? 'Saving' : 'Save'}
         leading={

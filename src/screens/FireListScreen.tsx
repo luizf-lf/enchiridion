@@ -28,7 +28,14 @@ function FireListScreen() {
         const items = [] as TaskInterface[];
         dataSnapshot.forEach(fireItem => {
           const { date, description, done, title } = fireItem.data();
-          items.push({ id: fireItem.id, date, description, done, title });
+          items.push({
+            id: fireItem.id,
+            date,
+            description,
+            done,
+            title,
+            images: [],
+          });
         });
         setFireData(items);
       },
