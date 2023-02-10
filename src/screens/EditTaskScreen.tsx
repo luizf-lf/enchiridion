@@ -12,15 +12,7 @@ import { bgColor, textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
 import firestore from '@react-native-firebase/firestore';
 import TaskInterface from '../interfaces/TaskInterface';
-import { CheckBox } from '@rneui/themed';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
-interface TaskEditInterface {
-  date: number;
-  description?: string;
-  done: boolean;
-  title: string;
-}
 
 function EditTaskScreen() {
   const route = useRoute() as any;
