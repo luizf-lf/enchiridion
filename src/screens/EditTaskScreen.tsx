@@ -37,6 +37,7 @@ function EditTaskScreen() {
   const [taskDate, setTaskDate] = useState(0);
   const [taskImages, setTaskImages] = useState([] as string[]);
   const [isSavingData, setIsSavingData] = useState(false);
+  const [isSavingImage, setIsSavingImage] = useState(false);
 
   const handleAddImage = async () => {
     if (Platform.OS === 'android') {
@@ -58,6 +59,7 @@ function EditTaskScreen() {
         if (image.assets) {
           const { fileName, uri } = image.assets[0];
           if (fileName && uri) {
+            setIsSavingImage(true);
             const imageRef = storage().ref(
               `Tasks/${route.params.taskId}/${
                 Date.now() + fileName.split('.')[1]
@@ -71,6 +73,7 @@ function EditTaskScreen() {
             });
 
             setTaskImages([imageUrl, ...taskImages]);
+            setIsSavingImage(false);
           }
         }
       } catch (error) {
@@ -82,6 +85,7 @@ function EditTaskScreen() {
 
   const handleDataUpdate = async () => {
     try {
+      if (isSavingData) return;
       setIsSavingData(true);
 
       await tasksCollectionRef.doc(route.params.taskId).update({
@@ -170,12 +174,17 @@ function EditTaskScreen() {
             borderStyle: 'dashed',
             borderWidth: 2,
             borderRadius: 8,
-            paddingVertical: 32,
             paddingHorizontal: 16,
             borderColor: textColor,
+            flexGrow: 1,
+            justifyContent: 'center',
           }}
           onPress={handleAddImage}>
-          <Icon name="camera-alt" size={28} />
+          {isSavingImage ? (
+            <ActivityIndicator />
+          ) : (
+            <Icon name="camera-alt" size={24} />
+          )}
         </TouchableOpacity>
         {taskImages.map((image, index) => (
           <Image
