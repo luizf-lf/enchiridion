@@ -60,7 +60,13 @@ function TaskItem({ data, navigation }: Props) {
           flexDirection: 'row',
         }}>
         <View>
-          <CheckBox checked={data.item.done} onIconPress={handleStatusUpdate} />
+          <CheckBox
+            checked={data.item.done}
+            onIconPress={handleStatusUpdate}
+            containerStyle={{
+              backgroundColor: cardColor,
+            }}
+          />
         </View>
         <View>
           <Text

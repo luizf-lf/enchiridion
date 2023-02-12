@@ -5,7 +5,7 @@ import {
 } from '@react-native-material/core';
 import React, { useEffect, useState } from 'react';
 import { Alert, TouchableOpacity, View } from 'react-native';
-import { textColor } from '../constants/colors';
+import { cardColor, textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
 import firestore from '@react-native-firebase/firestore';
 import { FlatList } from 'react-native-gesture-handler';
@@ -85,7 +85,7 @@ function FireListScreen() {
         keyExtractor={data => data.id}
         renderItem={data => <TaskItem data={data} navigation={navigation} />}
         ListEmptyComponent={() => (
-          <View style={{ flexGrow: 1 }}>
+          <View style={{ flexGrow: 1, alignItems: 'center' }}>
             <Text color={textColor} variant="caption">
               No Items
             </Text>
@@ -107,6 +107,9 @@ function FireListScreen() {
             </TouchableOpacity>
           )
         }
+        inputContainerStyle={{
+          backgroundColor: cardColor,
+        }}
       />
     </View>
   );

@@ -14,6 +14,7 @@ import {
   SafeAreaView,
   ScrollView,
   ToastAndroid,
+  View,
 } from 'react-native';
 import { bgColor, textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
@@ -141,6 +142,9 @@ function EditTaskScreen() {
         variant="standard"
         style={{ marginBottom: 8 }}
         onChangeText={text => setTaskTitle(text)}
+        inputStyle={{
+          color: textColor,
+        }}
       />
       <Text color={textColor} variant="caption">
         Description
@@ -150,17 +154,22 @@ function EditTaskScreen() {
         variant="standard"
         style={{ marginBottom: 8 }}
         onChangeText={text => setTaskDescription(text)}
+        inputStyle={{
+          color: textColor,
+        }}
       />
-      <ListItem
-        title="Done"
-        trailing={
-          <Switch
-            value={taskDone}
-            onValueChange={() => setTaskIsDone(!taskDone)}
-          />
-        }
-        onPress={() => setTaskIsDone(!taskDone)}
-      />
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          marginTop: 16,
+        }}>
+        <Text color={textColor}>Done</Text>
+        <Switch
+          value={taskDone}
+          onValueChange={() => setTaskIsDone(!taskDone)}
+        />
+      </View>
 
       <Text
         color={textColor}
@@ -201,7 +210,7 @@ function EditTaskScreen() {
           isSavingData ? (
             <ActivityIndicator color={bgColor} />
           ) : (
-            <Icon name="save" size={18} color={bgColor} />
+            <Icon name="save" size={18} color="#FFF" />
           )
         }
         style={{ marginTop: 16 }}
