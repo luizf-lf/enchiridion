@@ -1,3 +1,8 @@
+export interface TaskImageRefInterface {
+  ref: string;
+  uri: string;
+}
+
 export default interface TaskInterface {
   id: string;
   date: number;
@@ -5,5 +10,5 @@ export default interface TaskInterface {
   done: boolean;
   doneAt?: number;
   title: string;
-  images: string[];
+  images: TaskImageRefInterface[];
 }

@@ -18,7 +18,9 @@ import {
 } from 'react-native';
 import { bgColor, textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
-import TaskInterface from '../interfaces/TaskInterface';
+import TaskInterface, {
+  TaskImageRefInterface,
+} from '../interfaces/TaskInterface';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { launchCamera } from 'react-native-image-picker';
@@ -36,7 +38,7 @@ function EditTaskScreen() {
   const [taskDescription, setTaskDescription] = useState('');
   const [taskDone, setTaskIsDone] = useState(false);
   const [taskDate, setTaskDate] = useState(0);
-  const [taskImages, setTaskImages] = useState([] as string[]);
+  const [taskImages, setTaskImages] = useState([] as TaskImageRefInterface[]);
   const [isSavingData, setIsSavingData] = useState(false);
   const [isSavingImage, setIsSavingImage] = useState(false);
 
@@ -61,19 +63,30 @@ function EditTaskScreen() {
           const { fileName, uri } = image.assets[0];
           if (fileName && uri) {
             setIsSavingImage(true);
-            const imageRef = storage().ref(
-              `Tasks/${route.params.taskId}/${
-                Date.now() + fileName.split('.')[1]
-              }`,
-            );
-            await imageRef.putFile(uri);
+            const imageRef = `Tasks/${route.params.taskId}/${
+              Date.now() + fileName.split('.')[1]
+            }`;
+            const imageRefInstance = storage().ref(imageRef);
+            await imageRefInstance.putFile(uri);
             ToastAndroid.show('Image uploaded', 5000);
-            const imageUrl = await imageRef.getDownloadURL();
+            const imageUrl = await imageRefInstance.getDownloadURL();
             await tasksCollectionRef.doc(route.params.taskId).update({
-              images: [imageUrl, ...taskImages],
+              images: [
+                {
+                  ref: imageRef,
+                  uri: imageUrl,
+                },
+                ...taskImages,
+              ],
             });
 
-            setTaskImages([imageUrl, ...taskImages]);
+            setTaskImages([
+              {
+                ref: imageRef,
+                uri: imageUrl,
+              },
+              ...taskImages,
+            ]);
             setIsSavingImage(false);
           }
         }
@@ -102,6 +115,40 @@ function EditTaskScreen() {
       console.error('Could not update task: ' + error);
     } finally {
       setIsSavingData(false);
+    }
+  };
+
+  const handleOpenImage = async (image: TaskImageRefInterface) => {
+    // TODO: Navigate to image view
+    console.log('handleOpenImage');
+  };
+
+  const confirmDeleteImage = (image: TaskImageRefInterface) => {
+    try {
+      Alert.alert('Delete image?', 'This action is irreversible.', [
+        {
+          text: 'Yes',
+          onPress: () => deleteImage(image),
+        },
+        {
+          text: 'No',
+          isPreferred: true,
+        },
+      ]);
+    } catch (error) {
+      console.error(`confirmDeleteImage: Could not delete image: ${error}`);
+    }
+  };
+
+  const deleteImage = async (image: TaskImageRefInterface) => {
+    try {
+      await storage().ref(image.ref).delete();
+      await tasksCollectionRef.doc(route.params.taskId).update({
+        images: taskImages.filter(item => item.ref !== image.ref),
+      });
+      setTaskImages(taskImages.filter(item => item.ref !== image.ref));
+    } catch (error) {
+      console.error(`deleteImage: Could not delete image: ${error}`);
     }
   };
 
@@ -179,11 +226,13 @@ function EditTaskScreen() {
       </Text>
       <ScrollView horizontal>
         <TouchableOpacity
+          key="BUTTON_ADD_IMAGE"
           style={{
             borderStyle: 'dashed',
             borderWidth: 2,
             borderRadius: 8,
             paddingHorizontal: 16,
+            paddingVertical: 36,
             borderColor: textColor,
             flexGrow: 1,
             justifyContent: 'center',
@@ -195,12 +244,17 @@ function EditTaskScreen() {
             <Icon name="camera-alt" size={24} />
           )}
         </TouchableOpacity>
-        {taskImages.map((image, index) => (
-          <Image
-            key={index}
-            source={{ uri: image }}
+        {taskImages.map(image => (
+          <TouchableOpacity
+            key={image.ref}
             style={{ height: 96, width: 96, borderRadius: 8, marginLeft: 8 }}
-          />
+            onPress={() => handleOpenImage(image)}
+            onLongPress={() => confirmDeleteImage(image)}>
+            <Image
+              source={{ uri: image.uri }}
+              style={{ height: 96, width: 96, borderRadius: 8 }}
+            />
+          </TouchableOpacity>
         ))}
       </ScrollView>
 
