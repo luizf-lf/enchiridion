@@ -117,7 +117,9 @@ function TaskItem({ data, navigation }: Props) {
                       }
                     : {}
                 }>
-                {data.item.title}
+                {data.item.title.length > 20
+                  ? data.item.title.slice(0, 20) + '...'
+                  : data.item.title}
               </Text>
               {data.item.description && (
                 <Text

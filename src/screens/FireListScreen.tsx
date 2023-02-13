@@ -94,10 +94,13 @@ function FireListScreen() {
         style={{ flex: 1 }}
       />
       <TextInput
-        placeholder="Write your task here. Press enter to save."
+        placeholder="Enter your task here."
         value={taskInput}
         onChangeText={input => setTaskInput(input)}
         onEndEditing={handleTaskSubmit}
+        inputStyle={{
+          color: textColor,
+        }}
         trailing={
           isSavingTask ? (
             <ActivityIndicator size="large" />

@@ -241,7 +241,8 @@ function EditTaskScreen() {
             flexGrow: 1,
             justifyContent: 'center',
           }}
-          onPress={handleAddImage}>
+          onPress={handleAddImage}
+          disabled={isSavingImage}>
           {isSavingImage ? (
             <ActivityIndicator />
           ) : (
