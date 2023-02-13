@@ -6,13 +6,7 @@ import {
   NavigationContext,
   useRoute,
 } from '@react-navigation/native';
-import {
-  Dimensions,
-  Image,
-  SafeAreaView,
-  StyleSheet,
-  View,
-} from 'react-native';
+import { Image, SafeAreaView, StyleSheet, View } from 'react-native';
 import { globalStyles } from '../constants/globalStyles';
 import { TaskImageRefInterface } from '../interfaces/TaskInterface';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -45,7 +39,6 @@ function ImageViewScreen() {
     white: DefaultTheme.colors.background,
     dark: DarkTheme.colors.background,
   };
-  const viewHeight = Dimensions.get('window').height;
 
   const confirmDeleteImage = () => {
     console.log('confirmDeleteImage');
