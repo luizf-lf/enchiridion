@@ -6,6 +6,7 @@ export const appColors = {
   dark: DarkTheme.colors.background,
   primary: '#674188',
   shadow: '#53356E',
+  red: '#E90064',
 };
 
 export const isDarkMode = Appearance.getColorScheme() === 'dark';

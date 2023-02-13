@@ -3,6 +3,7 @@ import React from 'react';
 import AppsScreen from './screens/AppsScreen';
 import EditTaskScreen from './screens/EditTaskScreen';
 import FireListScreen from './screens/FireListScreen';
+import ImageViewScreen from './screens/ImageViewScreen';
 import QuoteScreen from './screens/QuoteScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import WebViewScreen from './screens/WebViewScreen';
@@ -29,6 +30,7 @@ function Router() {
         />
         <Stack.Screen name="Fire List" component={FireListScreen} />
         <Stack.Screen name="Edit Task" component={EditTaskScreen} />
+        <Stack.Screen name="Image View" component={ImageViewScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );

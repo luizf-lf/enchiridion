@@ -1,10 +1,4 @@
-import {
-  Button,
-  ListItem,
-  Switch,
-  Text,
-  TextInput,
-} from '@react-native-material/core';
+import { Button, Switch, Text, TextInput } from '@react-native-material/core';
 import { NavigationContext, useRoute } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import {
@@ -118,9 +112,10 @@ function EditTaskScreen() {
     }
   };
 
-  const handleOpenImage = async (image: TaskImageRefInterface) => {
-    // TODO: Navigate to image view
-    console.log('handleOpenImage');
+  const handleOpenImage = (image: TaskImageRefInterface) => {
+    navigation?.navigate('Image View', {
+      image,
+    });
   };
 
   const confirmDeleteImage = (image: TaskImageRefInterface) => {
