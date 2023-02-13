@@ -120,7 +120,16 @@ function TaskItem({ data, navigation }: Props) {
                 {data.item.title}
               </Text>
               {data.item.description && (
-                <Text color={textColor} variant="caption">
+                <Text
+                  color={textColor}
+                  variant="caption"
+                  style={
+                    data.item.done
+                      ? {
+                          textDecorationLine: 'line-through',
+                        }
+                      : {}
+                  }>
                   {data.item.description}
                 </Text>
               )}

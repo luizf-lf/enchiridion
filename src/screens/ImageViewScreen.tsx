@@ -6,13 +6,15 @@ import {
   NavigationContext,
   useRoute,
 } from '@react-navigation/native';
-import { Image, SafeAreaView, StyleSheet, View } from 'react-native';
+import { Alert, Image, SafeAreaView, StyleSheet, View } from 'react-native';
 import { globalStyles } from '../constants/globalStyles';
 import { TaskImageRefInterface } from '../interfaces/TaskInterface';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { appColors } from '../constants/colors';
 import Storage from '@react-native-firebase/storage';
+import storage from '@react-native-firebase/storage';
+import firestore from '@react-native-firebase/firestore';
 
 const styles = StyleSheet.create({
   header: {
@@ -34,14 +36,43 @@ function ImageViewScreen() {
   const route = useRoute() as any;
   const navigation = React.useContext(NavigationContext);
   const image = route.params.image as TaskImageRefInterface;
+  const taskId = route.params.taskId;
+  const taskImages = route.params.allImages as TaskImageRefInterface[];
   const [imageUri, setImageUri] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
   const colors = {
     white: DefaultTheme.colors.background,
     dark: DarkTheme.colors.background,
   };
 
+  // TODO: Optimize to a exported function (also remove from edit task)
   const confirmDeleteImage = () => {
-    console.log('confirmDeleteImage');
+    Alert.alert('Delete image?', 'This action is irreversible', [
+      {
+        text: 'Yes',
+        onPress: () => deleteImage(image),
+      },
+      {
+        text: 'No',
+        isPreferred: true,
+      },
+    ]);
+  };
+
+  const deleteImage = async (image: TaskImageRefInterface) => {
+    try {
+      setIsDeleting(true);
+      await storage().ref(image.ref).delete();
+      await firestore()
+        .collection('Tasks')
+        .doc(taskId)
+        .update({
+          images: taskImages.filter(item => item.ref !== image.ref),
+        });
+      navigation?.goBack();
+    } catch (error) {
+      console.error(`deleteImage: Could not delete image: ${error}`);
+    }
   };
 
   useEffect(() => {
@@ -88,10 +119,18 @@ function ImageViewScreen() {
       <View>
         <Button
           variant="text"
-          title="Delete"
+          title={isDeleting ? 'Deleting' : 'Delete'}
           color={appColors.red}
           tintColor={appColors.red}
           onPress={confirmDeleteImage}
+          leading={
+            isDeleting ? (
+              <ActivityIndicator color={appColors.red} />
+            ) : (
+              <Icon name="delete-forever" size={24} color={appColors.red} />
+            )
+          }
+          disabled={isDeleting}
         />
       </View>
     </SafeAreaView>

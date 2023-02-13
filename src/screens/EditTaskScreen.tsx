@@ -10,7 +10,7 @@ import {
   ToastAndroid,
   View,
 } from 'react-native';
-import { bgColor, textColor } from '../constants/colors';
+import { textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
 import TaskInterface, {
   TaskImageRefInterface,
@@ -103,6 +103,9 @@ function EditTaskScreen() {
         doneAt: taskDone ? Date.now() : null,
       });
 
+      if (Platform.OS === 'android') {
+        ToastAndroid.show('Task saved', 5000);
+      }
       navigation?.goBack();
     } catch (error) {
       Alert.alert('Error', 'Could not update task data. Try again later.');
@@ -115,6 +118,8 @@ function EditTaskScreen() {
   const handleOpenImage = (image: TaskImageRefInterface) => {
     navigation?.navigate('Image View', {
       image,
+      taskId: route.params.taskId,
+      allImages: taskImages,
     });
   };
 
@@ -148,7 +153,7 @@ function EditTaskScreen() {
   };
 
   useEffect(() => {
-    if (route.params) {
+    function getData() {
       tasksCollectionRef
         .doc(route.params.taskId)
         .get()
@@ -164,6 +169,10 @@ function EditTaskScreen() {
             setTaskImages(images || []);
           }
         });
+    }
+
+    if (route.params) {
+      navigation?.addListener('focus', getData);
     }
   }, []);
 
@@ -257,7 +266,7 @@ function EditTaskScreen() {
         title={isSavingData ? 'Saving' : 'Save'}
         leading={
           isSavingData ? (
-            <ActivityIndicator color={bgColor} />
+            <ActivityIndicator color="#FFF" />
           ) : (
             <Icon name="save" size={18} color="#FFF" />
           )
