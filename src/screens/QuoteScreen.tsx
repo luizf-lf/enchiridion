@@ -48,7 +48,7 @@ function QuoteScreen() {
 
   return (
     <View style={globalStyles.viewContainer}>
-      <Text color={textColor} variant="h6">
+      <Text color={textColor} variant="h5">
         Quote Of The Day
       </Text>
 

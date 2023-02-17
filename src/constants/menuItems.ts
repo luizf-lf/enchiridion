@@ -1,5 +1,10 @@
 export const menuItems = [
   {
+    title: 'Login',
+    target: 'Login',
+    iconName: 'people-alt',
+  },
+  {
     title: 'Quotes',
     target: 'Quotes',
     iconName: 'auto-stories',
@@ -13,11 +18,6 @@ export const menuItems = [
     title: 'Todo List',
     target: 'Todo List',
     iconName: 'check-box',
-  },
-  {
-    title: 'Login',
-    target: 'Login',
-    iconName: 'people-alt',
   },
   {
     title: 'Settings',

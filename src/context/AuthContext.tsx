@@ -1,12 +1,16 @@
-import React, { useContext, useState } from 'react';
-import { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import React, {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 // interfaces
 interface AuthContextData {
-  user: FirebaseAuthTypes.User | null;
-  createUser: () => Promise<void>;
-  login: () => Promise<void>;
-  logout: () => Promise<void>;
+  user: FirebaseAuthTypes.User;
+  setUser: any;
 }
 
 interface AuthContextProps {
@@ -18,11 +22,20 @@ const AuthContext = React.createContext({} as AuthContextData);
 
 // the component that will serve as a provider
 export function AuthContextProvider({ children }: AuthContextProps) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({} as FirebaseAuthTypes.User);
 
-  // TODO: Implement
-  const createUser = async () => {
-    return;
+  // TODO: Move to screen
+  const createUser = async (email: string, password: string) => {
+    try {
+      const createdUser = await auth().createUserWithEmailAndPassword(
+        email,
+        password,
+      );
+
+      setUser(createdUser.user);
+    } catch (error) {
+      console.error(`Unable to create user with e-mail: ${error}`);
+    }
   };
   // TODO: Implement
   const login = async () => {
@@ -34,7 +47,7 @@ export function AuthContextProvider({ children }: AuthContextProps) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, createUser, login, logout }}>
+    <AuthContext.Provider value={{ user, setUser }}>
       {children}
     </AuthContext.Provider>
   );
