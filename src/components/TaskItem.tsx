@@ -108,19 +108,36 @@ function TaskItem({ data, navigation }: Props) {
               />
             </View>
             <View>
-              <Text
-                color={textColor}
-                style={
-                  data.item.done
-                    ? {
-                        textDecorationLine: 'line-through',
-                      }
-                    : {}
-                }>
-                {data.item.title.length > 20
-                  ? data.item.title.slice(0, 20) + '...'
-                  : data.item.title}
-              </Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}>
+                <Text
+                  color={textColor}
+                  style={
+                    data.item.done
+                      ? {
+                          textDecorationLine: 'line-through',
+                        }
+                      : {}
+                  }>
+                  {data.item.title.length > 15
+                    ? data.item.title.slice(0, 15) + '...'
+                    : data.item.title}
+                </Text>
+                {data.item.images && data.item.images.length > 0 ? (
+                  <Icon
+                    name="image"
+                    size={16}
+                    style={{
+                      marginLeft: 8,
+                    }}
+                  />
+                ) : (
+                  <></>
+                )}
+              </View>
               {data.item.description && (
                 <Text
                   color={textColor}
@@ -135,6 +152,7 @@ function TaskItem({ data, navigation }: Props) {
                   {data.item.description}
                 </Text>
               )}
+
               <Text color={textColor} variant="caption">
                 {new Date(data.item.date).toLocaleString('pt')}
               </Text>

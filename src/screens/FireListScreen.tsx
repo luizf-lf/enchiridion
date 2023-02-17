@@ -27,14 +27,14 @@ function FireListScreen() {
         console.log('Firebase Tasks snapshot updated at ' + new Date());
         const items = [] as TaskInterface[];
         dataSnapshot.forEach(fireItem => {
-          const { date, description, done, title } = fireItem.data();
+          const { date, description, done, title, images } = fireItem.data();
           items.push({
             id: fireItem.id,
             date,
             description,
             done,
             title,
-            images: [],
+            images,
           });
         });
         setFireData(items);
