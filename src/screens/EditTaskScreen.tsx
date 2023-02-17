@@ -10,7 +10,7 @@ import {
   ToastAndroid,
   View,
 } from 'react-native';
-import { textColor } from '../constants/colors';
+import { cardColor, textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
 import TaskInterface, {
   TaskImageRefInterface,
@@ -252,7 +252,13 @@ function EditTaskScreen() {
         {taskImages.map(image => (
           <TouchableOpacity
             key={image.ref}
-            style={{ height: 96, width: 96, borderRadius: 8, marginLeft: 8 }}
+            style={{
+              height: 96,
+              width: 96,
+              borderRadius: 8,
+              marginLeft: 8,
+              backgroundColor: cardColor,
+            }}
             onPress={() => handleOpenImage(image)}
             onLongPress={() => confirmDeleteImage(image)}>
             <Image
