@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import AppsScreen from './screens/AppsScreen';
 import EditTaskScreen from './screens/EditTaskScreen';
-import FireListScreen from './screens/FireListScreen';
+import TodoListScreen from './screens/TodoListScreen';
 import ImageViewScreen from './screens/ImageViewScreen';
 import QuoteScreen from './screens/QuoteScreen';
 import SettingsScreen from './screens/SettingsScreen';
@@ -28,7 +28,7 @@ function Router() {
             headerTitle: 'Google',
           }}
         />
-        <Stack.Screen name="Fire List" component={FireListScreen} />
+        <Stack.Screen name="Todo List" component={TodoListScreen} />
         <Stack.Screen name="Edit Task" component={EditTaskScreen} />
         <Stack.Screen name="Image View" component={ImageViewScreen} />
       </Stack.Group>

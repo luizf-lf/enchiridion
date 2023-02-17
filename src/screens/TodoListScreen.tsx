@@ -14,7 +14,7 @@ import TaskItem from '../components/TaskItem';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { NavigationContext } from '@react-navigation/native';
 
-function FireListScreen() {
+function TodoListScreen() {
   const [taskInput, setTaskInput] = useState('');
   const [isSavingTask, setIsSavingTask] = useState(false);
   const [fireData, setFireData] = useState([] as TaskInterface[]);
@@ -77,8 +77,11 @@ function FireListScreen() {
         justifyContent: 'space-between',
         flexGrow: 1,
       }}>
-      <Text color={textColor} variant="h5" style={{ marginBottom: 16 }}>
-        Tasks
+      <Text color={textColor} variant="h5" style={{ marginBottom: 4 }}>
+        Todo List
+      </Text>
+      <Text color={textColor} variant="caption" style={{ marginBottom: 16 }}>
+        Your tasks
       </Text>
       <FlatList
         data={fireData}
@@ -118,4 +121,4 @@ function FireListScreen() {
   );
 }
 
-export default FireListScreen;
+export default TodoListScreen;

@@ -24,8 +24,8 @@ function AppsScreen() {
       icon: <Icon name="integration-instructions" size={24} />,
     },
     {
-      title: 'Fire List',
-      onPress: () => navigation && navigation.navigate('Fire List'),
+      title: 'Todo List',
+      onPress: () => navigation && navigation.navigate('Todo List'),
       icon: <Icon name="check-box" size={24} />,
     },
     {
