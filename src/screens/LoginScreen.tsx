@@ -7,13 +7,13 @@ import {
 import React, { useState } from 'react';
 import { Alert, Platform, ToastAndroid, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { textColor } from '../constants/colors';
+import { appColors, textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
 import auth from '@react-native-firebase/auth';
 import { useFirebaseAuth } from '../context/AuthContext';
 
 function LoginScreen() {
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const [userPass, setUserPass] = useState('');
 
@@ -22,7 +22,7 @@ function LoginScreen() {
   const handleLogin = async () => {
     try {
       if (userEmail.length > 0 && userPass.length > 0) {
-        setIsLoggingIn(true);
+        setIsLoading(true);
 
         const signInResult = await auth().signInWithEmailAndPassword(
           userEmail,
@@ -30,7 +30,7 @@ function LoginScreen() {
         );
 
         setUser(signInResult.user);
-        setIsLoggingIn(false);
+        setIsLoading(false);
         if (Platform.OS === 'android') {
           ToastAndroid.show('Logged in', 5000);
         }
@@ -68,7 +68,24 @@ function LoginScreen() {
           break;
       }
     } finally {
-      setIsLoggingIn(false);
+      setIsLoading(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      setIsLoading(true);
+      await auth().signOut();
+
+      setUser({});
+
+      if (Platform.OS === 'android') {
+        ToastAndroid.show('Logged out', 5000);
+      }
+    } catch (error) {
+      Alert.alert('Error', `Unable to logout: ${error}`);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -109,13 +126,13 @@ function LoginScreen() {
           <Button
             title="Login"
             leading={
-              isLoggingIn ? (
+              isLoading ? (
                 <ActivityIndicator color="#FFF" size="large" />
               ) : (
                 <Icon name="vpn-key" size={24} color="#FFF" />
               )
             }
-            disabled={isLoggingIn}
+            disabled={isLoading}
             onPress={handleLogin}
           />
         </>
@@ -125,7 +142,23 @@ function LoginScreen() {
             alignItems: 'center',
           }}>
           <Text color={textColor}>You are logged in as</Text>
-          <Text style={{ fontWeight: 'bold' }}>{user.email}</Text>
+          <Text style={{ fontWeight: 'bold', marginBottom: 16 }}>
+            {user.email}
+          </Text>
+          <Button
+            title="Logout"
+            variant="text"
+            titleStyle={{ color: appColors.red }}
+            trailing={
+              isLoading ? (
+                <ActivityIndicator color={appColors.red} size="large" />
+              ) : (
+                <Icon name="logout" size={20} color={appColors.red} />
+              )
+            }
+            onPress={handleLogout}
+            disabled={isLoading}
+          />
         </View>
       )}
     </View>
