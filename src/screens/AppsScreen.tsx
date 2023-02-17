@@ -5,35 +5,13 @@ import { TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { cardColor, textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
+import { menuItems } from '../constants/menuItems';
 
 function AppsScreen() {
   const navigation = React.useContext(NavigationContext);
 
   const { width, height } = useWindowDimensions();
   const rowChunkSize = Math.ceil((width / height) * 3);
-
-  const menuItems = [
-    {
-      title: 'Quotes',
-      onPress: () => navigation && navigation.navigate('Quotes'),
-      icon: <Icon name="auto-stories" size={32} />,
-    },
-    {
-      title: 'Webview',
-      onPress: () => navigation && navigation.navigate('Webview'),
-      icon: <Icon name="integration-instructions" size={24} />,
-    },
-    {
-      title: 'Todo List',
-      onPress: () => navigation && navigation.navigate('Todo List'),
-      icon: <Icon name="check-box" size={24} />,
-    },
-    {
-      title: 'Settings',
-      onPress: () => navigation && navigation.navigate('Settings'),
-      icon: <Icon name="settings" size={32} />,
-    },
-  ];
 
   const rowChunks = [];
   for (let i = 0; i < menuItems.length; i += rowChunkSize) {
@@ -63,13 +41,13 @@ function AppsScreen() {
               }}
               key={`${rowId}__${idx}`}>
               <TouchableOpacity
-                onPress={button.onPress}
+                onPress={() => navigation && navigation.navigate(button.target)}
                 style={{
-                  padding: 32,
+                  paddingVertical: 32,
                   justifyContent: 'space-between',
                   alignItems: 'center',
                 }}>
-                {button.icon}
+                <Icon name={button.iconName} size={24} />
                 <Text color={textColor}>{button.title}</Text>
               </TouchableOpacity>
             </Surface>

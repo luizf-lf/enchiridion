@@ -4,31 +4,19 @@ import { DrawerContentComponentProps } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { cardColor, textColor } from '../constants/colors';
 import { ListItem } from '@rneui/themed';
+import { menuItems } from '../constants/menuItems';
 
 function CustomDrawerContent(drawerProps: DrawerContentComponentProps) {
-  const menuItems = [
-    {
-      title: 'Home',
-      onPress: () => drawerProps.navigation.navigate('Apps'),
-      icon: <Icon name="home" size={24} />,
-    },
-    {
-      title: 'Quotes',
-      onPress: () => drawerProps.navigation.navigate('Quotes'),
-      icon: <Icon name="auto-stories" size={24} />,
-    },
-  ];
-
   return (
     <View>
       {menuItems.map((menuItem, idx) => (
         // Using ListItem from react-native-elements since the element from react-native-material doesn't
         //  work with custom bg colors
         <ListItem
-          onPress={menuItem.onPress}
+          onPress={() => drawerProps.navigation.navigate(menuItem.target)}
           key={idx}
           containerStyle={{ backgroundColor: cardColor }}>
-          {menuItem.icon}
+          <Icon name={menuItem.iconName} size={24} />
           <ListItem.Content>
             <ListItem.Title style={{ color: textColor }}>
               {menuItem.title}
