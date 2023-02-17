@@ -7,7 +7,7 @@ import {
 import React, { useState } from 'react';
 import { Alert, Platform, ToastAndroid, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { appColors, textColor } from '../constants/colors';
+import { appColors, cardColor, textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
 
 import auth from '@react-native-firebase/auth';
@@ -25,7 +25,6 @@ function RegisterScreen() {
   const { setUser } = useFirebaseAuth();
   const navigation = React.useContext(NavigationContext);
 
-  // TODO: Execute tests
   const handleRegister = async () => {
     if (
       userName.length > 0 &&
@@ -50,6 +49,7 @@ function RegisterScreen() {
         await createdUser.user.updateProfile({
           displayName: userName,
         });
+        createdUser.user.displayName = userName;
 
         setUser(createdUser.user);
 
@@ -59,7 +59,24 @@ function RegisterScreen() {
 
         navigation?.goBack();
       } catch (error: any) {
-        Alert.alert('Error', `Could not create user: ${error}`);
+        switch (error.code) {
+          case 'auth/email-already-in-use':
+            Alert.alert(
+              'Email in use',
+              "There's already an user with this email. Please use another one.",
+            );
+            break;
+          case 'auth/invalid-email':
+            Alert.alert(
+              'Invalid Email',
+              'The provided email is invalid. Use a valid email format.',
+            );
+            break;
+          default:
+            Alert.alert('Unknown Error', `Could not create user: ${error}`);
+            console.error(`Could not create user: ${error}`);
+            break;
+        }
       } finally {
         setIsLoading(false);
       }
@@ -84,7 +101,11 @@ function RegisterScreen() {
         inputStyle={{
           color: textColor,
         }}
-        variant="outlined"
+        inputContainerStyle={{
+          backgroundColor: cardColor,
+        }}
+        color={appColors.primary}
+        variant="filled"
         style={{ marginBottom: 16 }}
       />
       <TextInput
@@ -95,7 +116,11 @@ function RegisterScreen() {
         inputStyle={{
           color: textColor,
         }}
-        variant="outlined"
+        inputContainerStyle={{
+          backgroundColor: cardColor,
+        }}
+        color={appColors.primary}
+        variant="filled"
         style={{ marginBottom: 16 }}
       />
       <TextInput
@@ -106,7 +131,11 @@ function RegisterScreen() {
         inputStyle={{
           color: textColor,
         }}
-        variant="outlined"
+        inputContainerStyle={{
+          backgroundColor: cardColor,
+        }}
+        color={appColors.primary}
+        variant="filled"
         style={{ marginBottom: 16 }}
         secureTextEntry
       />
@@ -118,7 +147,11 @@ function RegisterScreen() {
         inputStyle={{
           color: textColor,
         }}
-        variant="outlined"
+        inputContainerStyle={{
+          backgroundColor: cardColor,
+        }}
+        color={appColors.primary}
+        variant="filled"
         style={{ marginBottom: 16 }}
         secureTextEntry
       />

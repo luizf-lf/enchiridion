@@ -7,11 +7,13 @@ import {
 import React, { useState } from 'react';
 import { Alert, Platform, ToastAndroid, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { appColors, textColor } from '../constants/colors';
+import { appColors, cardColor, textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
 import auth from '@react-native-firebase/auth';
 import { useFirebaseAuth } from '../context/AuthContext';
 import { NavigationContext } from '@react-navigation/native';
+
+// TODO: Implement a "Profile" screen, with an option to delete the account and change the profile picture.
 
 function LoginScreen() {
   const [isLoading, setIsLoading] = useState(false);
@@ -37,6 +39,9 @@ function LoginScreen() {
         if (Platform.OS === 'android') {
           ToastAndroid.show('Logged in', 5000);
         }
+
+        setUserEmail('');
+        setUserPass('');
       }
     } catch (error: any) {
       switch (error.code) {
@@ -109,7 +114,11 @@ function LoginScreen() {
             inputStyle={{
               color: textColor,
             }}
-            variant="outlined"
+            inputContainerStyle={{
+              backgroundColor: cardColor,
+            }}
+            color={appColors.primary}
+            variant="filled"
             leading={<Icon name="mail" size={24} />}
             style={{ marginBottom: 16 }}
           />
@@ -120,7 +129,11 @@ function LoginScreen() {
             inputStyle={{
               color: textColor,
             }}
-            variant="outlined"
+            inputContainerStyle={{
+              backgroundColor: cardColor,
+            }}
+            color={appColors.primary}
+            variant="filled"
             leading={<Icon name="lock" size={24} />}
             style={{ marginBottom: 16 }}
             secureTextEntry
@@ -157,9 +170,11 @@ function LoginScreen() {
           style={{
             alignItems: 'center',
           }}>
-          <Text color={textColor}>You are logged in as</Text>
-          <Text style={{ fontWeight: 'bold', marginBottom: 16 }}>
-            {user.email}
+          <Text color={textColor}>
+            You are logged as{' '}
+            <Text style={{ fontWeight: 'bold', marginBottom: 16 }}>
+              {user.displayName}
+            </Text>
           </Text>
           <Button
             title="Logout"
