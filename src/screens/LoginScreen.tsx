@@ -11,6 +11,7 @@ import { appColors, textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
 import auth from '@react-native-firebase/auth';
 import { useFirebaseAuth } from '../context/AuthContext';
+import { NavigationContext } from '@react-navigation/native';
 
 function LoginScreen() {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,6 +19,8 @@ function LoginScreen() {
   const [userPass, setUserPass] = useState('');
 
   const { user, setUser } = useFirebaseAuth();
+
+  const navigation = React.useContext(NavigationContext);
 
   const handleLogin = async () => {
     try {
@@ -119,8 +122,8 @@ function LoginScreen() {
             }}
             variant="outlined"
             leading={<Icon name="lock" size={24} />}
-            secureTextEntry={true}
             style={{ marginBottom: 16 }}
+            secureTextEntry
           />
 
           <Button
@@ -134,6 +137,19 @@ function LoginScreen() {
             }
             disabled={isLoading}
             onPress={handleLogin}
+            style={{ marginBottom: 16, backgroundColor: appColors.primary }}
+          />
+
+          <Button
+            title="Register"
+            variant="text"
+            titleStyle={{
+              color: appColors.primary,
+            }}
+            leading={
+              <Icon name="person-add" size={24} color={appColors.primary} />
+            }
+            onPress={() => navigation?.navigate('Register')}
           />
         </>
       ) : (

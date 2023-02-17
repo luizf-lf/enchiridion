@@ -8,6 +8,7 @@ import QuoteScreen from './screens/QuoteScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import WebViewScreen from './screens/WebViewScreen';
 import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,7 @@ function Router() {
         }}>
         <Stack.Screen name="Apps" component={AppsScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Quotes" component={QuoteScreen} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen
