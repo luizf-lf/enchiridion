@@ -22,6 +22,7 @@ import { Platform } from 'react-native';
 import { PermissionsAndroid } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
+import { useFirebaseAuth } from '../context/AuthContext';
 
 function EditTaskScreen() {
   const route = useRoute() as any;
@@ -35,6 +36,8 @@ function EditTaskScreen() {
   const [taskImages, setTaskImages] = useState([] as TaskImageRefInterface[]);
   const [isSavingData, setIsSavingData] = useState(false);
   const [isSavingImage, setIsSavingImage] = useState(false);
+
+  const { user } = useFirebaseAuth();
 
   const handleAddImage = async () => {
     if (Platform.OS === 'android') {
@@ -57,7 +60,7 @@ function EditTaskScreen() {
           const { fileName, uri } = image.assets[0];
           if (fileName && uri) {
             setIsSavingImage(true);
-            const imageRef = `Tasks/${route.params.taskId}/${
+            const imageRef = `${user.uid}/Tasks/${route.params.taskId}/${
               Date.now() + fileName.split('.')[1]
             }`;
             const imageRefInstance = storage().ref(imageRef);
