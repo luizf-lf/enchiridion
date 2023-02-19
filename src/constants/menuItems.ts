@@ -1,7 +1,7 @@
 export const menuItems = [
   {
-    title: 'Login',
-    target: 'Login',
+    title: 'User Profile',
+    target: 'User Profile',
     iconName: 'people-alt',
   },
   {

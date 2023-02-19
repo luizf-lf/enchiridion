@@ -13,9 +13,7 @@ import auth from '@react-native-firebase/auth';
 import { useFirebaseAuth } from '../context/AuthContext';
 import { NavigationContext } from '@react-navigation/native';
 
-// TODO: Implement a "Profile" screen, with an option to delete the account and change the profile picture.
-
-function LoginScreen() {
+function UserProfileScreen() {
   const [isLoading, setIsLoading] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const [userPass, setUserPass] = useState('');
@@ -100,7 +98,7 @@ function LoginScreen() {
   return (
     <View style={globalStyles.viewContainer}>
       <Text variant="h5" color={textColor} style={{ marginBottom: 16 }}>
-        Login
+        User Profile
       </Text>
       {!user ? (
         <>
@@ -196,4 +194,4 @@ function LoginScreen() {
   );
 }
 
-export default LoginScreen;
+export default UserProfileScreen;

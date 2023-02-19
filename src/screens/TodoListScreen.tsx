@@ -98,7 +98,7 @@ function TodoListScreen() {
           <Button
             title="Login"
             leading={<Icon name="vpn-key" size={24} color="#FFF" />}
-            onPress={() => navigation?.navigate('Login')}
+            onPress={() => navigation?.navigate('User Profile')}
             style={{ marginBottom: 16, backgroundColor: appColors.primary }}
           />
         </View>
