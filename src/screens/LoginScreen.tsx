@@ -102,7 +102,7 @@ function LoginScreen() {
       <Text variant="h5" color={textColor} style={{ marginBottom: 16 }}>
         Login
       </Text>
-      {!user.email ? (
+      {!user ? (
         <>
           <Text color={textColor} style={{ marginBottom: 16 }}>
             Login to use the RNPlayground Firebase features.

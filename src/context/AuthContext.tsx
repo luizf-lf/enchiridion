@@ -9,7 +9,7 @@ import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 // interfaces
 interface AuthContextData {
-  user: FirebaseAuthTypes.User;
+  user: null | FirebaseAuthTypes.User;
   setUser: any;
 }
 
@@ -22,7 +22,7 @@ const AuthContext = React.createContext({} as AuthContextData);
 
 // the component that will serve as a provider
 export function AuthContextProvider({ children }: AuthContextProps) {
-  const [user, setUser] = useState({} as FirebaseAuthTypes.User);
+  const [user, setUser] = useState<null | FirebaseAuthTypes.User>(null);
 
   // TODO: Move to screen
   const createUser = async (email: string, password: string) => {

@@ -1,5 +1,6 @@
 import {
   ActivityIndicator,
+  Button,
   Text,
   TextInput,
 } from '@react-native-material/core';
@@ -24,7 +25,7 @@ function TodoListScreen() {
   const { user } = useFirebaseAuth();
 
   useEffect(() => {
-    if (user.email) {
+    if (user) {
       const subscriber = tasksCollectionRef
         .where('taskOwnerUid', '==', user.uid)
         .orderBy('date', 'desc')
@@ -66,7 +67,7 @@ function TodoListScreen() {
           description: null,
           done: false,
           doneAt: null,
-          taskOwnerUid: user.uid,
+          taskOwnerUid: user?.uid,
         })
         .then(() => {
           setTaskInput('');
@@ -86,7 +87,7 @@ function TodoListScreen() {
         justifyContent: 'space-between',
         flexGrow: 1,
       }}>
-      {!user.email ? (
+      {!user ? (
         <View>
           <Text color={textColor} variant="h5" style={{ marginBottom: 4 }}>
             Todo List
@@ -94,6 +95,12 @@ function TodoListScreen() {
           <Text color={appColors.red} style={{ marginBottom: 16 }}>
             You must login in order to use the Todo List app.
           </Text>
+          <Button
+            title="Login"
+            leading={<Icon name="vpn-key" size={24} color="#FFF" />}
+            onPress={() => navigation?.navigate('Login')}
+            style={{ marginBottom: 16, backgroundColor: appColors.primary }}
+          />
         </View>
       ) : (
         <>
