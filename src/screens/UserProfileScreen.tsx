@@ -1,89 +1,26 @@
-import {
-  ActivityIndicator,
-  Button,
-  Text,
-  TextInput,
-} from '@react-native-material/core';
+import { ActivityIndicator, Button, Text } from '@react-native-material/core';
 import React, { useState } from 'react';
-import { Alert, Platform, ToastAndroid, View } from 'react-native';
+import { Alert, Image, Platform, ToastAndroid, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { appColors, cardColor, textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
 import auth from '@react-native-firebase/auth';
 import { useFirebaseAuth } from '../context/AuthContext';
-import { NavigationContext } from '@react-navigation/native';
+import LoginForm from '../components/LoginForm';
+
+import DefaultUserImage from '../assets/user.png';
 
 function UserProfileScreen() {
   const [isLoading, setIsLoading] = useState(false);
-  const [userEmail, setUserEmail] = useState('');
-  const [userPass, setUserPass] = useState('');
 
   const { user, setUser } = useFirebaseAuth();
-
-  const navigation = React.useContext(NavigationContext);
-
-  const handleLogin = async () => {
-    try {
-      if (userEmail.length > 0 && userPass.length > 0) {
-        setIsLoading(true);
-
-        const signInResult = await auth().signInWithEmailAndPassword(
-          userEmail,
-          userPass,
-        );
-
-        setUser(signInResult.user);
-        setIsLoading(false);
-        if (Platform.OS === 'android') {
-          ToastAndroid.show('Logged in', 5000);
-        }
-
-        setUserEmail('');
-        setUserPass('');
-      }
-    } catch (error: any) {
-      switch (error.code) {
-        case 'auth/invalid-email':
-          Alert.alert('Invalid email', 'Provide a valid user email to login');
-          break;
-        case 'auth/user-not-found':
-          Alert.alert(
-            'User not found',
-            'A user with this email does not exists',
-            [
-              {
-                text: 'Register',
-                // onPress: () => navigation?.navigate('Register')
-              },
-              {
-                text: 'Ok',
-              },
-            ],
-          );
-          break;
-        case 'auth/wrong-password':
-          Alert.alert('Wrong password', 'The provided password is incorrect');
-          break;
-
-        default:
-          Alert.alert(
-            'Could not sign in',
-            'An unknown error occurred. Please try again.',
-          );
-          console.error(error);
-          break;
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const handleLogout = async () => {
     try {
       setIsLoading(true);
       await auth().signOut();
 
-      setUser({});
+      setUser(null);
 
       if (Platform.OS === 'android') {
         ToastAndroid.show('Logged out', 5000);
@@ -101,93 +38,66 @@ function UserProfileScreen() {
         User Profile
       </Text>
       {!user ? (
-        <>
-          <Text color={textColor} style={{ marginBottom: 16 }}>
-            Login to use the RNPlayground Firebase features.
-          </Text>
-          <TextInput
-            label="Email"
-            value={userEmail}
-            onChangeText={input => setUserEmail(input)}
-            inputStyle={{
-              color: textColor,
-            }}
-            inputContainerStyle={{
-              backgroundColor: cardColor,
-            }}
-            color={appColors.primary}
-            variant="filled"
-            leading={<Icon name="mail" size={24} />}
-            style={{ marginBottom: 16 }}
-          />
-          <TextInput
-            label="Password"
-            value={userPass}
-            onChangeText={input => setUserPass(input)}
-            inputStyle={{
-              color: textColor,
-            }}
-            inputContainerStyle={{
-              backgroundColor: cardColor,
-            }}
-            color={appColors.primary}
-            variant="filled"
-            leading={<Icon name="lock" size={24} />}
-            style={{ marginBottom: 16 }}
-            secureTextEntry
-          />
-
-          <Button
-            title="Login"
-            leading={
-              isLoading ? (
-                <ActivityIndicator color="#FFF" size="large" />
-              ) : (
-                <Icon name="vpn-key" size={24} color="#FFF" />
-              )
-            }
-            disabled={isLoading}
-            onPress={handleLogin}
-            style={{ marginBottom: 16, backgroundColor: appColors.primary }}
-          />
-
-          <Button
-            title="Register"
-            variant="text"
-            titleStyle={{
-              color: appColors.primary,
-            }}
-            leading={
-              <Icon name="person-add" size={24} color={appColors.primary} />
-            }
-            onPress={() => navigation?.navigate('Register')}
-          />
-        </>
+        <LoginForm />
       ) : (
-        <View
-          style={{
-            alignItems: 'center',
-          }}>
-          <Text color={textColor}>
-            You are logged as{' '}
-            <Text style={{ fontWeight: 'bold', marginBottom: 16 }}>
+        <View style={{ backgroundColor: cardColor, borderRadius: 16 }}>
+          <Image
+            source={{
+              uri: 'https://images.unsplash.com/photo-1676458482055-2f681a9ba120?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2532&q=80',
+            }}
+            style={{
+              height: 200,
+              width: '100%',
+              borderRadius: 16,
+            }}
+            resizeMode="cover"
+          />
+
+          <View style={{ padding: 16 }}>
+            <View style={{ marginTop: -96, marginBottom: 16 }}>
+              <Image
+                source={
+                  user.photoURL ? { uri: user.photoURL } : DefaultUserImage
+                }
+                style={{
+                  height: 128,
+                  width: 128,
+                  borderWidth: 4,
+                  borderColor: cardColor,
+                  borderRadius: 128,
+                }}
+              />
+            </View>
+
+            <Text color={textColor} variant="h5">
               {user.displayName}
             </Text>
-          </Text>
-          <Button
-            title="Logout"
-            variant="text"
-            titleStyle={{ color: appColors.red }}
-            trailing={
-              isLoading ? (
-                <ActivityIndicator color={appColors.red} size="large" />
-              ) : (
-                <Icon name="logout" size={20} color={appColors.red} />
-              )
-            }
-            onPress={handleLogout}
-            disabled={isLoading}
-          />
+            <Text color={textColor} variant="caption">
+              {user.email}
+            </Text>
+            {user.metadata.lastSignInTime && (
+              <Text color={textColor} variant="caption">
+                Last login at{' '}
+                {new Date(user.metadata.lastSignInTime).toLocaleString('pt')}
+              </Text>
+            )}
+
+            <Button
+              style={{ marginTop: 32 }}
+              title="Logout"
+              variant="text"
+              titleStyle={{ color: appColors.red }}
+              trailing={
+                isLoading ? (
+                  <ActivityIndicator color={appColors.red} size="large" />
+                ) : (
+                  <Icon name="logout" size={20} color={appColors.red} />
+                )
+              }
+              onPress={handleLogout}
+              disabled={isLoading}
+            />
+          </View>
         </View>
       )}
     </View>
