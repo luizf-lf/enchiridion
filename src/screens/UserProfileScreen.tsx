@@ -1,13 +1,6 @@
 import { ActivityIndicator, Button, Text } from '@react-native-material/core';
 import React, { useEffect, useState } from 'react';
-import {
-  Alert,
-  Image,
-  Platform,
-  ToastAndroid,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Alert, Image, Platform, StyleSheet, ToastAndroid, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { appColors, cardColor, textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
@@ -15,9 +8,20 @@ import auth from '@react-native-firebase/auth';
 import { useFirebaseAuth } from '../context/AuthContext';
 import LoginForm from '../components/LoginForm';
 import storage from '@react-native-firebase/storage';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 import DefaultUserImage from '../assets/user.png';
-import { launchImageLibrary } from 'react-native-image-picker';
+import DefaultHeaderImage from '../assets/header.jpg';
+
+const styles = StyleSheet.create({
+  profileImage: {
+    height: 128,
+    width: 128,
+    borderWidth: 4,
+    borderColor: cardColor,
+    borderRadius: 128,
+  },
+});
 
 function UserProfileScreen() {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +30,6 @@ function UserProfileScreen() {
 
   const { user, setUser } = useFirebaseAuth();
 
-  // TODO: Check image lifecycle
   const handleUpdateProfilePicture = async () => {
     try {
       if (user) {
@@ -43,9 +46,10 @@ function UserProfileScreen() {
             return;
           }
 
-          const imageRef = storage().ref(
-            `${user?.uid}/Profile Pictures/${selectedImage.fileName}`,
-          );
+          const imageName = selectedImage.fileName
+            ? `${Date.now()}.${selectedImage.fileName.split('.')[1]}`
+            : Date.now();
+          const imageRef = storage().ref(`User Data/${user?.uid}/Profile Pictures/${imageName}`);
           await imageRef.putFile(selectedImage.uri);
           const imageUrl = await imageRef.getDownloadURL();
 
@@ -89,7 +93,7 @@ function UserProfileScreen() {
     if (user && user.photoURL) {
       setProfilePicture(user.photoURL);
     }
-  }, []);
+  }, [user]);
 
   return (
     <View style={globalStyles.viewContainer}>
@@ -101,9 +105,7 @@ function UserProfileScreen() {
       ) : (
         <View style={{ backgroundColor: cardColor, borderRadius: 16 }}>
           <Image
-            source={{
-              uri: 'https://images.unsplash.com/photo-1676458482055-2f681a9ba120?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2532&q=80',
-            }}
+            source={DefaultHeaderImage}
             style={{
               height: 200,
               width: '100%',
@@ -129,21 +131,10 @@ function UserProfileScreen() {
               onPress={handleUpdateProfilePicture}>
               {isUpdatingPFP ? (
                 <ActivityIndicator size="large" />
+              ) : profilePicture === '' ? (
+                <Image source={DefaultUserImage} style={styles.profileImage} />
               ) : (
-                <Image
-                  source={
-                    profilePicture === ''
-                      ? DefaultUserImage
-                      : { uri: profilePicture }
-                  }
-                  style={{
-                    height: 128,
-                    width: 128,
-                    borderWidth: 4,
-                    borderColor: cardColor,
-                    borderRadius: 128,
-                  }}
-                />
+                <Image source={{ uri: profilePicture }} style={styles.profileImage} />
               )}
             </TouchableOpacity>
 
@@ -155,8 +146,7 @@ function UserProfileScreen() {
             </Text>
             {user.metadata.lastSignInTime && (
               <Text color={textColor} variant="caption">
-                Last login at{' '}
-                {new Date(user.metadata.lastSignInTime).toLocaleString('pt')}
+                Last login at {new Date(user.metadata.lastSignInTime).toLocaleString('pt')}
               </Text>
             )}
 
