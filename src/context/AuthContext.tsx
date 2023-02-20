@@ -1,10 +1,4 @@
-import React, {
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 // interfaces
@@ -27,10 +21,7 @@ export function AuthContextProvider({ children }: AuthContextProps) {
   // TODO: Move to screen
   const createUser = async (email: string, password: string) => {
     try {
-      const createdUser = await auth().createUserWithEmailAndPassword(
-        email,
-        password,
-      );
+      const createdUser = await auth().createUserWithEmailAndPassword(email, password);
 
       setUser(createdUser.user);
     } catch (error) {
@@ -46,11 +37,7 @@ export function AuthContextProvider({ children }: AuthContextProps) {
     return;
   };
 
-  return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ user, setUser }}>{children}</AuthContext.Provider>;
 }
 
 // a helper function to implement the "use" keyword to the context

@@ -1,9 +1,4 @@
-import {
-  ActivityIndicator,
-  Button,
-  Text,
-  TextInput,
-} from '@react-native-material/core';
+import { ActivityIndicator, Button, Text, TextInput } from '@react-native-material/core';
 import React, { useEffect, useState } from 'react';
 import { Alert, TouchableOpacity, View } from 'react-native';
 import { appColors, cardColor, textColor } from '../constants/colors';
@@ -34,8 +29,7 @@ function TodoListScreen() {
             console.log('Firebase Tasks snapshot updated at ' + new Date());
             const items = [] as TaskInterface[];
             dataSnapshot.forEach(fireItem => {
-              const { date, description, done, title, images } =
-                fireItem.data();
+              const { date, description, done, title, images } = fireItem.data();
               items.push({
                 id: fireItem.id,
                 date,
@@ -110,9 +104,7 @@ function TodoListScreen() {
           <FlatList
             data={fireData}
             keyExtractor={data => data.id}
-            renderItem={data => (
-              <TaskItem data={data} navigation={navigation} />
-            )}
+            renderItem={data => <TaskItem data={data} navigation={navigation} />}
             ListEmptyComponent={() => (
               <View style={{ flexGrow: 1, alignItems: 'center' }}>
                 <Text color={textColor} variant="caption">

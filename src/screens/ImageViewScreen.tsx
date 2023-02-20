@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Button, Text } from '@react-native-material/core';
-import {
-  DarkTheme,
-  DefaultTheme,
-  NavigationContext,
-  useRoute,
-} from '@react-navigation/native';
+import { DarkTheme, DefaultTheme, NavigationContext, useRoute } from '@react-navigation/native';
 import { Alert, Image, SafeAreaView, StyleSheet, View } from 'react-native';
 import { globalStyles } from '../constants/globalStyles';
 import { TaskImageRefInterface } from '../interfaces/TaskInterface';

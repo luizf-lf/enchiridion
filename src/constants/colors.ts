@@ -13,6 +13,4 @@ export const isDarkMode = Appearance.getColorScheme() === 'dark';
 
 export const bgColor = isDarkMode ? appColors.dark : appColors.white;
 export const textColor = isDarkMode ? appColors.white : appColors.dark;
-export const cardColor = isDarkMode
-  ? DarkTheme.colors.card
-  : DefaultTheme.colors.card;
+export const cardColor = isDarkMode ? DarkTheme.colors.card : DefaultTheme.colors.card;

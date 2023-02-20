@@ -16,11 +16,7 @@ function QuoteScreen() {
       const StorageHelper = new LocalStorageService();
       const quoteData = await StorageHelper.getQuoteData();
 
-      if (
-        quoteData &&
-        new Date(quoteData.timestamp).toLocaleDateString() ===
-          new Date().toLocaleDateString()
-      ) {
+      if (quoteData && new Date(quoteData.timestamp).toLocaleDateString() === new Date().toLocaleDateString()) {
         console.log('Quote of the day has already been fetched.');
         setIsLoading(false);
         setQuote(quoteData.quote.content);
@@ -65,10 +61,7 @@ function QuoteScreen() {
           <ActivityIndicator size="large" />
         ) : (
           <>
-            <Text
-              color={textColor}
-              variant="body1"
-              style={{ fontStyle: 'italic' }}>
+            <Text color={textColor} variant="body1" style={{ fontStyle: 'italic' }}>
               "{quote}"
             </Text>
             <Text color={textColor} variant="body2" style={{ marginTop: 8 }}>

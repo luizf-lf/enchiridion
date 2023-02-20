@@ -23,9 +23,7 @@ export default class LocalStorageService {
         this.quoteData = JSON.parse(quoteData);
       }
     } catch (error) {
-      console.error(
-        `LocalStorageHelper: Could not recover quoteData: ${error}`,
-      );
+      console.error(`LocalStorageHelper: Could not recover quoteData: ${error}`);
     } finally {
       return this.quoteData;
     }

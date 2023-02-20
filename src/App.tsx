@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  DarkTheme,
-  DefaultTheme,
-  NavigationContainer,
-} from '@react-navigation/native';
+import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import CustomAppBar from './components/CustomAppBar';
 import CustomDrawerContent from './components/CustomDrawerContent';

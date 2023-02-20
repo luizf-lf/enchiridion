@@ -16,10 +16,7 @@ function CustomAppBar({ navigation }: any) {
         backgroundColor: appColors.primary,
       }}
       leading={() => (
-        <IconButton
-          onPress={() => navigation.openDrawer()}
-          icon={() => <Icon name="menu" color="#FFF" size={26} />}
-        />
+        <IconButton onPress={() => navigation.openDrawer()} icon={() => <Icon name="menu" color="#FFF" size={26} />} />
       )}
     />
   );

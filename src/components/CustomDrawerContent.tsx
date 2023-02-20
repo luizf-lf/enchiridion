@@ -18,9 +18,7 @@ function CustomDrawerContent(drawerProps: DrawerContentComponentProps) {
           containerStyle={{ backgroundColor: cardColor }}>
           <Icon name={menuItem.iconName} size={24} />
           <ListItem.Content>
-            <ListItem.Title style={{ color: textColor }}>
-              {menuItem.title}
-            </ListItem.Title>
+            <ListItem.Title style={{ color: textColor }}>{menuItem.title}</ListItem.Title>
           </ListItem.Content>
           <Icon name="chevron-right" size={18} />
         </ListItem>

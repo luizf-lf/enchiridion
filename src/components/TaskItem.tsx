@@ -1,21 +1,14 @@
 import { Surface, Text } from '@react-native-material/core';
 import { CheckBox } from '@rneui/themed';
 import React, { useState } from 'react';
-import {
-  ActivityIndicator,
-  Alert,
-  ListRenderItemInfo,
-  Platform,
-  StyleSheet,
-  ToastAndroid,
-  View,
-} from 'react-native';
+import { ActivityIndicator, Alert, ListRenderItemInfo, Platform, StyleSheet, ToastAndroid, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { cardColor, textColor } from '../constants/colors';
 import TaskInterface from '../interfaces/TaskInterface';
 import firestore from '@react-native-firebase/firestore';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Storage from '@react-native-firebase/storage';
+import { useFirebaseAuth } from '../context/AuthContext';
 
 const styles = StyleSheet.create({
   button: {
@@ -33,6 +26,7 @@ function TaskItem({ data, navigation }: Props) {
   const id = data.item.id;
   const tasksRef = firestore().collection('Tasks');
   const [isUpdating, setIsUpdating] = useState(false);
+  const { user } = useFirebaseAuth();
 
   const handleStatusUpdate = () => {
     tasksRef.doc(id).update({
@@ -57,7 +51,7 @@ function TaskItem({ data, navigation }: Props) {
   const deleteTaskWithImages = async (taskId: string) => {
     try {
       setIsUpdating(true);
-      const imageList = await Storage().ref(`/Tasks/${taskId}`).listAll();
+      const imageList = await Storage().ref(`User Data/${user?.uid}/Tasks/${taskId}`).listAll();
       for (let i = 0; i < imageList.items.length; i++) {
         await Storage().ref(imageList.items[i].fullPath).delete();
       }
@@ -122,9 +116,7 @@ function TaskItem({ data, navigation }: Props) {
                         }
                       : {}
                   }>
-                  {data.item.title.length > 15
-                    ? data.item.title.slice(0, 15) + '...'
-                    : data.item.title}
+                  {data.item.title.length > 15 ? data.item.title.slice(0, 15) + '...' : data.item.title}
                 </Text>
                 {data.item.images && data.item.images.length > 0 ? (
                   <Icon
@@ -173,9 +165,7 @@ function TaskItem({ data, navigation }: Props) {
               }>
               <Icon name="mode-edit" size={24} />
             </TouchableOpacity>
-            <TouchableOpacity
-              containerStyle={styles.button}
-              onPress={confirmDeleteTask}>
+            <TouchableOpacity containerStyle={styles.button} onPress={confirmDeleteTask}>
               <Icon name="delete" size={24} color="#CF0A0A" />
             </TouchableOpacity>
           </View>
