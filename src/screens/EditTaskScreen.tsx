@@ -1,20 +1,10 @@
 import { Button, Switch, Text, TextInput } from '@react-native-material/core';
 import { NavigationContext, useRoute } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import {
-  ActivityIndicator,
-  Alert,
-  Image,
-  SafeAreaView,
-  ScrollView,
-  ToastAndroid,
-  View,
-} from 'react-native';
+import { ActivityIndicator, Alert, Image, SafeAreaView, ScrollView, ToastAndroid, View } from 'react-native';
 import { cardColor, textColor } from '../constants/colors';
 import { globalStyles } from '../constants/globalStyles';
-import TaskInterface, {
-  TaskImageRefInterface,
-} from '../interfaces/TaskInterface';
+import TaskInterface, { TaskImageRefInterface } from '../interfaces/TaskInterface';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { launchCamera } from 'react-native-image-picker';
@@ -41,14 +31,9 @@ function EditTaskScreen() {
 
   const handleAddImage = async () => {
     if (Platform.OS === 'android') {
-      const permissionResult = await PermissionsAndroid.request(
-        'android.permission.CAMERA',
-      );
+      const permissionResult = await PermissionsAndroid.request('android.permission.CAMERA');
       if (!(permissionResult === PermissionsAndroid.RESULTS.GRANTED)) {
-        Alert.alert(
-          'Permission Denied',
-          'You will not be able to add images to this task.',
-        );
+        Alert.alert('Permission Denied', 'You will not be able to add images to this task.');
         return;
       }
       try {
@@ -60,8 +45,8 @@ function EditTaskScreen() {
           const { fileName, uri } = image.assets[0];
           if (fileName && uri) {
             setIsSavingImage(true);
-            const imageRef = `${user?.uid}/Tasks/${route.params.taskId}/${
-              Date.now() + fileName.split('.')[1]
+            const imageRef = `User Data/${user?.uid}/Tasks/${route.params.taskId}/${
+              Date.now() + '.' + fileName.split('.')[1]
             }`;
             const imageRefInstance = storage().ref(imageRef);
             await imageRefInstance.putFile(uri);
@@ -162,8 +147,7 @@ function EditTaskScreen() {
         .get()
         .then(dataSnap => {
           if (dataSnap.exists) {
-            const { date, description, done, title, images } =
-              dataSnap.data() as TaskInterface;
+            const { date, description, done, title, images } = dataSnap.data() as TaskInterface;
 
             setTaskTitle(title);
             setTaskDescription(description || '');
@@ -219,16 +203,10 @@ function EditTaskScreen() {
           marginTop: 16,
         }}>
         <Text color={textColor}>Done</Text>
-        <Switch
-          value={taskDone}
-          onValueChange={() => setTaskIsDone(!taskDone)}
-        />
+        <Switch value={taskDone} onValueChange={() => setTaskIsDone(!taskDone)} />
       </View>
 
-      <Text
-        color={textColor}
-        variant="caption"
-        style={{ marginTop: 16, marginBottom: 8 }}>
+      <Text color={textColor} variant="caption" style={{ marginTop: 16, marginBottom: 8 }}>
         Images
       </Text>
       <ScrollView horizontal>
@@ -246,11 +224,7 @@ function EditTaskScreen() {
           }}
           onPress={handleAddImage}
           disabled={isSavingImage}>
-          {isSavingImage ? (
-            <ActivityIndicator />
-          ) : (
-            <Icon name="camera-alt" size={24} />
-          )}
+          {isSavingImage ? <ActivityIndicator /> : <Icon name="camera-alt" size={24} />}
         </TouchableOpacity>
         {taskImages.map(image => (
           <TouchableOpacity
@@ -264,23 +238,14 @@ function EditTaskScreen() {
             }}
             onPress={() => handleOpenImage(image)}
             onLongPress={() => confirmDeleteImage(image)}>
-            <Image
-              source={{ uri: image.uri }}
-              style={{ height: 96, width: 96, borderRadius: 8 }}
-            />
+            <Image source={{ uri: image.uri }} style={{ height: 96, width: 96, borderRadius: 8 }} />
           </TouchableOpacity>
         ))}
       </ScrollView>
 
       <Button
         title={isSavingData ? 'Saving' : 'Save'}
-        leading={
-          isSavingData ? (
-            <ActivityIndicator color="#FFF" />
-          ) : (
-            <Icon name="save" size={18} color="#FFF" />
-          )
-        }
+        leading={isSavingData ? <ActivityIndicator color="#FFF" /> : <Icon name="save" size={18} color="#FFF" />}
         style={{ marginTop: 16 }}
         onPress={handleDataUpdate}
       />
