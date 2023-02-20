@@ -60,7 +60,7 @@ function EditTaskScreen() {
           const { fileName, uri } = image.assets[0];
           if (fileName && uri) {
             setIsSavingImage(true);
-            const imageRef = `${user.uid}/Tasks/${route.params.taskId}/${
+            const imageRef = `${user?.uid}/Tasks/${route.params.taskId}/${
               Date.now() + fileName.split('.')[1]
             }`;
             const imageRefInstance = storage().ref(imageRef);
