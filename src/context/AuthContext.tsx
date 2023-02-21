@@ -18,25 +18,6 @@ const AuthContext = React.createContext({} as AuthContextData);
 export function AuthContextProvider({ children }: AuthContextProps) {
   const [user, setUser] = useState<null | FirebaseAuthTypes.User>(null);
 
-  // TODO: Move to screen
-  const createUser = async (email: string, password: string) => {
-    try {
-      const createdUser = await auth().createUserWithEmailAndPassword(email, password);
-
-      setUser(createdUser.user);
-    } catch (error) {
-      console.error(`Unable to create user with e-mail: ${error}`);
-    }
-  };
-  // TODO: Implement
-  const login = async () => {
-    return;
-  };
-  // TODO: Implement
-  const logout = async () => {
-    return;
-  };
-
   return <AuthContext.Provider value={{ user, setUser }}>{children}</AuthContext.Provider>;
 }
 
