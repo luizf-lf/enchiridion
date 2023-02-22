@@ -10,6 +10,7 @@ import { AuthContextProvider } from './context/AuthContext';
 
 const Drawer = createDrawerNavigator();
 
+// TODO: Implement i18n
 function App(): JSX.Element {
   return (
     <AuthContextProvider>

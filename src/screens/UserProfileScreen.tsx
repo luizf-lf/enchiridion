@@ -7,8 +7,9 @@ import { globalStyles } from '../constants/globalStyles';
 import auth from '@react-native-firebase/auth';
 import { useFirebaseAuth } from '../context/AuthContext';
 import LoginForm from '../components/LoginForm';
-import storage from '@react-native-firebase/storage';
 import { launchImageLibrary } from 'react-native-image-picker';
+import storage from '@react-native-firebase/storage';
+import firestore from '@react-native-firebase/firestore';
 
 import DefaultUserImage from '../assets/user.png';
 import DefaultHeaderImage from '../assets/header.jpg';
@@ -24,8 +25,9 @@ const styles = StyleSheet.create({
 });
 
 function UserProfileScreen() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [isUpdatingPFP, setUpdatingPFP] = useState(false);
+  const [isDeletingAccount, setIsDeletingAccount] = useState(false);
   const [profilePicture, setProfilePicture] = useState('');
 
   const { user, setUser } = useFirebaseAuth();
@@ -74,7 +76,7 @@ function UserProfileScreen() {
 
   const handleLogout = async () => {
     try {
-      setIsLoading(true);
+      setIsLoggingOut(true);
       await auth().signOut();
 
       setUser(null);
@@ -85,12 +87,53 @@ function UserProfileScreen() {
     } catch (error) {
       Alert.alert('Error', `Unable to logout: ${error}`);
     } finally {
-      setIsLoading(false);
+      setIsLoggingOut(false);
+    }
+  };
+
+  const confirmDeleteAccount = () => {
+    Alert.alert('Delete Account?', 'This action is irreversible, and will delete all data related to this account.', [
+      {
+        text: 'Yes',
+        onPress: handleDeleteAccount,
+      },
+      {
+        isPreferred: true,
+        text: 'No',
+      },
+    ]);
+  };
+
+  const handleDeleteAccount = async () => {
+    // TODO: Revalidate user login (ask for password again)
+    try {
+      setIsDeletingAccount(true);
+      if (user) {
+        const tasks = await firestore().collection('Tasks').where('taskOwnerUid', '==', user.uid).get();
+        for (let i = 0; i < tasks.docs.length; i++) {
+          const task = tasks.docs[i];
+          await firestore().collection('Tasks').doc(task.id).delete();
+        }
+        // FIXME: Storage ref does not exist
+        // await storage().ref(`User Data/${user.uid}`).delete();
+        // console.log('Deleted storage data');
+        await user.delete();
+
+        if (Platform.OS === 'android') {
+          ToastAndroid.show('Account deleted', 5000);
+        }
+
+        setUser(null);
+      }
+    } catch (error) {
+      Alert.alert('Error', `Could not delete account: ${error}`);
+    } finally {
+      setIsDeletingAccount(false);
     }
   };
 
   useEffect(() => {
-    if (user && user.photoURL) {
+    if (user && user.photoURL && user.displayName) {
       setProfilePicture(user.photoURL);
     }
   }, [user]);
@@ -104,6 +147,7 @@ function UserProfileScreen() {
         <LoginForm />
       ) : (
         <View style={{ backgroundColor: cardColor, borderRadius: 16 }}>
+          {/* // TODO: Implement header update */}
           <Image
             source={DefaultHeaderImage}
             style={{
@@ -156,14 +200,24 @@ function UserProfileScreen() {
               variant="text"
               titleStyle={{ color: appColors.red }}
               trailing={
-                isLoading ? (
+                isLoggingOut ? (
                   <ActivityIndicator color={appColors.red} size="large" />
                 ) : (
                   <Icon name="logout" size={20} color={appColors.red} />
                 )
               }
               onPress={handleLogout}
-              disabled={isLoading}
+              disabled={isLoggingOut}
+            />
+
+            <Button
+              style={{ marginTop: 8, backgroundColor: appColors.red }}
+              title="Delete Account"
+              leading={
+                isDeletingAccount ? <ActivityIndicator color="#FFF" /> : <Icon name="delete" size={20} color="#FFF" />
+              }
+              onPress={confirmDeleteAccount}
+              disabled={isDeletingAccount}
             />
           </View>
         </View>

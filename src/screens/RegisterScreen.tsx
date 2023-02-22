@@ -33,6 +33,8 @@ function RegisterScreen() {
         await createdUser.user.updateProfile({
           displayName: userName,
         });
+
+        // FIXME: Display name not rendered after user creation
         createdUser.user.displayName = userName;
 
         setUser(createdUser.user);
