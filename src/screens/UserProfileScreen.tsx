@@ -133,7 +133,14 @@ function UserProfileScreen() {
   };
 
   useEffect(() => {
-    if (user && user.photoURL && user.displayName) {
+    /**
+     * // BUG: Profile picture source does not update correctly.
+     *  One case is when the user profile is created, the profile picture is updated, and then the user navigates to
+     *    the home screen and back to the user profile. The default profile picture is shown.
+     *  Other case is when the user deletes the profile, and creates a new one. The old profile picture is shown.
+     *
+     */
+    if (user && user.photoURL) {
       setProfilePicture(user.photoURL);
     }
   }, [user]);
