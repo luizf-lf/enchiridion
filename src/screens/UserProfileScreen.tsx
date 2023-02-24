@@ -30,7 +30,7 @@ function UserProfileScreen() {
   const [isDeletingAccount, setIsDeletingAccount] = useState(false);
   const [profilePicture, setProfilePicture] = useState('');
 
-  const { user, setUser } = useFirebaseAuth();
+  const { user, setUser, userDisplayName } = useFirebaseAuth();
 
   const handleUpdateProfilePicture = async () => {
     try {
@@ -147,7 +147,7 @@ function UserProfileScreen() {
         <LoginForm />
       ) : (
         <View style={{ backgroundColor: cardColor, borderRadius: 16 }}>
-          {/* // TODO: Implement header update */}
+          {/* // TODO: Implement header image update feature */}
           <Image
             source={DefaultHeaderImage}
             style={{
@@ -183,7 +183,7 @@ function UserProfileScreen() {
             </TouchableOpacity>
 
             <Text color={textColor} variant="h5">
-              {user.displayName}
+              {userDisplayName}
             </Text>
             <Text color={textColor} variant="caption">
               {user.email}

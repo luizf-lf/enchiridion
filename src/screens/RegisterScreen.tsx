@@ -17,7 +17,7 @@ function RegisterScreen() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const { setUser } = useFirebaseAuth();
+  const { setUser, setUserDisplayName } = useFirebaseAuth();
   const navigation = React.useContext(NavigationContext);
 
   const handleRegister = async () => {
@@ -34,10 +34,8 @@ function RegisterScreen() {
           displayName: userName,
         });
 
-        // FIXME: Display name not rendered after user creation
-        createdUser.user.displayName = userName;
-
         setUser(createdUser.user);
+        setUserDisplayName(userName);
 
         if (Platform.OS === 'android') {
           ToastAndroid.show('User created successfully', 5000);

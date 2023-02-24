@@ -12,7 +12,7 @@ function LoginForm() {
   const [userEmail, setUserEmail] = useState('');
   const [userPass, setUserPass] = useState('');
 
-  const { setUser } = useFirebaseAuth();
+  const { setUser, setUserDisplayName } = useFirebaseAuth();
 
   const handleLogin = async () => {
     try {
@@ -22,6 +22,7 @@ function LoginForm() {
         const signInResult = await auth().signInWithEmailAndPassword(userEmail, userPass);
 
         setUser(signInResult.user);
+        setUserDisplayName(signInResult.user.displayName);
         setIsLoading(false);
         if (Platform.OS === 'android') {
           ToastAndroid.show('Logged in', 5000);
