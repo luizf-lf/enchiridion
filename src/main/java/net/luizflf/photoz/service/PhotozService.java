@@ -1,5 +1,6 @@
-package net.luizflf.photoz;
+package net.luizflf.photoz.service;
 
+import net.luizflf.photoz.model.Photo;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;

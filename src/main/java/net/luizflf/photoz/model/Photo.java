@@ -1,4 +1,4 @@
-package net.luizflf.photoz;
+package net.luizflf.photoz.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotEmpty;

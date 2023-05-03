@@ -1,5 +1,7 @@
-package net.luizflf.photoz;
+package net.luizflf.photoz.web;
 
+import net.luizflf.photoz.model.Photo;
+import net.luizflf.photoz.service.PhotozService;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
