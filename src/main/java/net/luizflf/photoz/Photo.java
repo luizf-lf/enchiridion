@@ -1,5 +1,6 @@
 package net.luizflf.photoz;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotEmpty;
 
 public class Photo {
@@ -9,7 +10,7 @@ public class Photo {
     @NotEmpty
     private String fileName;
 
-    // raw data
+    private byte[] data;
 
     public Photo() {
     }
@@ -21,6 +22,15 @@ public class Photo {
 
     public String getId() {
         return id;
+    }
+
+    @JsonIgnore
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
     }
 
     public void setId(String id) {
