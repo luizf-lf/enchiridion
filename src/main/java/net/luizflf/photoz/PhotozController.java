@@ -7,16 +7,16 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 @RestController
 public class PhotozController {
-    private Map<String, Photo> db = new HashMap<>() {{
-        put("1", new Photo("1", "test.jpg"));
-    }};
 
+    private final PhotozService photozService;
+
+    public PhotozController(PhotozService photozService) {
+        this.photozService = photozService;
+    }
 
     @GetMapping("/")
     public String hello() {
@@ -25,12 +25,12 @@ public class PhotozController {
 
     @GetMapping("/photoz")
     public Collection<Photo> get() {
-        return db.values();
+        return photozService.get();
     }
 
     @GetMapping("/photoz/{id}")
     public Photo get(@PathVariable String id) {
-        Photo photo = db.get(id);
+        Photo photo = photozService.get(id);
 
         if (photo == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
@@ -39,19 +39,12 @@ public class PhotozController {
 
     @DeleteMapping("/photoz/{id}")
     public void delete(@PathVariable String id) {
-        Photo photo = db.remove(id);
+        Photo photo = photozService.remove(id);
         if (photo == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/photoz/upload")
     public Photo create(@RequestPart("file") MultipartFile file) throws IOException {
-        Photo photo = new Photo();
-        photo.setId(UUID.randomUUID().toString());
-        photo.setFileName(file.getOriginalFilename());
-        photo.setData(file.getBytes());
-
-        db.put(photo.getId(), photo);
-
-        return photo;
+        return photozService.save(file.getOriginalFilename(), file.getContentType(), file.getBytes());
     }
 }
