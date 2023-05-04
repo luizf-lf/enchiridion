@@ -9,6 +9,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class PhotozController {
@@ -20,16 +22,19 @@ public class PhotozController {
     }
 
     @GetMapping("/")
-    public String hello() {
-        return "Hello World";
+    public Map<String, String> hello() {
+        Map<String, String> responseMap = new HashMap<>();
+        responseMap.put("response", "pong");
+
+        return responseMap;
     }
 
-    @GetMapping("/photoz")
+    @GetMapping("/api/images")
     public Collection<Photo> get() {
         return photozService.get();
     }
 
-    @GetMapping("/photoz/{id}")
+    @GetMapping("/api/images/{id}")
     public Photo get(@PathVariable String id) {
         Photo photo = photozService.get(id);
 
@@ -38,13 +43,13 @@ public class PhotozController {
         return photo;
     }
 
-    @DeleteMapping("/photoz/{id}")
+    @DeleteMapping("/api/images/{id}")
     public void delete(@PathVariable String id) {
         Photo photo = photozService.remove(id);
         if (photo == null) throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/photoz/upload")
+    @PostMapping("/api/images/upload")
     public Photo create(@RequestPart("file") MultipartFile file) throws IOException {
         return photozService.save(file.getOriginalFilename(), file.getContentType(), file.getBytes());
     }
