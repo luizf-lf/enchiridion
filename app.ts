@@ -1,5 +1,6 @@
 import { CompanyAccount } from './class/CompanyAccount';
 import { PeopleAccount } from './class/PeopleAccount';
+import { SpecialAccount } from './class/SpecialAccount';
 
 // const peopleAccount: PeopleAccount = new PeopleAccount(1, 'Nath', 10)
 // console.log(peopleAccount)
@@ -19,3 +20,10 @@ accountTwo.withdraw(275);
 accountTwo.deposit(50);
 accountTwo.withdraw(70);
 accountTwo.withdraw(300); // Saque com saldo insuficiente
+
+const accountThree = new SpecialAccount('Luiz com z', 12);
+accountThree.depositWith10(100);
+accountThree.deposit(50);
+accountThree.withdraw(90);
+accountThree.withdraw(90);
+// accountThree.setName('Teste'); // Retornará um erro

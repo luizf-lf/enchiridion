@@ -1,5 +1,5 @@
 export abstract class DioAccount {
-  private name: string;
+  private readonly name: string;
   private readonly accountNumber: number;
   private balance: number = 0;
   private status: boolean = true;
@@ -24,10 +24,13 @@ export abstract class DioAccount {
   /**
    * Define o nome da conta
    * @param name nome a ser definido
+   * @deprecated Método deprecado, irá retornar um erro ao ser executado.
    */
   setName(name: string): void {
-    this.name = name;
-    console.log('Nome alterado com sucesso!');
+    throw new Error('Não é possível alterar o nome da conta');
+
+    // this.name = name;
+    // console.log('Nome alterado com sucesso!');
   }
 
   /**
