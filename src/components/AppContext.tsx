@@ -1,31 +1,32 @@
-import { createContext, useEffect, useState } from "react"
-import { getAllLocalStorage } from "../services/storage"
+/* eslint-disable react-hooks/exhaustive-deps */
+import { createContext, useContext, useEffect, useState } from 'react';
+import { getAllLocalStorage } from '../services/storage';
 
 interface IAppContext {
-    user: string,
-    isLoggedIn: boolean,
-    setIsLoggedIn: (isLoggedIn: boolean) => void
+  user: string;
+  isLoggedIn: boolean;
+  setIsLoggedIn: (isLoggedIn: boolean) => void;
 }
-  
-export const AppContext = createContext({} as IAppContext)
-  
+
+const AppContext = createContext({} as IAppContext);
+
 export const AppContextProvider = ({ children }: any) => {
-    const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(false)
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-    const storage = getAllLocalStorage()
+  const storage = getAllLocalStorage();
 
-    useEffect(() => {
-      if(storage){
-        const { login } = JSON.parse(storage)
-        setIsLoggedIn(login)
-      }
-    }, [])
+  useEffect(() => {
+    if (storage) {
+      const { login } = JSON.parse(storage);
+      setIsLoggedIn(login);
+    }
+  }, []);
 
-    const user = 'nathally'
-  
-    return (
-      <AppContext.Provider value={{ user, isLoggedIn, setIsLoggedIn }}>
-        { children }
-      </AppContext.Provider>
-    )
-}
+  const user = 'nathally';
+
+  return <AppContext.Provider value={{ user, isLoggedIn, setIsLoggedIn }}>{children}</AppContext.Provider>;
+};
+
+export const useAppContext = () => {
+  return useContext(AppContext);
+};

@@ -1,19 +1,19 @@
-import { Box, Center, Input } from '@chakra-ui/react';
-import { useContext, useState } from 'react';
+import { Box, Center, Container, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AppContext } from '../components/AppContext';
-import { Card } from '../components/Card';
-import DButton from '../components/DButton';
+import { useAppContext } from '../components/AppContext';
 import { login } from '../services/login';
 import { changeLocalStorage } from '../services/storage';
+import CustomButton from '../components/CustomButton';
 
 const Home = () => {
   const [email, setEmail] = useState<string>('');
-  const { setIsLoggedIn } = useContext(AppContext);
+  const [password, setPassword] = useState<string>('');
+  const { setIsLoggedIn } = useAppContext();
   const navigate = useNavigate();
 
-  const validateUser = async (email: string) => {
-    const loggedIn = await login(email);
+  const validateUser = async (email: string, password: string) => {
+    const loggedIn = await login(email, password);
 
     if (!loggedIn) {
       return alert('Email inválido');
@@ -25,17 +25,33 @@ const Home = () => {
   };
 
   return (
-    <Box padding="25px">
-      <Card>
-        <Center>
-          <h1>Faça o login</h1>
-        </Center>
-        <Input placeholder="email" value={email} onChange={(event) => setEmail(event.target.value)} />
-        <Input placeholder="password" />
-        <Center>
-          <DButton onClick={() => validateUser(email)} />
-        </Center>
-      </Card>
+    <Box minHeight="100vh" backgroundColor="#E3F4F4" padding="24px">
+      <Container>
+        <Box backgroundColor="#FFFFFF" borderRadius="16px" padding="16px">
+          <Center>
+            <h1 style={{ fontSize: 24, marginBottom: 16 }}>Faça o login</h1>
+          </Center>
+          <FormControl>
+            <FormLabel>Email:</FormLabel>
+            <Input
+              placeholder="Insira seu email"
+              marginBottom={4}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Senha:</FormLabel>
+            <Input
+              placeholder="Insira sua senha"
+              marginBottom={4}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </FormControl>
+          <CustomButton title="Login" onClick={() => validateUser(email, password)} />
+        </Box>
+      </Container>
     </Box>
   );
 };
