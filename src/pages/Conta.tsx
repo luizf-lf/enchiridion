@@ -1,4 +1,4 @@
-import { Center, SimpleGrid, Spinner } from '@chakra-ui/react';
+import { Box, Center, Container, SimpleGrid, Spinner } from '@chakra-ui/react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { api } from '../api';
@@ -31,30 +31,29 @@ const Conta = () => {
     getData();
   }, []);
 
-  const actualData = new Date();
-
   if (userData && id !== userData.id) {
     navigate('/');
   }
 
   return (
-    <Center>
-      <SimpleGrid columns={2} spacing={8} paddingTop={16}>
-        {userData === undefined || userData === null ? (
-          <Center>
-            <Spinner size="xl" color="white" />
-          </Center>
-        ) : (
-          <>
-            <CardInfo
-              mainContent={`Bem vinda ${userData?.name}`}
-              content={`${actualData.getDay()} / ${actualData.getMonth()} / ${actualData.getFullYear()} ${actualData.getHours()}:${actualData.getMinutes()}`}
-            />
-            <CardInfo mainContent="Saldo" content={`R$ ${userData.balance}`} />
-          </>
-        )}
-      </SimpleGrid>
-    </Center>
+    <Box minHeight="100vh" backgroundColor="#E3F4F4">
+      <Container>
+        <Center>
+          <SimpleGrid columns={2} spacing={8} paddingTop={16}>
+            {userData === undefined || userData === null ? (
+              <Center>
+                <Spinner size="xl" color="white" />
+              </Center>
+            ) : (
+              <>
+                <CardInfo label={`Bem vindo(a)`} content={userData?.name} />
+                <CardInfo label="Saldo" content={`R$ ${userData.balance}`} />
+              </>
+            )}
+          </SimpleGrid>
+        </Center>
+      </Container>
+    </Box>
   );
 };
 

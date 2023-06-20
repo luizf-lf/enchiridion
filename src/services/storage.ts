@@ -1,19 +1,27 @@
-interface IDIoBank {
-  login: boolean;
+interface IDIoBankLoginStorage {
+  login: string;
+  password: string;
 }
 
-const dioBank = {
-  login: false,
+const dioBankAuthModel = {
+  login: '',
+  password: '',
 };
 
-export const getAllLocalStorage = (): string | null => {
-  return localStorage.getItem('diobank');
+export const getAllLocalStorage = (): IDIoBankLoginStorage | null => {
+  const item = localStorage.getItem('DioBankAuth');
+
+  if (item) {
+    return JSON.parse(item) as IDIoBankLoginStorage;
+  }
+
+  return null;
 };
 
 export const createLocalStorage = (): void => {
-  localStorage.setItem('diobank', JSON.stringify(dioBank));
+  localStorage.setItem('DioBankAuth', JSON.stringify(dioBankAuthModel));
 };
 
-export const changeLocalStorage = (dioBank: IDIoBank): void => {
-  localStorage.setItem('diobank', JSON.stringify(dioBank));
+export const changeLocalStorage = (authData: IDIoBankLoginStorage): void => {
+  localStorage.setItem('DioBankAuth', JSON.stringify(authData));
 };

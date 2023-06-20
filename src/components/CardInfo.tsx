@@ -1,24 +1,17 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Stat, StatLabel, StatNumber } from '@chakra-ui/react';
 
 interface ICardInfo {
-    mainContent: string,
-    content: string
+  label: string;
+  content: string;
 }
 
-const CardInfo = ({ mainContent, content }: ICardInfo) => {
+const CardInfo = ({ label, content }: ICardInfo) => {
   return (
-    <Box 
-        backgroundColor="white" 
-        minHeight="120px" 
-        padding={8}
-        borderRadius="25px"
-    >
-        <Text fontSize='2xl' fontWeight='bold'>
-            { mainContent }
-        </Text>
-        <Text fontSize='xl'>
-            { content }
-        </Text>
+    <Box backgroundColor="white" minHeight="120px" padding={8} borderRadius="25px">
+      <Stat>
+        <StatLabel>{label}</StatLabel>
+        <StatNumber>{content}</StatNumber>
+      </Stat>
     </Box>
   );
 };

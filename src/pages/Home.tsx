@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Center, Container, FormControl, FormLabel, Input } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../components/AppContext';
 import { login } from '../services/login';
-import { changeLocalStorage } from '../services/storage';
+import { changeLocalStorage, getAllLocalStorage } from '../services/storage';
 import CustomButton from '../components/CustomButton';
 
 const Home = () => {
@@ -20,9 +21,28 @@ const Home = () => {
     }
 
     setIsLoggedIn(true);
-    changeLocalStorage({ login: true });
+    changeLocalStorage({ login: email, password });
     navigate('/conta/1');
   };
+
+  useEffect(() => {
+    const doLogin = async () => {
+      const auth = getAllLocalStorage();
+      console.log(auth);
+
+      if (!auth) {
+        return;
+      }
+
+      const loggedIn = await login(auth.login, auth.password);
+
+      if (loggedIn) {
+        navigate('/conta/1');
+      }
+    };
+
+    doLogin();
+  }, []);
 
   return (
     <Box minHeight="100vh" backgroundColor="#E3F4F4" padding="24px">
@@ -47,6 +67,7 @@ const Home = () => {
               marginBottom={4}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              type="password"
             />
           </FormControl>
           <CustomButton title="Login" onClick={() => validateUser(email, password)} />
