@@ -16,7 +16,7 @@ export const AppContextProvider = ({ children }: any) => {
   const storage = getAllLocalStorage();
 
   useEffect(() => {
-    if (storage) {
+    if (storage && storage.login !== '') {
       setIsLoggedIn(true);
     }
   }, []);

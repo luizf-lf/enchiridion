@@ -28,7 +28,6 @@ const Home = () => {
   useEffect(() => {
     const doLogin = async () => {
       const auth = getAllLocalStorage();
-      console.log(auth);
 
       if (!auth) {
         return;
@@ -37,6 +36,7 @@ const Home = () => {
       const loggedIn = await login(auth.login, auth.password);
 
       if (loggedIn) {
+        setIsLoggedIn(true);
         navigate('/conta/1');
       }
     };

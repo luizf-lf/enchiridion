@@ -31,7 +31,7 @@
 - Utilize o localStorage para armazenar os dados do usuário ao logar
 - Caso os dados do usuário existam no localStorage, a tela de login não deve ser exibida
 
-[ ] Crie uma página para exibir as informações do usuário
+[x] Crie uma página para exibir as informações do usuário
 
 - Crie uma página onde será exibido o nome, email
 - Esta página só poderá ser acessada caso o usuário esteja logado
