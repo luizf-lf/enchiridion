@@ -36,4 +36,16 @@ export class UserController {
     const users = this.userService.getAllUsers();
     return response.status(200).json(users);
   }
+
+  deleteUser(request: Request, response: Response) {
+    const { email } = request.body as ICreateUserRequest;
+
+    if (typeof this.userService.findUserByEmail(email) === 'undefined') {
+      return response.status(404).json({ message: 'Usuário não encontrado para exclusão' });
+    }
+
+    this.userService.deleteUser(email);
+
+    return response.status(200).json({ message: 'Usuário deletado' });
+  }
 }

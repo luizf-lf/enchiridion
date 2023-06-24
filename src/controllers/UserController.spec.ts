@@ -7,24 +7,11 @@ describe('UserController', () => {
   const mockUserService: Partial<UserService> = {
     createUser: jest.fn(),
     getAllUsers: jest.fn(),
+    deleteUser: jest.fn(),
+    findUserByEmail: jest.fn(),
   };
 
   const userController = new UserController(mockUserService as UserService);
-
-  it('Deve adicionar um novo usuário', () => {
-    const mockRequest = {
-      body: {
-        name: 'Luiz',
-        email: 'luiz@test.com',
-      },
-    } as Request;
-    const mockResponse = makeMockResponse();
-    userController.createUser(mockRequest, mockResponse);
-    expect(mockResponse.state.status).toBe(201);
-    expect(mockResponse.state.json).toMatchObject({
-      message: 'Usuário criado',
-    });
-  });
 
   it('Não deve aceitar um email inválido', () => {
     const mockRequest = {
@@ -78,6 +65,21 @@ describe('UserController', () => {
     });
   });
 
+  it('Deve adicionar um novo usuário', () => {
+    const mockRequest = {
+      body: {
+        name: 'Luiz',
+        email: 'luiz@test.com',
+      },
+    } as Request;
+    const mockResponse = makeMockResponse();
+    userController.createUser(mockRequest, mockResponse);
+    expect(mockResponse.state.status).toBe(201);
+    expect(mockResponse.state.json).toMatchObject({
+      message: 'Usuário criado',
+    });
+  });
+
   it('Deve recuperar todos os usuários através do método getAllUsers', () => {
     const getAllUsersSpy = jest.spyOn(userController, 'getAllUsers');
 
@@ -85,5 +87,21 @@ describe('UserController', () => {
     userController.getAllUsers({} as Request, mockResponse);
 
     expect(getAllUsersSpy).toHaveBeenCalled();
+  });
+
+  it('Falhar ao excluir um usuário não existente', () => {
+    const mockRequest = {
+      body: {
+        name: 'Luiz',
+        email: 'email.that.surely@dont.exist',
+      },
+    } as Request;
+    const mockResponse = makeMockResponse();
+    userController.deleteUser(mockRequest, mockResponse);
+
+    expect(mockResponse.state.status).toBe(404);
+    expect(mockResponse.state.json).toMatchObject({
+      message: 'Usuário não encontrado para exclusão',
+    });
   });
 });
