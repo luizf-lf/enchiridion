@@ -26,6 +26,41 @@ describe('UserController', () => {
     });
   });
 
+  it('Não deve aceitar um email inválido', () => {
+    const mockRequest = {
+      body: {
+        name: 'Luiz',
+        email: 'test.com',
+      },
+    } as Request;
+
+    const mockResponse = makeMockResponse();
+
+    userController.createUser(mockRequest, mockResponse);
+
+    expect(mockResponse.state.status).toBe(400);
+    expect(mockResponse.state.json).toMatchObject({
+      message: 'Email não possui um formato válido.',
+    });
+  });
+
+  it('Deve retornar um erro caso não seja informado o e-mail', () => {
+    const mockRequest = {
+      body: {
+        name: 'Luiz',
+      },
+    } as Request;
+
+    const mockResponse = makeMockResponse();
+
+    userController.createUser(mockRequest, mockResponse);
+
+    expect(mockResponse.state.status).toBe(400);
+    expect(mockResponse.state.json).toMatchObject({
+      message: 'E-mail é obrigatório.',
+    });
+  });
+
   it('Deve retornar um erro caso não seja informado o nome', () => {
     const mockRequest = {
       body: {

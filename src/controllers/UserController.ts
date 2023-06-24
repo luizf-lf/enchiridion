@@ -1,6 +1,11 @@
 import { Request, Response } from 'express';
 import { UserService } from '../services/UserService';
 
+interface ICreateUserRequest {
+  name: string;
+  email: string;
+}
+
 export class UserController {
   userService: UserService;
 
@@ -9,10 +14,18 @@ export class UserController {
   }
 
   createUser(request: Request, response: Response): Response {
-    const user = request.body;
+    const user = request.body as ICreateUserRequest;
 
     if (!user.name) {
       return response.status(400).json({ message: 'Name é obrigatório.' });
+    }
+
+    if (!user.email) {
+      return response.status(400).json({ message: 'E-mail é obrigatório.' });
+    }
+
+    if (!user.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      return response.status(400).json({ message: 'Email não possui um formato válido.' });
     }
 
     this.userService.createUser(user.name, user.email);
