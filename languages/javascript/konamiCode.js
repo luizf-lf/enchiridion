@@ -20,12 +20,18 @@ document.addEventListener('keydown', (event) => {
       // The magic goes here.
       // On this example, it creates a "rainbow" animation
       console.debug('matches');
-      document.body.style.animation = '';
-      document.body.style.filter = '';
 
       document.body.style.filter = 'hue-rotate(0deg)';
       document.styleSheets[0].insertRule('@keyframes rotateHue { to { filter: hue-rotate(1440deg); } }');
       document.body.style.animation = 'rotateHue 3s ease-in-out';
+
+      // undoes everything
+      setTimeout(() => {
+        document.body.style.animation = '';
+        document.body.style.filter = '';
+
+        document.styleSheets[0].removeRule(document.styleSheets[0].cssRules.length - 1);
+      }, 3000);
     }
   } catch (error) {
     console.error(error);
