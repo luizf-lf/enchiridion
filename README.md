@@ -1,5 +1,7 @@
 # Enchiridion
 
+![cover](./docs/cover.jpg)
+
 ## About
 
 A personal monorepo containing all of my personal coding adventures.
