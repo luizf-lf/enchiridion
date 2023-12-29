@@ -2,10 +2,11 @@ import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 
 class PersonController {
-  prisma: PrismaClient;
+  private prisma: PrismaClient;
 
-  constructor(prisma = new PrismaClient()) {
+  constructor(prisma: PrismaClient) {
     this.prisma = prisma;
+    this.index = this.index.bind(this);
   }
 
   /**
@@ -35,13 +36,16 @@ class PersonController {
   async index(req: Request, res: Response) {
     try {
       const { page = 1, pageSize = 10 } = req.query;
+
       const people = await this.prisma.person.findMany({
         take: Number(pageSize),
         skip: (Number(page) - 1) * Number(pageSize),
       });
-      res.json(people);
+      console.log('Total people: ' + people.length);
+      res.status(200).json(people);
     } catch (error) {
       res.status(500).json({ error: 'Internal Server Error' });
+      console.log(error);
     }
   }
 
@@ -74,6 +78,8 @@ class PersonController {
           age,
         },
       });
+      console.log('Person created:');
+      console.log(newPerson);
       res.json(newPerson);
     } catch (error) {
       res.status(500).json({ error: 'Internal Server Error' });

@@ -1,8 +1,11 @@
 import express from 'express';
 import PersonController from './controllers/PersonController';
+import { PrismaClient } from '@prisma/client';
 
 const router = express.Router();
-const personController = new PersonController();
+const prisma = new PrismaClient();
+
+const personController = new PersonController(prisma);
 
 router.get('/api/people', personController.index);
 router.post('/api/people', personController.create);
