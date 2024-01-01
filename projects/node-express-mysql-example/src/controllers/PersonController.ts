@@ -6,7 +6,6 @@ class PersonController {
 
   constructor(prisma: PrismaClient) {
     this.prisma = prisma;
-    this.index = this.index.bind(this);
   }
 
   /**
@@ -33,13 +32,16 @@ class PersonController {
    *           items:
    *             $ref: '#/definitions/Person'
    */
-  async index(req: Request, res: Response) {
+  index = async (req: Request, res: Response) => {
     try {
       const { page = 1, pageSize = 10 } = req.query;
 
       const people = await this.prisma.person.findMany({
         take: Number(pageSize),
         skip: (Number(page) - 1) * Number(pageSize),
+        where: {
+          isDeleted: false,
+        },
       });
       console.log('Total people: ' + people.length);
       res.status(200).json(people);
@@ -47,7 +49,7 @@ class PersonController {
       res.status(500).json({ error: 'Internal Server Error' });
       console.log(error);
     }
-  }
+  };
 
   /**
    * @swagger
@@ -69,7 +71,7 @@ class PersonController {
    *         schema:
    *           $ref: '#/definitions/Person'
    */
-  async create(req: Request, res: Response) {
+  create = async (req: Request, res: Response) => {
     try {
       const { name, age } = req.body;
       const newPerson = await this.prisma.person.create({
@@ -83,8 +85,9 @@ class PersonController {
       res.json(newPerson);
     } catch (error) {
       res.status(500).json({ error: 'Internal Server Error' });
+      console.error(error);
     }
-  }
+  };
 
   /**
    * @swagger
@@ -111,7 +114,7 @@ class PersonController {
    *         schema:
    *           $ref: '#/definitions/Person'
    */
-  async update(req: Request, res: Response) {
+  update = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
       const { name, age } = req.body;
@@ -126,7 +129,7 @@ class PersonController {
     } catch (error) {
       res.status(500).json({ error: 'Internal Server Error' });
     }
-  }
+  };
 
   /**
    * @swagger
@@ -147,10 +150,9 @@ class PersonController {
    *         schema:
    *           $ref: '#/definitions/Person'
    */
-  async delete(req: Request, res: Response) {
+  delete = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
-      // Marcação lógica para exclusão
       const deletedPerson = await this.prisma.person.update({
         where: { id: Number(id) },
         data: {
@@ -161,7 +163,7 @@ class PersonController {
     } catch (error) {
       res.status(500).json({ error: 'Internal Server Error' });
     }
-  }
+  };
 }
 
 export default PersonController;
