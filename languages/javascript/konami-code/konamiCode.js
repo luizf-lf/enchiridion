@@ -1,5 +1,8 @@
-// adds the event listener to the keydown event
-document.addEventListener('keydown', (event) => {
+/**
+ * Handles the Konami Code execution
+ * @param {Event} event keydown press event
+ */
+function kCodeHandler(event) {
   try {
     const sequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
     if (!document.kcSequence) {
@@ -36,4 +39,7 @@ document.addEventListener('keydown', (event) => {
   } catch (error) {
     console.error(error);
   }
-});
+}
+
+// adds the event listener
+document.addEventListener('keydown', kCodeHandler);
