@@ -1,6 +1,6 @@
 # Enchiridion
 
-![cover](./docs/cover.jpg)
+![cover](./_docs/cover.jpg)
 
 ## About
 
