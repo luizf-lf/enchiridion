@@ -30,13 +30,13 @@ After that, you can use the following commands available from the `package.json`
 1. Run the Metro server:
 
    ```bash
-     $ yarn start
+     yarn start
    ```
 
 2. Build the app in debug mode (Android)
 
    ```bash
-     $ yarn android
+     yarn android
    ```
 
    Optionally you can just hit `a` after starting the metro server to open the app on android.
