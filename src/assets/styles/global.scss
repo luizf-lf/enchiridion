@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap');
+
+:root {
+  --bg-gray: #f2f3f5;
+  --white: #fff;
+  --gray-line: #dcdde0;
+  --title: #2e384d;
+  --text: #666666;
+  --cyan: #51c4d3;
+
+  --red: #fb3640;
+  --green: #289672;
+
+  --shadow-lg: 0px 0px 60px 0px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0px 0px 30px 0px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0px 0px 15px 0px rgba(0, 0, 0, 0.05);
+
+  // scrollbar style
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #51c4d3;
+    border-radius: 1rem;
+  }
+
+  // selection color
+  ::selection {
+    background-color: var(--cyan);
+    color: var(--white);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: Roboto, sans-serif;
+}
+
+body {
+  background-color: var(--bg-gray);
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
