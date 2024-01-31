@@ -9,11 +9,11 @@ const port = 3000;
 const swaggerOptions = {
   swaggerDefinition: {
     info: {
-      title: 'API de Pessoas',
+      title: 'People API Documentation',
       version: '1.0.0',
     },
   },
-  apis: ['src/controllers/**.ts'],
+  apis: ['docs/swagger.yml'],
 };
 
 const specs = swaggerJsdoc(swaggerOptions);

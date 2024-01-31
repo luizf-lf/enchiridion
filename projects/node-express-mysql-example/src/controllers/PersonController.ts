@@ -8,30 +8,6 @@ class PersonController {
     this.prisma = prisma;
   }
 
-  /**
-   * @swagger
-   * /api/people:
-   *   get:
-   *     description: Retorna todas as pessoas paginadas
-   *     produces:
-   *       - application/json
-   *     parameters:
-   *       - name: page
-   *         description: Número da página
-   *         in: query
-   *         required: false
-   *       - name: pageSize
-   *         description: Tamanho da página
-   *         in: query
-   *         required: false
-   *     responses:
-   *       200:
-   *         description: Lista de pessoas
-   *         schema:
-   *           type: array
-   *           items:
-   *             $ref: '#/definitions/Person'
-   */
   index = async (req: Request, res: Response) => {
     try {
       const { page = 1, pageSize = 10 } = req.query;
@@ -51,26 +27,6 @@ class PersonController {
     }
   };
 
-  /**
-   * @swagger
-   * /api/people:
-   *   post:
-   *     description: Cria uma nova pessoa
-   *     produces:
-   *       - application/json
-   *     parameters:
-   *       - name: body
-   *         description: Dados da pessoa a ser criada
-   *         in: body
-   *         required: true
-   *         schema:
-   *           $ref: '#/definitions/CreatePersonDto'
-   *     responses:
-   *       200:
-   *         description: Pessoa criada com sucesso
-   *         schema:
-   *           $ref: '#/definitions/Person'
-   */
   create = async (req: Request, res: Response) => {
     try {
       const { name, age } = req.body;
@@ -89,31 +45,6 @@ class PersonController {
     }
   };
 
-  /**
-   * @swagger
-   * /api/people/{id}:
-   *   put:
-   *     description: Atualiza os dados de uma pessoa pelo ID
-   *     produces:
-   *       - application/json
-   *     parameters:
-   *       - name: id
-   *         description: ID da pessoa a ser atualizada
-   *         in: path
-   *         required: true
-   *         type: integer
-   *       - name: body
-   *         description: Novos dados da pessoa
-   *         in: body
-   *         required: true
-   *         schema:
-   *           $ref: '#/definitions/UpdatePersonDto'
-   *     responses:
-   *       200:
-   *         description: Pessoa atualizada com sucesso
-   *         schema:
-   *           $ref: '#/definitions/Person'
-   */
   update = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
@@ -131,25 +62,6 @@ class PersonController {
     }
   };
 
-  /**
-   * @swagger
-   * /api/people/{id}:
-   *   delete:
-   *     description: Exclui logicamente uma pessoa pelo ID
-   *     produces:
-   *       - application/json
-   *     parameters:
-   *       - name: id
-   *         description: ID da pessoa a ser excluída
-   *         in: path
-   *         required: true
-   *         type: integer
-   *     responses:
-   *       200:
-   *         description: Pessoa excluída com sucesso
-   *         schema:
-   *           $ref: '#/definitions/Person'
-   */
   delete = async (req: Request, res: Response) => {
     try {
       const { id } = req.params;
