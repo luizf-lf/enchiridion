@@ -1,0 +1,40 @@
+.timeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  padding: 2rem;
+
+  .welcomeMessage {
+    color: var(--text);
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .timeDateContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .time {
+      font-size: 4rem;
+      font-weight: bold;
+      color: var(--cyan);
+
+      .timeSeconds {
+        font-size: 2rem;
+        font-weight: normal;
+      }
+    }
+    .date {
+      color: var(--text);
+      font-size: 1.25rem;
+    }
+  }
+}

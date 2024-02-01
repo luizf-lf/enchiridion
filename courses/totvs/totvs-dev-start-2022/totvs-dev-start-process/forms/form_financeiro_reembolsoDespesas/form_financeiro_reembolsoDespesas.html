@@ -1,0 +1,271 @@
+<html>
+  <head>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/style-guide/css/fluig-style-guide.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="/portal/resources/js/jquery/jquery.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/portal/resources/js/jquery/jquery-ui.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/portal/resources/js/mustache/mustache-min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/style-guide/js/fluig-style-guide.min.js"
+      charset="utf-8"
+    ></script>
+  </head>
+  <body>
+    <div class="fluig-style-guide">
+      <form name="form" role="form">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Relatório De Despesas</div>
+          <div class="panel-body">
+            <div class="panel panel-primary fs-huge-margin-bottom">
+              <div class="panel-body">
+                <h1 class="text-center">Relatório De Despesas</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <p>
+                  Campos marcados com <span class="text-danger">*</span> são
+                  obrigatórios.
+                </p>
+              </div>
+            </div>
+
+            <h2 class="text-center">Solicitante</h2>
+            <div class="panel panel-primary">
+              <div class="panel-body">
+                <div class="form-group">
+                  <label for="vl_requesterName">Solicitante</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="text"
+                    id="vl_requesterName"
+                    name="vl_requesterName"
+                    class="form-control"
+                    placeholder="Seu nome será preenchido automaticamente"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="vl_requesterMail">E-mail</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="text"
+                    id="vl_requesterMail"
+                    name="vl_requesterMail"
+                    class="form-control"
+                    placeholder="Seu e-mail será preenchido automaticamente"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="vl_requesterCompany">Empresa</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="text"
+                    id="vl_requesterCompany"
+                    name="vl_requesterCompany"
+                    class="form-control"
+                    placeholder="Insira o nome de sua empresa"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="vl_requesterArea">Área</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="text"
+                    id="vl_requesterArea"
+                    name="vl_requesterArea"
+                    class="form-control"
+                    placeholder="Insira sua área"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <h2 class="text-center">Despesas</h2>
+
+            <div class="panel panel-primary">
+              <div class="panel-body">
+                <button
+                  type="button"
+                  class="btn btn-success fs-float-right fs-md-margin-bottom"
+                  onclick="wdkAddChild('table_expenses')"
+                >
+                  <i
+                    class="fluigicon fluigicon-plus icon-xs fs-sm-margin-right"
+                  ></i>
+                  Incluir
+                </button>
+                <div class="row">
+                  <div class="col-md-12">
+                    <table
+                      class="table"
+                      tablename="table_expenses"
+                      noaddbutton="true"
+                    >
+                      <tr>
+                        <th>Categoria <span class="text-danger">*</span></th>
+                        <th>Descrição</th>
+                        <th>Vl. Unitário <span class="text-danger">*</span></th>
+                        <th>Quantidade <span class="text-danger">*</span></th>
+                        <th>Vl. Total</th>
+                      </tr>
+                      <tr>
+                        <td>
+                          <select
+                            id="vl_expenseType"
+                            name="vl_expenseType"
+                            class="form-control"
+                          >
+                            <option value="" selected style="display: none">
+                              Selecione
+                            </option>
+                            <option value="TOLL">Pedágio</option>
+                            <option value="HOST">Hospedagem</option>
+                            <option value="FUEL">Combustível</option>
+                            <option value="FOOD">Alimentação</option>
+                            <option value="OTHER">Outra</option>
+                          </select>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="vl_expenseDescription"
+                              name="vl_expenseDescription"
+                              placeholder="Insira a Descrição"
+                            />
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-addon">R$</div>
+                              <input
+                                type="number"
+                                class="form-control"
+                                id="vl_expenseUnitaryValue"
+                                name="vl_expenseUnitaryValue"
+                                placeholder="Insira o valor unitário"
+                                onkeyup="calculateRowValue(this.id)"
+                                value="0"
+                              />
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <input
+                              type="number"
+                              class="form-control"
+                              id="vl_expenseQuantity"
+                              name="vl_expenseQuantity"
+                              placeholder="insira a quantidade"
+                              onkeyup="calculateRowValue(this.id)"
+                              value="0"
+                            />
+                          </div>
+                        </td>
+                        <td>
+                          <div class="form-group">
+                            <div class="input-group">
+                              <div class="input-group-addon">R$</div>
+                              <input
+                                type="number"
+                                class="form-control totalAmountRow"
+                                id="vl_expenseTotalValue"
+                                name="vl_expenseTotalValue"
+                                readonly
+                                value="0"
+                              />
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div style="display: flex; justify-content: flex-end">
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label for="vl_globalTotal">Total Geral</label>
+                        <div class="input-group">
+                          <div class="input-group-addon">R$</div>
+                          <input
+                            type="number"
+                            id="vl_globalTotal"
+                            name="vl_globalTotal"
+                            class="form-control"
+                            readonly
+                            value="0"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div
+                    class="col-md-12"
+                    style="display: flex; justify-content: flex-end"
+                    id="valueAmountWarning"
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="text-center">Ações</h3>
+
+            <div class="panel panel-primary">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div
+                      class="btn-group btn-group-lg"
+                      style="display: flex; justify-content: center"
+                    >
+                      <button type="reset" class="btn btn-warning">
+                        Limpar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        onclick="handleRedirect()"
+                      >
+                        Cancelar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        onclick="handleSubmit()"
+                      >
+                        Enviar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script src="form_financeiro_reembolsoDespesas.js"></script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  background: #eeeeee;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.inputGroup {
+  display: flex;
+  margin-bottom: 1em;
+  align-items: center;
+}
+
+.inputGroup img {
+  height: 1.5em;
+  margin-right: 0.5em;
+}
+
+.inputs {
+  margin: 1em 0;
+}
+
+.imcDisplay {
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.descIMC {
+  width: 350px;
+  height: 75px;
+  border: 5px solid #373a40;
+  padding: 1em;
+  border-radius: 1em;
+  margin-top: 1em;
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputClass {
+  width: 250px;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  border: 2px solid #373a40;
+  background: transparent;
+}
+
+nav {
+  color: white;
+  background: #383e56;
+  padding: 0.75em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5em;
+}

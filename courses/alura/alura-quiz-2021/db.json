@@ -1,0 +1,59 @@
+{
+  "bg": "https://i.pinimg.com/originals/45/92/d0/4592d073168663d9499b1f7c1535fb32.jpg",
+  "title": "Quiz Game of Thrones",
+  "description": "Teste os seus conhecimentos sobre a série Game Of Thrones.",
+  "questions": [
+    {
+      "image": "https://static01.nyt.com/images/2019/12/17/books/review/17fatbooks/17fatbooks-mobileMasterAt3x.jpg",
+      "title": "Qual o nome da série de livros que inspirou a série televisiva?",
+      "description": "",
+      "answer": 2,
+      "alternatives": [
+        "A Song Of Snow And Fire",
+        "A Dance Of Fire And Ice",
+        "A Song Of Ice And Fire",
+        "A Song Of Fire And Ice"
+      ]
+    },
+    {
+      "image": "https://www.incimages.com/uploaded_files/image/1920x1080/getty_499578755_377423.jpg",
+      "title": "Qual o nome do autor da série de livros que inspirou a série televisiva?",
+      "description": "Preste bastante atenção",
+      "answer": 1,
+      "alternatives": [
+        "J. K. Rowling",
+        "George R. R. Martin",
+        "Machado De Assis",
+        "Lauren Faust",
+        "William Shakespeare"
+      ]
+    },
+    {
+      "image": "https://ibcdn.canaltech.com.br/c49Bc1N8R49SuX0Gkrg968hObTU=/512x288/smart/i4016.jpeg",
+      "title": "Quando foi ao ar o primeiro episódio da série?",
+      "description": "",
+      "answer": 0,
+      "alternatives": [
+        "17 de Abril de 2011",
+        "08 de Maio de 2010",
+        "05 de Março de 2013",
+        "21 de Dezembro de 2012"
+      ]
+    }
+  ],
+  "external": [
+    "https://aluraquiz-css.omariosouto.vercel.app/",
+    "https://aluraquiz-marvel.omariosouto.vercel.app/"
+  ],
+  "theme": {
+    "colors": {
+      "primary": "#931a25",
+      "secondary": "#eaac7f",
+      "mainBg": "#1C1814",
+      "contrastText": "#FFFFFF",
+      "wrong": "#d7385e",
+      "success": "#4CAF50"
+    },
+    "borderRadius": "4px"
+  }
+}

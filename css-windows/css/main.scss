@@ -1,0 +1,259 @@
+/*
+    @description: Main sCSS file
+    @author: luizf-lf
+    @since: 2019/10/25
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand|Roboto:300,400&display=swap');
+
+$image: '';
+// $image: 'http://oswallpapers.com/wp-content/uploads/2016/06/img0-2.jpg';
+// $image: 'https://derpicdn.net/img/view/2019/10/23/2176625.png';
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /*this thing resets values and makes the bg image responsive*/
+    background: #333333;
+    transition: 3000ms;
+    overflow: hidden;
+}
+  
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Questrial', sans-serif;
+    background: url($image) fixed no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+/* -=Window - Begin of CSS=- */
+
+#window{
+    transform: scale(1);
+    height: 500px;
+    width: 900px;
+    box-shadow: .6em .6em 2em rgba(0, 0, 0, 0.8);
+    border: 1px solid #131313;
+    border-top: 0;
+    background: inherit;
+    overflow: hidden;
+    position: absolute;
+    transition: transform 400ms;
+    &::before{
+        height: 560px;
+        width: 960px;
+        content: "";
+        position: absolute;
+        top: -30px;
+        left: -30px;
+        bottom: 0;
+        right: 0;
+        background: inherit;
+        box-shadow: inset 0 0 0 600px rgba($color: #000000, $alpha: 0.5);
+        filter: blur(15px);
+    }
+}
+
+.w-title{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 8%;
+    background: #131313;
+}
+
+.title-text{
+    img{
+        height: 1em;
+        padding-right: .6em;
+    }
+    margin: 0;
+    color: #ffffff;
+    padding: 0 1em;
+}
+
+.btns{
+    img{
+        height: .7em;
+        padding: 1em;
+        transition: 200ms;
+    }    
+    img:hover{
+        background: rgba($color: #818181, $alpha: 0.7);
+    }
+    .close:hover{
+        background: rgba($color: #ff3e3e, $alpha: 0.7) !important;
+    }
+}
+
+.w-body{
+    position: absolute;
+    margin-top: .9em;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3em;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 91%;
+    overflow: hidden;
+}
+#w-text{
+    font-style: italic;
+    margin: 0;
+    padding: 1em;
+    transition: transform 800ms;
+}
+/* -=Window - End of CSS=- */
+
+/* -=Start - Begin of CSS*/
+.start{
+    width: 25em;
+    height: 70vh;
+    background: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    bottom: 2.8em;
+    left: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    opacity: 0;
+    transform: translateY(8em);
+    transition: 400ms;
+    img{
+        height: 1.2em;
+        padding: .8em
+    }
+    img:hover{
+        background: rgba($color: #494949, $alpha: 0.6);
+        transition: 100ms;
+    }
+}
+
+.s-side{
+    height: inherit;
+    width: 2.8em;
+    bottom: 0;
+}
+
+.s-apps{
+    width: 22.2em;
+    height: inherit;
+}
+
+.menu-bottom{
+    bottom: 2.8em;
+    position: fixed;
+    width: inherit;
+}
+/* -=Start - End of CSS=- */
+
+/* -=Taskbar - Begin of CSS=- */
+.taskbar{
+    width: 100%;
+    height: 2.8em;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.taskbar-top{
+    height: 2em;
+    top: 0;
+    display: none;
+}
+
+@mixin tb-imgs{
+    img, div{
+        height: 1.2em;
+        padding: .8em;
+        transition: 200ms;
+    }
+    img:hover, div:hover{
+        background: rgba($color: #494949, $alpha: 0.7);
+        transition: 200ms;
+    }
+    a{
+        margin-top: .2em;
+    }
+}
+
+.t-start{
+    display: flex;
+    align-items: center;
+    @include tb-imgs;
+    .active{
+        box-sizing: border-box;
+        height: 100%;
+        padding: .6em;
+        background: rgba($color: #494949, $alpha: 0.7);
+        border-bottom: 2px solid #ffffff;
+        transition: 600ms;
+    }
+    .active:hover{
+        background: rgba($color: #727272, $alpha: 0.7) !important;
+    }
+}
+.t-icons{
+    @include tb-imgs;
+    display: flex;
+    border-right: 1px solid #a3a3a3;
+    margin-right: .5em;
+    padding-right: .3em;
+    align-items: center;
+    color: #ffffff;
+    .t-icon{
+        padding: 1em .4em;
+        font-size: .8em;
+    }
+}
+
+.t-i-top{
+    .t-icon, div{
+        padding: .6em .4em;
+        font-size: .8em;
+    }
+    #up{
+        transform: rotate(180deg);
+    }
+}
+/* -=Taskbar - End of CSS=- */
+
+/* -=Media Queries=- */
+@media screen and (max-width: 940px){
+    #w-text{
+        font-size: 32px;
+        span{
+            font-size: 16px !important;
+        }
+    }
+    #window{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 640px){
+    .sm-d-none{
+        display: none;
+    }
+    .t-icons-btm{
+        display: none;
+    }
+    .taskbar-top{
+        display: flex;
+    }
+}

@@ -1,0 +1,25 @@
+.container {
+  padding-top: 1rem;
+}
+
+.smallAlert {
+  font-size: 14px;
+}
+
+.recovered {
+  color: #00917c;
+}
+
+.totalCases {
+  color: #c70039;
+}
+
+.socialIcon {
+  height: 42px;
+  margin: 16px;
+}
+
+.socialLinksContainer {
+  position: fixed;
+  bottom: 0;
+}

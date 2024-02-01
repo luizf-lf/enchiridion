@@ -1,0 +1,332 @@
+/*
+    @description: Main sCSS file
+    @author: luizf-lf
+    @since: 2019/10/25
+*/
+@import url("https://fonts.googleapis.com/css?family=Quicksand|Roboto:300,400&display=swap");
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  /*this thing resets values and makes the bg image responsive*/
+  background: #333333;
+  -webkit-transition: 3000ms;
+  transition: 3000ms;
+  overflow: hidden;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: 'Questrial', sans-serif;
+  background: url("") fixed no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/* -=Window - Begin of CSS=- */
+#window {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  height: 500px;
+  width: 900px;
+  -webkit-box-shadow: 0.6em 0.6em 2em rgba(0, 0, 0, 0.8);
+          box-shadow: 0.6em 0.6em 2em rgba(0, 0, 0, 0.8);
+  border: 1px solid #131313;
+  border-top: 0;
+  background: inherit;
+  overflow: hidden;
+  position: absolute;
+  -webkit-transition: -webkit-transform 400ms;
+  transition: -webkit-transform 400ms;
+  transition: transform 400ms;
+  transition: transform 400ms, -webkit-transform 400ms;
+}
+
+#window::before {
+  height: 560px;
+  width: 960px;
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  bottom: 0;
+  right: 0;
+  background: inherit;
+  -webkit-box-shadow: inset 0 0 0 600px rgba(0, 0, 0, 0.5);
+          box-shadow: inset 0 0 0 600px rgba(0, 0, 0, 0.5);
+  -webkit-filter: blur(15px);
+          filter: blur(15px);
+}
+
+.w-title {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 8%;
+  background: #131313;
+}
+
+.title-text {
+  margin: 0;
+  color: #ffffff;
+  padding: 0 1em;
+}
+
+.title-text img {
+  height: 1em;
+  padding-right: .6em;
+}
+
+.btns img {
+  height: .7em;
+  padding: 1em;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+
+.btns img:hover {
+  background: rgba(129, 129, 129, 0.7);
+}
+
+.btns .close:hover {
+  background: rgba(255, 62, 62, 0.7) !important;
+}
+
+.w-body {
+  position: absolute;
+  margin-top: .9em;
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 3em;
+  font-weight: 300;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 91%;
+  overflow: hidden;
+}
+
+#w-text {
+  font-style: italic;
+  margin: 0;
+  padding: 1em;
+  -webkit-transition: -webkit-transform 800ms;
+  transition: -webkit-transform 800ms;
+  transition: transform 800ms;
+  transition: transform 800ms, -webkit-transform 800ms;
+}
+
+/* -=Window - End of CSS=- */
+/* -=Start - Begin of CSS*/
+.start {
+  width: 25em;
+  height: 70vh;
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  bottom: 2.8em;
+  left: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  opacity: 0;
+  -webkit-transform: translateY(8em);
+          transform: translateY(8em);
+  -webkit-transition: 400ms;
+  transition: 400ms;
+}
+
+.start img {
+  height: 1.2em;
+  padding: .8em;
+}
+
+.start img:hover {
+  background: rgba(73, 73, 73, 0.6);
+  -webkit-transition: 100ms;
+  transition: 100ms;
+}
+
+.s-side {
+  height: inherit;
+  width: 2.8em;
+  bottom: 0;
+}
+
+.s-apps {
+  width: 22.2em;
+  height: inherit;
+}
+
+.menu-bottom {
+  bottom: 2.8em;
+  position: fixed;
+  width: inherit;
+}
+
+/* -=Start - End of CSS=- */
+/* -=Taskbar - Begin of CSS=- */
+.taskbar {
+  width: 100%;
+  height: 2.8em;
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.taskbar-top {
+  height: 2em;
+  top: 0;
+  display: none;
+}
+
+.t-start {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.t-start img, .t-start div {
+  height: 1.2em;
+  padding: .8em;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+
+.t-start img:hover, .t-start div:hover {
+  background: rgba(73, 73, 73, 0.7);
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+
+.t-start a {
+  margin-top: .2em;
+}
+
+.t-start .active {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 100%;
+  padding: .6em;
+  background: rgba(73, 73, 73, 0.7);
+  border-bottom: 2px solid #ffffff;
+  -webkit-transition: 600ms;
+  transition: 600ms;
+}
+
+.t-start .active:hover {
+  background: rgba(114, 114, 114, 0.7) !important;
+}
+
+.t-icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-right: 1px solid #a3a3a3;
+  margin-right: .5em;
+  padding-right: .3em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #ffffff;
+}
+
+.t-icons img, .t-icons div {
+  height: 1.2em;
+  padding: .8em;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+
+.t-icons img:hover, .t-icons div:hover {
+  background: rgba(73, 73, 73, 0.7);
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+
+.t-icons a {
+  margin-top: .2em;
+}
+
+.t-icons .t-icon {
+  padding: 1em .4em;
+  font-size: .8em;
+}
+
+.t-i-top .t-icon, .t-i-top div {
+  padding: .6em .4em;
+  font-size: .8em;
+}
+
+.t-i-top #up {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+/* -=Taskbar - End of CSS=- */
+/* -=Media Queries=- */
+@media screen and (max-width: 940px) {
+  #w-text {
+    font-size: 32px;
+  }
+  #w-text span {
+    font-size: 16px !important;
+  }
+  #window {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .sm-d-none {
+    display: none;
+  }
+  .t-icons-btm {
+    display: none;
+  }
+  .taskbar-top {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+/*# sourceMappingURL=main.css.map */

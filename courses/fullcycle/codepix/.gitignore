@@ -1,0 +1,5 @@
+.pgdata
+.vscode
+.env
+.idea
+bank-api/.docker/dbdata

@@ -1,0 +1,19 @@
+.pageContainer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .notFoundText {
+    font-size: 3.5rem;
+
+    b {
+      color: var(--red);
+    }
+  }
+
+  img {
+    height: 26rem;
+    margin: 2rem 0;
+  }
+}

@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+html {
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+
+    --bg: #fafafa;
+    --bg-painel: #eae9e9;
+    --bg-painel-tp: #494ca2;
+    --titulo: #3d6cb9;
+    --texto: #393e46;
+    --shadow: #e0dede 1em 1em 1.5em;
+}
+
+html[data-theme='dark'] {
+    --bg: #000;
+    --bg-painel: #222831;
+    --bg-painel-tp: #3c4f65;
+    --texto: #fafafa;
+    --shadow: #000000 1em 1em;
+}
+
+body{
+    background-color: var(--bg);
+}
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background-color: var(--bg-painel);
+    display: flex;
+    h3{
+        color: var(--texto);
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+}
+
+.container {
+    width: 70vw;
+    border-radius: 2em;
+    box-shadow: var(--shadow);
+}
+
+.c-title{
+    display: flex;
+    background-color: var(--bg-painel-tp);
+    border-radius: 2em 2em 0 0;
+    padding: 1em 0;
+    align-items: center;
+
+    h1{
+        font-size: 1.8em;
+        display: block;
+        color: #f4f3f3;
+        margin: 0;
+    }
+
+    img{
+        height: 2.5em;
+        margin: 0 1.5em;
+    }
+}
+
+.c-body{
+    background-color: var(--bg-painel);
+    padding: 1.5em;
+    border-radius: 0 0 2em 2em;
+    p{
+        margin: 0;
+        color: var(--texto);
+        font-size: 1.4em;
+    }   
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    background-color: var(--bg-painel);
+    color: var(--texto);
+    padding: .6em;
+    margin-bottom: 0;
+    a{
+        text-decoration: none;
+        color: var(--texto);
+        font-weight: bold;
+    }
+}
+
+
+/* Switch CSS - Begin */
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+label {
+    margin-top: -.3em;
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 30px;
+	height: 30px;
+	background: var(--texto);
+	display: block;
+	border-radius: 100px;
+	position: relative;
+}
+
+label:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 20px;
+	height: 20px;
+	background: var(--bg-painel);
+	border-radius: 90px;
+	transition: 300ms;
+}
+
+input:checked + label {
+	background: transparent;
+}
+
+input:checked + label:after {
+    width: 26px;
+    height: 26px;
+    background: #ffffc5;
+    border: 3px solid #f0dd92;
+}
+
+label:active:after {
+    width: 30px;
+    height: 30px;
+}
+
+/* Switch CSS - End */
+
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+  transition: all 500ms !important;
+  transition-delay: 0 !important;
+}
+
+@media only screen and (max-width: 540px){
+    .container {
+        width: 95vw;
+    }
+}

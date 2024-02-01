@@ -1,0 +1,43 @@
+.clickerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .clickTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--text);
+  }
+
+  .clickIndicator {
+    font-size: 10rem;
+    color: var(--cyan);
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+
+  .clickButton {
+    padding: 1rem;
+    background-color: var(--cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+
+    font-weight: bold;
+
+    font-size: 1.1rem;
+    border-radius: 1rem;
+    width: 200px;
+    margin-bottom: 2rem;
+
+    svg {
+      font-size: 1.2rem;
+      margin-right: 1rem;
+      fill: var(--white);
+    }
+  }
+}
