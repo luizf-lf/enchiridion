@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27/04/2019 21:52:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="dvdrental.Film" table="film" schema="public" optimistic-lock="version">
+        <id name="filmId" type="int">
+            <column name="film_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="language" class="dvdrental.Language" fetch="select">
+            <column name="language_id" not-null="true" />
+        </many-to-one>
+        <property name="title" type="string">
+            <column name="title" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" />
+        </property>
+        <property name="releaseYear" type="int">
+            <column name="release_year" />
+        </property>
+        <property name="rentalDuration" type="short">
+            <column name="rental_duration" not-null="true" />
+        </property>
+        <property name="rentalRate" type="big_decimal">
+            <column name="rental_rate" precision="4" not-null="true" />
+        </property>
+        <property name="length" type="java.lang.Short">
+            <column name="length" />
+        </property>
+        <property name="replacementCost" type="big_decimal">
+            <column name="replacement_cost" precision="5" not-null="true" />
+        </property>
+        <property name="rating" type="string">
+            <column name="rating" />
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="29" not-null="true" />
+        </property>
+        <property name="specialFeatures" type="string">
+            <column name="special_features" />
+        </property>
+
+        <set name="filmCategories" table="film_category" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="film_id" not-null="true" />
+            </key>
+            <one-to-many class="dvdrental.FilmCategory" />
+        </set>
+        <set name="filmActors" table="film_actor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="film_id" not-null="true" />
+            </key>
+            <one-to-many class="dvdrental.FilmActor" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="./template.xhtml">
+        <ui:define name="body">
+
+            <h:commandLink action="#{categoryController.previous}" value="Anteriores #{categoryController.pageSize}" rendered="#{categoryController.hasPreviousPage}"/> <h:outputText value="&#160;" />
+            <h:commandLink action="#{categoryController.next}" value="Próximos #{categoryController.pageSize}" rendered="#{categoryController.hasNextPage}"/> 
+            <h:dataTable value="#{categoryController.categoryTitles}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Id"/>
+                    </f:facet>
+                    <h:outputText value="#{item.categoryId}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Title"/>
+                    </f:facet>
+                    <h:outputText value="#{item.name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Last Update"/>
+                    </f:facet>
+                    <h:outputText value="#{item.lastUpdate}"/>
+                </h:column>
+                <h:column>
+                    <h:form>
+                        <f:facet name="header">
+                            <h:outputText value="Excluir"/>
+                        </f:facet>
+                        <h:commandButton value="Excluir"  action="#{categoryController.excluir()}">
+                            <f:setPropertyActionListener target="#{categoryController.category.categoryId}" value="#{item.categoryId}"/>
+                        </h:commandButton>
+                    </h:form>
+                </h:column>
+                <h:column>
+                    
+                        <f:facet name="header">
+                            <h:outputText value="Atualizar"/>
+                        </f:facet>
+                    <h:form >
+                        <h:commandButton value="Atualizar"  action="#{categoryController.atualizar()}" onclick="window.location.href='categorias.jsf'">
+                            <h:inputText value="#{categoryController.category.name}"/>
+                            <f:setPropertyActionListener target="#{categoryController.category.categoryId}" value="#{item.categoryId}"/>
+                        </h:commandButton>
+                    </h:form>
+                </h:column>
+            </h:dataTable>
+            <br/>
+        </ui:define>
+    </ui:composition>
+</html>
