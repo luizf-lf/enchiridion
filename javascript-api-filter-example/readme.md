@@ -1,12 +1,12 @@
 # API Filter Example
 
-### About
+## About
 
 This repository is an example on how to fetch an API and filter its results directly from the JavaScript without having to fetch the API again on every `onKeyUp` event from an input field. This example was done with plain JavaScript.
 
 You can see a live deploy at <a href="https://luizf-lf.github.io/api-filter-example/" rel="noopener noreferrer" target="_blank">GitHub Pages</a>
 
-### How it Works
+## How it Works
 
 In the `main.js` file it's used the [array.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) method to filter the results from the [Covid19 API](https://covid19api.com/), from the [summary route](https://api.covid19api.com/summary).
 

@@ -8,11 +8,7 @@ Based on a tutorial by Egator on YouTube. [This one](https://www.youtube.com/wat
 
 ## See it live
 
-See the project live here:
-
-[https://luizf-lf.github.io/admin-sales-dashboard/](https://luizf-lf.github.io/admin-sales-dashboard/)
-
-You can also clone this repository and run this project by simply opening the `index.html` file from any browser.
+You can clone this repository and run this project by simply opening the `index.html` file from any browser.
 
 ## Screenshots
 

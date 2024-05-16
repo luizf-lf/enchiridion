@@ -13,6 +13,5 @@ Just install all dependencies with `yarn` or `npm install`, and then run `dev` c
 Example:
 
 ```sh
-$ yarn
-$ yarn dev
+  yarn && yarn dev
 ```

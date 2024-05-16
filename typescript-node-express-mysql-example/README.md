@@ -1,5 +1,7 @@
 # Nodejs MySQL Express Example
 
+## About
+
 A NodeJS MySQL Express example, as the name implies, it's a node.js restful API server that uses Express and MySQL.
 
 It is a simple CRUD example that also has a Swagger documentation.

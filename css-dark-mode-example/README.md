@@ -1,1 +1,5 @@
-# See it live at [luizf-lf/dark-mode](https://luizf-lf.github.io/dark-mode/)
+# Dark Mode
+
+## About
+
+A simple css dark mode example.
