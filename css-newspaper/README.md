@@ -1,1 +1,5 @@
-# See it live at [luizf-lf/newspaper](https://luizf-lf.github.io/newspaper/)
+# Newspaper
+
+## About
+
+A simple newspaper style responsive web page.

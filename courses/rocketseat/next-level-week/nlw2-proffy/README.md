@@ -37,8 +37,6 @@ Este projeto está dividido em 3 repositórios, cada um com sua aplicação espe
 
 Abaixo segue uma documentação sobre cada repositório da plataforma:
 
-<br>
-
 ---
 
 ## Proffy Server
@@ -91,7 +89,7 @@ Parâmetros disponíveis:
 | week_day  | number | Dia da semana de 0 a 6 | 1          |
 | time      | string | Horário em _hh:mm_     | 12:30      |
 
-Exemplo de requisição: http://127.0.0.1:8080/classes?subject=Biologia&week_day=3&time=12:00
+Exemplo de requisição: <http://127.0.0.1:8080/classes?subject=Biologia&week_day=3&time=12:00>
 
 **Detalhe:** É **obrigatório** informar todos o parâmetros, caso contrário o servidor irá retornar um `HTTP 400 Bad Request`.
 
@@ -126,8 +124,6 @@ Exemplo de retorno:
   },
 ]
 ```
-
-<br />
 
 `POST /classes` Criação de aulas.
 
@@ -171,8 +167,6 @@ Caso os parâmetros estiverem corretos, o servidor irá retornar um `HTTP 201 Cr
 }
 ```
 
-<br />
-
 `GET /connections` Listagem do total de conexões realizadas.
 
 Toda vez que um aluno entra em contato com um professor, é criado o registro de uma nova conexão, e através desta rota é possível recuperar uma soma com o total de conexões já realizadas.
@@ -184,8 +178,6 @@ Não é necessário informar nenhum parâmetro na URL. Ao atingir o endpoint é 
   "total": 132
 }
 ```
-
-<br />
 
 `POST /connections` Criar uma nova conexão.
 
@@ -206,8 +198,6 @@ Caso a requisição for bem sucedida, o servidor irá retornar uma resposta `HTT
   "status": "Created"
 }
 ```
-
-<br />
 
 ---
 
@@ -315,8 +305,6 @@ Informação sobre os campos do formulário:
 Após finalizar o preenchimento do formulário e clicar no botão "salvar", será disparada uma função responsável por recuperar os dados do formulário e enviar uma requisição do tipo `POST` ao endpoint `/classes` do servidor.
 
 Pela forma como foi desenvolvida, não há nenhuma validação de campos no formulário. Caso os dados não estiverem corretos, o servidor irá retornar um `HTTP 400 Bad Request`.
-
-<br>
 
 ---
 

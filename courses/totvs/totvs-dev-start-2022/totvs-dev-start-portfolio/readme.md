@@ -1,6 +1,6 @@
 # Totvs Dev Start / Portfolio
 
-## Disponível em [https://luizf-lf.github.io/totvs-dev-start-portfolio/](https://luizf-lf.github.io/totvs-dev-start-portfolio/)
+## Sobre
 
 Portfólio criado durante o curso Totvs Dev Start.
 
